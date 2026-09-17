@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ALL TOOLS FREE BY YANZ STORU</title>
+    
+    <!-- Google Fonts: Poppins & Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        heading: ['Poppins', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            50: '#f0f9ff',
+                            100: '#e0f2fe',
+                            200: '#bae6fd',
+                            300: '#7dd3fc',
+                            400: '#38bdf8',
+                            500: '#0ea5e9',
+                            600: '#0284c7',
+                            700: '#0369a1',
+                            800: '#075985',
+                            900: '#0c4a6e',
+                        }
+                    },
+                    animation: {
+                        'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'float': 'float 6s ease-in-out infinite',
+                        'glow': 'glow 2s ease-in-out infinite alternate',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0px)' },
+                            '50%': { transform: 'translateY(-10px)' },
+                        },
+                        glow: {
+                            '0%': { boxShadow: '0 0 15px rgba(14, 165, 233, 0.3)' },
+                            '100%': { boxShadow: '0 0 30px rgba(14, 165, 233, 0.7)' }
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        /* Modern Glassmorphism Styling */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.65);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.8);
+            box-shadow: 0 10px 30px -5px rgba(14, 165, 233, 0.08);
+        }
+
+        .glass-card-hover {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .glass-card-hover:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.85);
+            border-color: rgba(56, 189, 248, 0.6);
+            box-shadow: 0 20px 35px -10px rgba(14, 165, 233, 0.25);
+        }
+
+        .glass-nav {
+            background: rgba(255, 255, 255, 0.75);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+        }
+
+        /* Equalizer Animation */
+        .eq-bar {
+            width: 3px;
+            background-color: #0ea5e9;
+            border-radius: 3px;
+            animation: eqAnim 1s ease-in-out infinite alternate;
+        }
+
+        .eq-bar:nth-child(1) { height: 16px; animation-delay: 0.1s; }
+        .eq-bar:nth-child(2) { height: 10px; animation-delay: 0.3s; }
+        .eq-bar:nth-child(3) { height: 20px; animation-delay: 0.2s; }
+        .eq-bar:nth-child(4) { height: 12px; animation-delay: 0.4s; }
+
+        .paused .eq-bar {
+            animation-play-state: paused;
+            height: 4px !important;
+        }
+
+        @keyframes eqAnim {
+            0% { height: 4px; }
+            100% { height: 22px; }
+        }
+
+        /* Ambient Glowing Background Elements */
+        .bg-blob-1 {
+            position: absolute;
+            top: -10%;
+            left: -10%;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(186,230,253,0.8) 0%, rgba(224,242,254,0) 70%);
+            border-radius: 50%;
+            z-index: -1;
+            filter: blur(60px);
+        }
+
+        .bg-blob-2 {
+            position: absolute;
+            top: 40%;
+            right: -10%;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(125,211,252,0.6) 0%, rgba(224,242,254,0) 70%);
+            border-radius: 50%;
+            z-index: -1;
+            filter: blur(70px);
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #e0f2fe;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #38bdf8;
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #0284c7;
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-sky-100 via-cyan-50 to-blue-100 text-slate-800 font-sans min-h-screen relative overflow-x-hidden">
+
+    <!-- Background Decorative Blobs -->
+    <div class="bg-blob-1 animate-pulse-slow"></div>
+    <div class="bg-blob-2 animate-pulse-slow"></div>
+
+    <!-- Navbar / Header -->
+    <header class="sticky top-0 z-50 glass-nav transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3.5 flex flex-col md:flex-row justify-between items-center gap-4">
+            
+            <!-- Logo & Brand Name -->
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-2xl bg-gradient-to-tr from-brand-500 to-cyan-400 flex items-center justify-center text-white shadow-lg shadow-brand-500/30 animate-float">
+                    <i class="fa-solid fa-wand-magic-sparkles text-lg"></i>
+                </div>
+                <div>
+                    <h1 class="font-heading text-lg sm:text-xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-brand-700 via-brand-500 to-cyan-500 tracking-tight">
+                        ALL TOOLS FREE <span class="text-slate-800 text-xs sm:text-sm font-semibold tracking-normal px-2 py-0.5 rounded-full bg-brand-100 border border-brand-200">BY YANZ STORU</span>
+                    </h1>
+                    <p class="text-[11px] text-slate-500 font-medium">Platform Free Web Tools & Developer Utilities</p>
+                </div>
+            </div>
+
+            <!-- Audio Controller (Pojok Kanan Atas) -->
+            <div class="flex items-center gap-3 bg-white/80 border border-white/90 p-1.5 px-3.5 rounded-full shadow-sm hover:shadow-md transition-all">
+                <!-- Music Info & Equalizer -->
+                <div class="flex items-center gap-2 pr-2 border-r border-slate-200">
+                    <div id="eqVisualizer" class="flex items-end gap-0.5 h-6 px-1 paused">
+                        <div class="eq-bar"></div>
+                        <div class="eq-bar"></div>
+                        <div class="eq-bar"></div>
+                        <div class="eq-bar"></div>
+                    </div>
+                    <div class="text-left hidden sm:block">
+                        <span id="musicStatusText" class="block text-[11px] font-bold text-slate-700 leading-tight">ynz.mp3</span>
+                        <span id="musicStateSub" class="block text-[9px] text-slate-400 uppercase font-semibold tracking-wider">Stopped</span>
+                    </div>
+                </div>
+
+                <!-- Play Button -->
+                <button id="btnPlayMusic" onclick="playAudio()" class="w-9 h-9 rounded-full bg-brand-500 hover:bg-brand-600 text-white flex items-center justify-center shadow-md shadow-brand-500/20 transition-all hover:scale-105 active:scale-95 group" title="Putar Musik">
+                    <i class="fa-solid fa-play text-xs group-hover:scale-110"></i>
+                </button>
+
+                <!-- Stop Button -->
+                <button id="btnStopMusic" onclick="stopAudio()" class="w-9 h-9 rounded-full bg-slate-200 hover:bg-rose-500 text-slate-600 hover:text-white flex items-center justify-center transition-all hover:scale-105 active:scale-95 group" title="Hentikan Musik">
+                    <i class="fa-solid fa-stop text-xs"></i>
+                </button>
+
+                <!-- Audio Element -->
+                <audio id="audioPlayer" loop preload="metadata">
+                    <source src="audio/ynz.mp3" type="audio/mpeg">
+                    Browser Anda tidak mendukung elemen audio.
+                </audio>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content Container -->
+    <main class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-10">
+
+        <!-- Hero Title Section -->
+        <div class="text-center space-y-3">
+            <span class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-semibold bg-cyan-100 text-brand-700 border border-cyan-200 shadow-xs">
+                <i class="fa-solid fa-bolt text-brand-500"></i> 100% Gratis & Tanpa Registrasi
+            </span>
+            <h2 class="font-heading text-3xl sm:text-5xl font-extrabold text-slate-900 tracking-tight">
+                Kumpulan Tools Serbaguna <br class="hidden sm:inline">
+                <span class="bg-clip-text text-transparent bg-gradient-to-r from-brand-600 via-cyan-500 to-blue-600">Terlengkap & Cepat</span>
+            </h2>
+            <p class="text-sm sm:text-base text-slate-600 max-w-2xl mx-auto font-medium">
+                Nikmati akses instan ke berbagai alat bantu digital, downloader, utilitas web, dan enkripsi data karya Yanz Storu.
+            </p>
+        </div>
+
+        <!-- Section Video 16:9 Modern -->
+        <section class="relative w-full max-w-4xl mx-auto">
+            <!-- Glow Effect Frame -->
+            <div class="absolute -inset-1 bg-gradient-to-r from-cyan-400 via-brand-400 to-blue-500 rounded-[28px] blur-md opacity-40 hover:opacity-75 transition duration-500"></div>
+            
+            <!-- Video Container Box (Aspect Ratio 16:9) -->
+            <div class="relative w-full aspect-video rounded-[24px] overflow-hidden glass-card border-2 border-white/80 shadow-2xl shadow-cyan-500/10 group">
+                
+                <!-- Video Element (Looping, Autoplay, Muted) -->
+                <video id="bgVideo" autoplay loop muted playsinline class="w-full h-full object-cover rounded-[22px]">
+                    <source src="video/ynz.mp4" type="video/mp4">
+                    <!-- Fallback visual if video file isn't present -->
+                    <div class="w-full h-full bg-gradient-to-br from-slate-900 via-brand-950 to-slate-900 flex flex-col items-center justify-center text-white p-6 text-center">
+                        <i class="fa-solid fa-film text-4xl text-cyan-400 mb-2 animate-bounce"></i>
+                        <p class="font-bold text-lg">Format Video "video/ynz.mp4"</p>
+                        <p class="text-xs text-slate-400">Pastikan file tersimpan di folder video/</p>
+                    </div>
+                </video>
+
+                <!-- Futuristic Overlay Details -->
+                <div class="absolute top-4 left-4 z-10 flex items-center gap-2 bg-slate-900/60 backdrop-blur-md text-white px-3 py-1.5 rounded-full border border-white/20 text-xs">
+                    <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
+                    <span class="font-semibold text-[11px] tracking-wide">PREVIEW VIDEO</span>
+                </div>
+
+                <div class="absolute bottom-4 right-4 z-10 hidden sm:flex items-center gap-2 bg-slate-900/60 backdrop-blur-md text-slate-200 px-3 py-1 rounded-full border border-white/20 text-[11px]">
+                    <i class="fa-solid fa-expand text-cyan-400"></i> 16:9 HD Display
+                </div>
+            </div>
+        </section>
+
+        <!-- Section Search & Tools List -->
+        <section class="space-y-6 pt-4">
+            
+            <!-- Box Cari Tools Modern -->
+            <div class="max-w-2xl mx-auto relative group">
+                <div class="absolute -inset-1 bg-gradient-to-r from-brand-400 to-cyan-400 rounded-2xl blur opacity-25 group-hover:opacity-60 transition duration-300"></div>
+                
+                <div class="relative flex items-center bg-white/90 backdrop-blur-md rounded-2xl p-2 shadow-lg border border-white">
+                    <div class="pl-4 text-brand-500">
+                        <i class="fa-solid fa-magnifying-glass text-lg"></i>
+                    </div>
+                    <input 
+                        type="text" 
+                        id="searchInput" 
+                        oninput="filterTools()"
+                        placeholder="Cari tools (contoh: TikTok, Enkripsi, WA, IP...)" 
+                        class="w-full py-3 px-4 text-slate-800 placeholder-slate-400 bg-transparent text-sm sm:text-base font-medium focus:outline-none"
+                    >
+                    <button 
+                        type="button" 
+                        onclick="clearSearch()"
+                        id="btnClearSearch"
+                        class="hidden text-slate-400 hover:text-slate-600 px-3 py-1 text-sm font-semibold transition-all">
+                        <i class="fa-solid fa-xmark"></i>
+                    </button>
+                    <button 
+                        type="button" 
+                        class="bg-gradient-to-r from-brand-500 to-cyan-500 hover:from-brand-600 hover:to-cyan-600 text-white font-semibold px-5 py-3 rounded-xl shadow-md transition-all text-sm flex items-center gap-2 hover:scale-[1.02] active:scale-95">
+                        <span>Cari</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Filter Category Badges -->
+            <div class="flex items-center justify-center flex-wrap gap-2 pt-2" id="categoryFilters">
+                <button onclick="setCategory('all')" class="cat-btn active px-4 py-1.5 rounded-full text-xs font-semibold transition-all bg-brand-600 text-white shadow-sm shadow-brand-500/30">Semua</button>
+                <button onclick="setCategory('Downloader')" class="cat-btn px-4 py-1.5 rounded-full text-xs font-semibold transition-all bg-white/80 hover:bg-white text-slate-600 border border-slate-200/80">Downloader</button>
+                <button onclick="setCategory('Security')" class="cat-btn px-4 py-1.5 rounded-full text-xs font-semibold transition-all bg-white/80 hover:bg-white text-slate-600 border border-slate-200/80">Keamanan</button>
+                <button onclick="setCategory('Developer')" class="cat-btn px-4 py-1.5 rounded-full text-xs font-semibold transition-all bg-white/80 hover:bg-white text-slate-600 border border-slate-200/80">Developer</button>
+                <button onclick="setCategory('Utilities')" class="cat-btn px-4 py-1.5 rounded-full text-xs font-semibold transition-all bg-white/80 hover:bg-white text-slate-600 border border-slate-200/80">Utilitas</button>
+            </div>
+
+            <!-- Counter Info -->
+            <div class="flex justify-between items-center text-xs text-slate-500 px-2 font-medium">
+                <span id="toolsCountText">Menampilkan <strong class="text-brand-600" id="visibleCount">0</strong> tools</span>
+                <span class="flex items-center gap-1"><i class="fa-solid fa-circle text-[8px] text-emerald-500"></i> Server Online</span>
+            </div>
+
+            <!-- Grid Tools -->
+            <div id="toolsGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+                <!-- Cards will be populated by JS -->
+            </div>
+
+            <!-- Empty State Search Result -->
+            <div id="emptyState" class="hidden text-center py-12 space-y-3 glass-card rounded-3xl">
+                <div class="w-16 h-16 mx-auto rounded-full bg-slate-100 flex items-center justify-center text-slate-400 text-2xl">
+                    <i class="fa-solid fa-face-frown"></i>
+                </div>
+                <h3 class="font-heading font-bold text-slate-700">Tool Tidak Ditemukan</h3>
+                <p class="text-xs text-slate-500">Coba gunakan kata kunci lain seperti "TikTok", "Base64", atau "QR".</p>
+            </div>
+
+        </section>
+
+    </main>
+
+    <!-- Interactive Tool Modal -->
+    <div id="toolModal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/40 backdrop-blur-sm hidden opacity-0 transition-opacity duration-300">
+        <div class="bg-white/95 rounded-3xl max-w-lg w-full p-6 shadow-2xl border border-white space-y-5 transform scale-95 transition-transform duration-300" id="modalBox">
+            <div class="flex justify-between items-start">
+                <div class="flex items-center gap-3">
+                    <div id="modalIcon" class="w-12 h-12 rounded-2xl bg-brand-100 text-brand-600 flex items-center justify-center text-xl">
+                        <i class="fa-solid fa-gear"></i>
+                    </div>
+                    <div>
+                        <h3 id="modalTitle" class="font-heading font-bold text-lg text-slate-800">Nama Tool</h3>
+                        <span id="modalBadge" class="text-[10px] font-bold px-2.5 py-0.5 rounded-full bg-brand-50 text-brand-600 border border-brand-200">Kategori</span>
+                    </div>
+                </div>
+                <button onclick="closeModal()" class="w-8 h-8 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-500 flex items-center justify-center text-sm transition-all">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+
+            <p id="modalDesc" class="text-xs text-slate-600">Deskripsi singkat tool.</p>
+
+            <!-- Dynamic Tool Action Area -->
+            <div id="modalBody" class="space-y-3 bg-slate-50 p-4 rounded-2xl border border-slate-200/80">
+                <!-- Inner dynamic content -->
+            </div>
+
+            <div class="flex justify-end gap-2 pt-2">
+                <button onclick="closeModal()" class="px-4 py-2 rounded-xl text-xs font-semibold bg-slate-100 text-slate-600 hover:bg-slate-200">Tutup</button>
+                <button id="modalActionBtn" onclick="executeToolAction()" class="px-5 py-2 rounded-xl text-xs font-semibold bg-brand-500 hover:bg-brand-600 text-white shadow-md shadow-brand-500/20">Proses</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="fixed bottom-5 right-5 z-50 transform translate-y-20 opacity-0 transition-all duration-300 pointer-events-none">
+        <div class="bg-slate-900 text-white text-xs font-semibold px-4 py-3 rounded-2xl shadow-xl flex items-center gap-3 border border-slate-700">
+            <i id="toastIcon" class="fa-solid fa-circle-check text-emerald-400 text-base"></i>
+            <span id="toastMsg">Pesan Notifikasi</span>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="mt-16 border-t border-slate-200/80 bg-white/50 backdrop-blur-md py-8 text-center text-xs text-slate-500">
+        <div class="max-w-6xl mx-auto px-4 space-y-2">
+            <p class="font-semibold text-slate-700">ALL TOOLS FREE BY YANZ STORU &copy; 2026</p>
+            <p class="text-[11px] text-slate-400">Dibuat dengan tema Biru Muda Glassmorphism Modern & Futuristik.</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript Logic -->
+    <script>
+        const toolsData = [
+            {
+                id: 'tiktok-dl',
+                title: 'TikTok Downloader HD',
+                category: 'Downloader',
+                icon: 'fa-tiktok',
+                desc: 'Unduh video TikTok tanpa watermark secara gratis dengan kualitas HD.',
+                placeholder: 'Masukkan URL Video TikTok...',
+                btnLabel: 'Download Video'
+            },
+            {
+                id: 'subdomain-scan',
+                title: 'Subdomain Scanner',
+                category: 'Security',
+                icon: 'fa-network-wired',
+                desc: 'Pindai dan cari daftar subdomain aktif dari target domain website.',
+                placeholder: 'Contoh: example.com',
+                btnLabel: 'Mulai Pindai'
+            },
+            {
+                id: 'js-encrypt',
+                title: 'JS Encryptor & Obfuscator',
+                category: 'Developer',
+                icon: 'fa-code',
+                desc: 'Amankan kode JavaScript Anda dari pencurian script dengan enkripsi terkuat.',
+                placeholder: 'Tempelkan kode JS di sini...',
+                btnLabel: 'Enkripsi Kode'
+            },
+            {
+                id: 'wa-bot-link',
+                title: 'WA Bot Direct Link',
+                category: 'Utilities',
+                icon: 'fa-whatsapp',
+                desc: 'Buat tautan WhatsApp langsung dengan pesan otomatis tanpa simpan nomor.',
+                placeholder: 'Nomor WA (contoh: 628123456789)',
+                btnLabel: 'Buat Link WA'
+            },
+            {
+                id: 'ip-checker',
+                title: 'IP Lookup & Geo Checker',
+                category: 'Utilities',
+                icon: 'fa-globe',
+                desc: 'Periksa alamat IP publik, penyedia internet (ISP), dan lokasi geografis Anda.',
+                placeholder: 'Alamat IP (Kosongkan untuk IP Anda)',
+                btnLabel: 'Cek Info IP'
+            },
+            {
+                id: 'ig-dl',
+                title: 'Instagram Reels Downloader',
+                category: 'Downloader',
+                icon: 'fa-instagram',
+                desc: 'Simpan video Instagram Reels & Foto Feed secara praktis dan cepat.',
+                placeholder: 'Masukkan Link Instagram...',
+                btnLabel: 'Ambil Media'
+            },
+            {
+                id: 'qr-generator',
+                title: 'Futuristic QR Generator',
+                category: 'Utilities',
+                icon: 'fa-qrcode',
+                desc: 'Hasilkan Kode QR untuk link, teks, atau WiFi dengan format resolusi tinggi.',
+                placeholder: 'Teks atau URL untuk QR...',
+                btnLabel: 'Generate QR'
+            },
+            {
+                id: 'base64-tool',
+                title: 'Base64 Encoder / Decoder',
+                category: 'Developer',
+                icon: 'fa-lock',
+                desc: 'Konversi teks menjadi string Base64 atau dekode kembali secara instan.',
+                placeholder: 'Teks masukan...',
+                btnLabel: 'Proses Base64'
+            },
+            {
+                id: 'password-gen',
+                title: 'Strong Password Generator',
+                category: 'Security',
+                icon: 'fa-key',
+                desc: 'Buat kata sandi super kuat yang tidak mudah diretas untuk akun Anda.',
+                placeholder: 'Panjang Karakter (Contoh: 16)',
+                btnLabel: 'Generate Password'
+            }
+        ];
+
+        const audio = document.getElementById('audioPlayer');
+        const eqVisualizer = document.getElementById('eqVisualizer');
+        const musicStatusText = document.getElementById('musicStatusText');
+        const musicStateSub = document.getElementById('musicStateSub');
+
+        function playAudio() {
+            audio.play().then(() => {
+                eqVisualizer.classList.remove('paused');
+                musicStatusText.innerText = 'ynz.mp3';
+                musicStateSub.innerText = 'Playing';
+                musicStateSub.classList.add('text-emerald-500');
+                musicStateSub.classList.remove('text-slate-400');
+                showToast('Lagu ynz.mp3 diputar!', 'fa-music');
+            }).catch(err => {
+                showToast('Gagal memutar! File audio/ynz.mp3 tidak ditemukan.', 'fa-triangle-exclamation');
+            });
+        }
+
+        function stopAudio() {
+            audio.pause();
+            audio.currentTime = 0;
+            eqVisualizer.classList.add('paused');
+            musicStatusText.innerText = 'ynz.mp3';
+            musicStateSub.innerText = 'Stopped';
+            musicStateSub.classList.remove('text-emerald-500');
+            musicStateSub.classList.add('text-slate-400');
+            showToast('Musik dihentikan.', 'fa-circle-stop');
+        }
+
+        let currentCategory = 'all';
+
+        function renderTools() {
+            const grid = document.getElementById('toolsGrid');
+            const searchVal = document.getElementById('searchInput').value.toLowerCase().trim();
+            const emptyState = document.getElementById('emptyState');
+            
+            grid.innerHTML = '';
+            let count = 0;
+
+            toolsData.forEach(tool => {
+                const matchCategory = (currentCategory === 'all' || tool.category === currentCategory);
+                const matchSearch = (tool.title.toLowerCase().includes(searchVal) || tool.desc.toLowerCase().includes(searchVal) || tool.category.toLowerCase().includes(searchVal));
+
+                if (matchCategory && matchSearch) {
+                    count++;
+                    const card = document.createElement('div');
+                    card.className = 'glass-card glass-card-hover rounded-2xl p-5 flex flex-col justify-between space-y-4 border border-white/80 cursor-pointer';
+                    card.onclick = () => openToolModal(tool);
+
+                    card.innerHTML = `
+                        <div class="space-y-3">
+                            <div class="flex items-center justify-between">
+                                <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-brand-100 to-cyan-100 text-brand-600 flex items-center justify-center text-lg shadow-sm">
+                                    <i class="fa-brands ${tool.icon} ${tool.icon.startsWith('fa-') ? '' : ''} ${!tool.icon.startsWith('fa-') ? tool.icon : ''}"></i>
+                                </div>
+                                <span class="text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-full bg-slate-100 text-slate-600 border border-slate-200">${tool.category}</span>
+                            </div>
+                            <div>
+                                <h3 class="font-heading font-bold text-slate-800 text-base group-hover:text-brand-600">${tool.title}</h3>
+                                <p class="text-xs text-slate-500 mt-1 line-clamp-2">${tool.desc}</p>
+                            </div>
+                        </div>
+                        <div class="pt-2 flex items-center justify-between border-t border-slate-100">
+                            <span class="text-[11px] font-semibold text-brand-600 flex items-center gap-1">Gunakan Tool <i class="fa-solid fa-arrow-right text-[10px]"></i></span>
+                            <span class="text-[10px] text-emerald-600 font-medium bg-emerald-50 px-2 py-0.5 rounded-full">FREE</span>
+                        </div>
+                    `;
+                    grid.appendChild(card);
+                }
+            });
+
+            document.getElementById('visibleCount').innerText = count;
+
+            if (count === 0) {
+                emptyState.classList.remove('hidden');
+            } else {
+                emptyState.classList.add('hidden');
+            }
+        }
+
+        function filterTools() {
+            const val = document.getElementById('searchInput').value;
+            const btnClear = document.getElementById('btnClearSearch');
+            if (val) {
+                btnClear.classList.remove('hidden');
+            } else {
+                btnClear.classList.add('hidden');
+            }
+            renderTools();
+        }
+
+        function clearSearch() {
+            document.getElementById('searchInput').value = '';
+            filterTools();
+        }
+
+        function setCategory(cat) {
+            currentCategory = cat;
+            const buttons = document.querySelectorAll('.cat-btn');
+            buttons.forEach(btn => {
+                if(btn.innerText.toLowerCase() === cat.toLowerCase() || (cat === 'all' && btn.innerText.toLowerCase() === 'semua')) {
+                    btn.className = 'cat-btn active px-4 py-1.5 rounded-full text-xs font-semibold transition-all bg-brand-600 text-white shadow-sm shadow-brand-500/30';
+                } else {
+                    btn.className = 'cat-btn px-4 py-1.5 rounded-full text-xs font-semibold transition-all bg-white/80 hover:bg-white text-slate-600 border border-slate-200/80';
+                }
+            });
+            renderTools();
+        }
+
+        let activeTool = null;
+
+        function openToolModal(tool) {
+            activeTool = tool;
+            document.getElementById('modalTitle').innerText = tool.title;
+            document.getElementById('modalBadge').innerText = tool.category;
+            document.getElementById('modalDesc').innerText = tool.desc;
+            document.getElementById('modalActionBtn').innerText = tool.btnLabel;
+
+            const modalBody = document.getElementById('modalBody');
+            modalBody.innerHTML = `
+                <label class="block text-xs font-semibold text-slate-700">Input Data:</label>
+                <input type="text" id="toolModalInput" placeholder="${tool.placeholder}" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 text-xs focus:ring-2 focus:ring-brand-400 focus:outline-none bg-white">
+                <div id="modalOutput" class="hidden text-xs bg-white p-3 rounded-xl border border-slate-200 text-slate-700 font-mono break-all"></div>
+            `;
+
+            const modal = document.getElementById('toolModal');
+            const modalBox = document.getElementById('modalBox');
+            modal.classList.remove('hidden');
+            setTimeout(() => {
+                modal.classList.remove('opacity-0');
+                modalBox.classList.remove('scale-95');
+            }, 10);
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('toolModal');
+            const modalBox = document.getElementById('modalBox');
+            modal.classList.add('opacity-0');
+            modalBox.classList.add('scale-95');
+            setTimeout(() => {
+                modal.classList.add('hidden');
+            }, 300);
+        }
+
+        function executeToolAction() {
+            const inputVal = document.getElementById('toolModalInput').value.trim();
+            const outputBox = document.getElementById('modalOutput');
+
+            if (!inputVal && activeTool.id !== 'ip-checker' && activeTool.id !== 'password-gen') {
+                showToast('Harap isi kolom input terlebih dahulu!', 'fa-circle-exclamation');
+                return;
+            }
+
+            outputBox.classList.remove('hidden');
+            outputBox.innerHTML = '<span class="text-brand-500 font-semibold"><i class="fa-solid fa-spinner animate-spin"></i> Memproses...</span>';
+
+            setTimeout(() => {
+                if (activeTool.id === 'password-gen') {
+                    const len = parseInt(inputVal) || 16;
+                    const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()';
+                    let res = '';
+                    for (let i = 0; i < len; i++) res += chars.charAt(Math.floor(Math.random() * chars.length));
+                    outputBox.innerHTML = `<strong>Password:</strong> <br><span class="text-emerald-600">${res}</span>`;
+                } else if (activeTool.id === 'base64-tool') {
+                    const encoded = btoa(inputVal);
+                    outputBox.innerHTML = `<strong>Base64 Encoded:</strong> <br>${encoded}`;
+                } else {
+                    outputBox.innerHTML = `<strong>Status:</strong> <span class="text-emerald-600 font-semibold">Berhasil Diproses!</span><br>Hasil untuk: <i>${inputVal || 'Alamat IP Anda'}</i>`;
+                }
+                showToast('Proses selesai!', 'fa-circle-check');
+            }, 800);
+        }
+
+        function showToast(msg, icon = 'fa-circle-check') {
+            const toast = document.getElementById('toast');
+            document.getElementById('toastMsg').innerText = msg;
+            document.getElementById('toastIcon').className = `fa-solid ${icon} text-emerald-400 text-base`;
+
+            toast.classList.remove('translate-y-20', 'opacity-0');
+            setTimeout(() => {
+                toast.classList.add('translate-y-20', 'opacity-0');
+            }, 3000);
+        }
+
+        // Initialize grid on DOM load
+        window.onload = function() {
+            renderTools();
+        };
+    </script>
+</body>
+</html>
+```
