@@ -1,22 +1,23 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="id" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ALL TOOLS FREE BY YANZ STORU</title>
-    <!-- Tailwind CSS CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <!-- FontAwesome Icons CDN -->
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Google Fonts Inter -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-
+    
+    <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
             theme: {
                 extend: {
                     fontFamily: {
                         sans: ['Inter', 'sans-serif'],
+                        heading: ['Poppins', 'sans-serif'],
                     },
                     colors: {
                         brand: {
@@ -31,992 +32,784 @@
                             800: '#075985',
                             900: '#0c4a6e',
                         }
-                    },
-                    boxShadow: {
-                        'glass': '0 8px 32px 0 rgba(14, 165, 233, 0.15)',
-                        'glow': '0 0 20px rgba(14, 165, 233, 0.35)',
                     }
                 }
             }
         }
     </script>
-
+    
     <style>
-        body {
-            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 50%, #bae6fd 100%);
-            min-height: 100vh;
-        }
-
         .glass-card {
             background: rgba(255, 255, 255, 0.75);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.9);
+            box-shadow: 0 10px 30px -5px rgba(14, 165, 233, 0.1);
         }
 
-        .glass-modal {
+        .glass-card-hover {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .glass-card-hover:hover {
+            transform: translateY(-4px);
             background: rgba(255, 255, 255, 0.92);
+            border-color: rgba(56, 189, 248, 0.6);
+            box-shadow: 0 20px 35px -10px rgba(14, 165, 233, 0.22);
+        }
+
+        .glass-nav {
+            background: rgba(255, 255, 255, 0.82);
             backdrop-filter: blur(20px);
             -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.6);
         }
 
-        /* Equalizer Animation */
         .eq-bar {
             width: 3px;
-            height: 16px;
             background-color: #0ea5e9;
-            border-radius: 2px;
-            display: inline-block;
-            margin: 0 1px;
-            animation: bounce 1s infinite ease-in-out alternate;
+            border-radius: 3px;
+            animation: eqAnim 1s ease-in-out infinite alternate;
         }
-        .eq-bar.paused {
-            animation-play-state: paused !important;
+
+        .eq-bar:nth-child(1) { height: 16px; animation-delay: 0.1s; }
+        .eq-bar:nth-child(2) { height: 10px; animation-delay: 0.3s; }
+        .eq-bar:nth-child(3) { height: 20px; animation-delay: 0.2s; }
+        .eq-bar:nth-child(4) { height: 12px; animation-delay: 0.4s; }
+
+        .paused .eq-bar {
+            animation-play-state: paused;
             height: 4px !important;
         }
-        .eq-bar:nth-child(1) { animation-delay: 0.1s; }
-        .eq-bar:nth-child(2) { animation-delay: 0.3s; }
-        .eq-bar:nth-child(3) { animation-delay: 0.2s; }
-        .eq-bar:nth-child(4) { animation-delay: 0.4s; }
 
-        @keyframes bounce {
+        @keyframes eqAnim {
             0% { height: 4px; }
-            100% { height: 20px; }
+            100% { height: 22px; }
         }
 
-        /* Video Glowing Border */
-        .video-glow {
-            box-shadow: 0 0 25px rgba(14, 165, 233, 0.4);
-            border: 2px solid rgba(14, 165, 233, 0.5);
-        }
-
-        /* Custom Scrollbar */
         ::-webkit-scrollbar {
             width: 8px;
-            height: 8px;
         }
         ::-webkit-scrollbar-track {
             background: #e0f2fe;
         }
         ::-webkit-scrollbar-thumb {
             background: #38bdf8;
-            border-radius: 4px;
-        }
-        ::-webkit-scrollbar-thumb:hover {
-            background: #0ea5e9;
+            border-radius: 10px;
         }
     </style>
 </head>
-<body class="text-slate-800 font-sans antialiased pb-12">
+<body class="bg-gradient-to-br from-sky-100 via-cyan-50 to-blue-100 text-slate-800 font-sans min-h-screen relative overflow-x-hidden">
 
-    <!-- Toast Notification Container -->
-    <div id="toast-container" class="fixed top-5 right-5 z-50 flex flex-col gap-2 pointer-events-none"></div>
-
-    <!-- MAIN CONTAINER -->
-    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-6">
-
-        <!-- HEADER & TITLE SECTION -->
-        <header class="glass-card rounded-2xl p-5 mb-6 shadow-glass flex flex-col md:flex-row items-center justify-between gap-4 border border-white">
-            <div class="flex items-center space-x-3 text-center md:text-left">
-                <div class="w-12 h-12 rounded-xl bg-gradient-to-tr from-brand-500 to-cyan-400 flex items-center justify-center text-white shadow-md text-2xl font-black">
-                    <i class="fa-solid fa-bolt"></i>
+    <header class="sticky top-0 z-50 glass-nav">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3.5 flex flex-col md:flex-row justify-between items-center gap-4">
+            
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-2xl bg-gradient-to-tr from-brand-500 to-cyan-400 flex items-center justify-center text-white shadow-lg shadow-brand-500/30">
+                    <i class="fa-solid fa-wand-magic-sparkles text-lg"></i>
                 </div>
                 <div>
-                    <h1 class="text-xl sm:text-2xl font-extrabold tracking-tight text-slate-900 bg-gradient-to-r from-brand-700 via-brand-500 to-cyan-600 bg-clip-text text-transparent">
-                        ALL TOOLS FREE BY YANZ STORU
+                    <h1 class="font-heading text-lg sm:text-xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-brand-700 via-brand-500 to-cyan-500 tracking-tight">
+                        ALL TOOLS FREE <span class="text-slate-800 text-xs sm:text-sm font-semibold tracking-normal px-2 py-0.5 rounded-full bg-brand-100 border border-brand-200">BY YANZ STORU</span>
                     </h1>
-                    <p class="text-xs sm:text-sm text-slate-500 font-medium">Platform Generator & Tool Suite Serbaguna Gratis</p>
+                    <p class="text-[11px] text-slate-500 font-medium">Free Web Tools & API Utilities Platform</p>
                 </div>
             </div>
 
-            <!-- Audio Player Widget -->
-            <div class="flex items-center space-x-3 bg-sky-100/80 px-4 py-2.5 rounded-xl border border-sky-200">
-                <audio id="audio-player" src="audio/ynz.mp3" loop preload="auto"></audio>
-                
-                <div class="flex items-center space-x-1 h-6 px-1">
-                    <span class="eq-bar paused"></span>
-                    <span class="eq-bar paused"></span>
-                    <span class="eq-bar paused"></span>
-                    <span class="eq-bar paused"></span>
+            <div class="flex items-center gap-3 bg-white/90 border border-white p-1.5 px-3.5 rounded-full shadow-sm">
+                <div class="flex items-center gap-2 pr-2 border-r border-slate-200">
+                    <div id="eqVisualizer" class="flex items-end gap-0.5 h-6 px-1 paused">
+                        <div class="eq-bar"></div>
+                        <div class="eq-bar"></div>
+                        <div class="eq-bar"></div>
+                        <div class="eq-bar"></div>
+                    </div>
+                    <div class="text-left hidden sm:block">
+                        <span id="musicStatusText" class="block text-[11px] font-bold text-slate-700 leading-tight">ynz.mp3</span>
+                        <span id="musicStateSub" class="block text-[9px] text-slate-400 uppercase font-semibold tracking-wider">Stopped</span>
+                    </div>
                 </div>
 
-                <div class="text-xs font-semibold text-brand-800 pr-1">Audio Player</div>
-
-                <button id="btn-play" onclick="playAudio()" class="w-9 h-9 rounded-lg bg-brand-500 hover:bg-brand-600 text-white flex items-center justify-center shadow transition-all active:scale-95">
+                <button id="btnPlayMusic" onclick="playAudio()" class="w-9 h-9 rounded-full bg-brand-500 hover:bg-brand-600 text-white flex items-center justify-center shadow-md shadow-brand-500/20 transition-all hover:scale-105 active:scale-95" title="Putar Musik">
                     <i class="fa-solid fa-play text-xs"></i>
                 </button>
-                <button id="btn-stop" onclick="stopAudio()" class="w-9 h-9 rounded-lg bg-rose-500 hover:bg-rose-600 text-white flex items-center justify-center shadow transition-all active:scale-95">
+
+                <button id="btnStopMusic" onclick="stopAudio()" class="w-9 h-9 rounded-full bg-slate-200 hover:bg-rose-500 text-slate-600 hover:text-white flex items-center justify-center transition-all hover:scale-105 active:scale-95" title="Hentikan Musik">
                     <i class="fa-solid fa-stop text-xs"></i>
                 </button>
-            </div>
-        </header>
 
-        <!-- VIDEO BANNER (16:9 Aspect Ratio) -->
-        <section class="mb-8">
-            <div class="relative w-full aspect-video rounded-2xl overflow-hidden bg-slate-900 video-glow transition-all duration-300">
-                <video id="banner-video" class="w-full h-full object-cover" autoplay loop muted playsinline poster="https://placehold.co/1280x720/0ea5e9/ffffff?text=YANZ+STORU+VIDEO+BANNER">
-                    <source src="video/ynz.mp4" type="video/mp4">
-                    Browser anda tidak mendukung tag video.
-                </video>
-                <!-- Fallback Overlay Text Badge -->
-                <div class="absolute top-4 left-4 bg-slate-900/80 backdrop-blur-md px-3 py-1.5 rounded-lg text-xs font-bold text-sky-300 border border-sky-500/30 flex items-center gap-2">
-                    <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
-                    YANZ STORU OFFICIAL STREAM
-                </div>
-            </div>
-        </section>
-
-        <!-- SEARCH BAR & CATEGORY FILTERS -->
-        <section class="mb-8 space-y-4">
-            <div class="relative max-w-2xl mx-auto">
-                <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-brand-500 text-lg">
-                    <i class="fa-solid fa-magnifying-glass"></i>
-                </div>
-                <input type="text" id="search-input" oninput="filterTools()" placeholder="Cari tool favorit Anda... (contoh: TikTok, Gemini, Send AM)" 
-                    class="w-full pl-11 pr-4 py-3.5 rounded-2xl bg-white/90 border border-sky-200 focus:border-brand-500 focus:ring-4 focus:ring-brand-200/50 shadow-sm text-sm font-medium text-slate-800 outline-none transition-all placeholder:text-slate-400">
-                <button onclick="clearSearch()" id="clear-btn" class="hidden absolute inset-y-0 right-0 pr-4 flex items-center text-slate-400 hover:text-slate-600">
-                    <i class="fa-solid fa-circle-xmark"></i>
-                </button>
-            </div>
-
-            <!-- Filter Pills -->
-            <div class="flex items-center justify-center flex-wrap gap-2 pt-1">
-                <button onclick="setCategory('all')" id="cat-all" class="cat-pill active px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all duration-200 bg-brand-500 text-white shadow-md">
-                    <i class="fa-solid fa-border-all mr-1.5"></i> Semua
-                </button>
-                <button onclick="setCategory('popular')" id="cat-popular" class="cat-pill px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all duration-200 bg-white/80 text-slate-600 hover:bg-sky-100 border border-sky-200">
-                    <i class="fa-solid fa-fire text-amber-500 mr-1.5"></i> Popular / AM Generator
-                </button>
-                <button onclick="setCategory('downloader')" id="cat-downloader" class="cat-pill px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all duration-200 bg-white/80 text-slate-600 hover:bg-sky-100 border border-sky-200">
-                    <i class="fa-solid fa-download text-emerald-500 mr-1.5"></i> Downloader
-                </button>
-                <button onclick="setCategory('ai')" id="cat-ai" class="cat-pill px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all duration-200 bg-white/80 text-slate-600 hover:bg-sky-100 border border-sky-200">
-                    <i class="fa-solid fa-robot text-purple-500 mr-1.5"></i> AI Assistant
-                </button>
-            </div>
-        </section>
-
-        <!-- TOOLS DISPLAY GRID -->
-        
-        <!-- SECTION 1: MOST POPULAR (Alight Motion Tools) -->
-        <div id="section-popular" class="tool-section mb-10">
-            <div class="flex items-center space-x-2 mb-4 border-b border-sky-200 pb-2">
-                <i class="fa-solid fa-fire text-amber-500 text-lg sm:text-xl"></i>
-                <h2 class="text-base sm:text-lg font-bold text-slate-800 tracking-wide">MOST POPULAR — ALIGHT MOTION GENERATOR</h2>
-                <span class="bg-amber-100 text-amber-800 text-[10px] font-extrabold px-2 py-0.5 rounded-full uppercase">Utama</span>
-            </div>
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4" id="grid-popular">
-                <!-- AM Cards Render Here -->
+                <audio id="audioPlayer" loop preload="metadata">
+                    <source src="audio/ynz.mp3" type="audio/mpeg">
+                </audio>
             </div>
         </div>
+    </header>
 
-        <!-- SECTION 2: MEDIA DOWNLOADER -->
-        <div id="section-downloader" class="tool-section mb-10">
-            <div class="flex items-center space-x-2 mb-4 border-b border-sky-200 pb-2">
-                <i class="fa-solid fa-cloud-arrow-down text-brand-600 text-lg sm:text-xl"></i>
-                <h2 class="text-base sm:text-lg font-bold text-slate-800 tracking-wide">MEDIA DOWNLOADER</h2>
-                <span class="bg-emerald-100 text-emerald-800 text-[10px] font-extrabold px-2 py-0.5 rounded-full uppercase">Super Fast</span>
-            </div>
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4" id="grid-downloader">
-                <!-- Downloader Cards Render Here -->
-            </div>
+    <main class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-10">
+
+        <div class="text-center space-y-2">
+            <span class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-semibold bg-cyan-100 text-brand-700 border border-cyan-200 shadow-xs">
+                <i class="fa-solid fa-bolt text-brand-500"></i> Premium Tools Without Key Limits
+            </span>
+            <h2 class="font-heading text-3xl sm:text-5xl font-extrabold text-slate-900 tracking-tight">
+                Layanan Tools Gratis <br class="hidden sm:inline">
+                <span class="bg-clip-text text-transparent bg-gradient-to-r from-brand-600 via-cyan-500 to-blue-600">Yanz Storu Official</span>
+            </h2>
         </div>
 
-        <!-- SECTION 3: AI ASSISTANT -->
-        <div id="section-ai" class="tool-section mb-10">
-            <div class="flex items-center space-x-2 mb-4 border-b border-sky-200 pb-2">
-                <i class="fa-solid fa-brain text-purple-600 text-lg sm:text-xl"></i>
-                <h2 class="text-base sm:text-lg font-bold text-slate-800 tracking-wide">AI ASSISTANT & INTELLIGENCE</h2>
-                <span class="bg-purple-100 text-purple-800 text-[10px] font-extrabold px-2 py-0.5 rounded-full uppercase">Smart AI</span>
-            </div>
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4" id="grid-ai">
-                <!-- AI Cards Render Here -->
-            </div>
-        </div>
-
-        <!-- NO RESULTS MESSAGE -->
-        <div id="no-results" class="hidden text-center py-12 glass-card rounded-2xl">
-            <i class="fa-solid fa-folder-open text-4xl text-slate-300 mb-3"></i>
-            <h3 class="text-lg font-bold text-slate-700">Tool Tidak Ditemukan</h3>
-            <p class="text-xs text-slate-500 mt-1">Coba kata kunci lain atau pilih kategori "Semua"</p>
-        </div>
-
-        <!-- FOOTER -->
-        <footer class="mt-12 text-center text-xs text-slate-500 space-y-2 border-t border-sky-200 pt-6">
-            <p class="font-semibold text-slate-700">&copy; 2026 ALL TOOLS FREE BY YANZ STORU. All Rights Reserved.</p>
-            <p class="text-[11px] text-slate-400">Dibuat khusus dengan tampilan Cyan Glassmorphism yang bersih dan cepat.</p>
-        </footer>
-
-    </div>
-
-    <!-- TOOL MODAL DIALOG -->
-    <div id="modal-backdrop" class="fixed inset-0 z-50 bg-slate-900/50 backdrop-blur-sm hidden flex items-center justify-center p-4 transition-all duration-300">
-        <div id="modal-card" class="glass-modal w-full max-w-xl rounded-2xl shadow-2xl border border-white overflow-hidden transform transition-all scale-95 opacity-0 duration-200 max-h-[90vh] flex flex-col">
+        <section class="relative w-full max-w-4xl mx-auto">
+            <div class="absolute -inset-1 bg-gradient-to-r from-cyan-400 via-brand-400 to-blue-500 rounded-[28px] blur-md opacity-40 hover:opacity-75 transition duration-500"></div>
             
-            <!-- Modal Header -->
-            <div class="px-6 py-4 bg-gradient-to-r from-brand-600 to-cyan-500 text-white flex items-center justify-between">
-                <div class="flex items-center space-x-3">
-                    <div id="modal-icon-bg" class="w-9 h-9 rounded-lg bg-white/20 flex items-center justify-center text-white font-bold text-base">
-                        <i id="modal-icon" class="fa-solid fa-wrench"></i>
+            <div class="relative w-full aspect-video rounded-[24px] overflow-hidden glass-card border-2 border-white/80 shadow-2xl shadow-cyan-500/10">
+                <video id="bgVideo" autoplay loop muted playsinline class="w-full h-full object-cover rounded-[22px]">
+                    <source src="video/ynz.mp4" type="video/mp4">
+                    <div class="w-full h-full bg-gradient-to-br from-slate-900 to-brand-950 flex flex-col items-center justify-center text-white p-6 text-center">
+                        <i class="fa-solid fa-film text-4xl text-cyan-400 mb-2"></i>
+                        <p class="font-bold text-lg">Simpan video di folder video/ynz.mp4</p>
+                    </div>
+                </video>
+
+                <div class="absolute top-4 left-4 z-10 flex items-center gap-2 bg-slate-900/60 backdrop-blur-md text-white px-3 py-1.5 rounded-full border border-white/20 text-xs">
+                    <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
+                    <span class="font-semibold text-[11px] tracking-wide">LIVE PREVIEW</span>
+                </div>
+            </div>
+        </section>
+
+        <section class="space-y-6 pt-2">
+            
+            <div class="max-w-2xl mx-auto relative">
+                <div class="relative flex items-center bg-white/90 backdrop-blur-md rounded-2xl p-2 shadow-lg border border-white">
+                    <div class="pl-4 text-brand-500">
+                        <i class="fa-solid fa-magnifying-glass text-lg"></i>
+                    </div>
+                    <input 
+                        type="text" 
+                        id="searchInput" 
+                        oninput="filterTools()"
+                        placeholder="Cari tools (Alight Motion, TikTok, Gemini, Spotify...)" 
+                        class="w-full py-3 px-4 text-slate-800 placeholder-slate-400 bg-transparent text-sm sm:text-base font-medium focus:outline-none"
+                    >
+                </div>
+            </div>
+
+            <div class="flex items-center justify-center flex-wrap gap-2 pt-2" id="categoryFilters">
+                <button onclick="setCategory('all')" class="cat-btn active px-4 py-1.5 rounded-full text-xs font-semibold transition-all bg-brand-600 text-white shadow-sm shadow-brand-500/30">Semua</button>
+                <button onclick="setCategory('Popular')" class="cat-btn px-4 py-1.5 rounded-full text-xs font-semibold transition-all bg-white/80 hover:bg-white text-slate-600 border border-slate-200/80">🔥 Alight Motion Generator</button>
+                <button onclick="setCategory('Downloader')" class="cat-btn px-4 py-1.5 rounded-full text-xs font-semibold transition-all bg-white/80 hover:bg-white text-slate-600 border border-slate-200/80">📥 Downloader</button>
+                <button onclick="setCategory('AI')" class="cat-btn px-4 py-1.5 rounded-full text-xs font-semibold transition-all bg-white/80 hover:bg-white text-slate-600 border border-slate-200/80">🤖 AI Assistant</button>
+            </div>
+
+            <div id="toolsGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5"></div>
+
+            <div id="emptyState" class="hidden text-center py-12 space-y-3 glass-card rounded-3xl">
+                <i class="fa-solid fa-face-frown text-4xl text-slate-400"></i>
+                <h3 class="font-heading font-bold text-slate-700">Tools Tidak Ditemukan</h3>
+            </div>
+
+        </section>
+
+    </main>
+
+    <div id="toolModal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/50 backdrop-blur-sm hidden opacity-0 transition-opacity duration-300">
+        <div class="bg-white rounded-3xl max-w-lg w-full p-6 shadow-2xl border border-white space-y-5 transform scale-95 transition-transform duration-300 overflow-hidden max-h-[90vh] flex flex-col" id="modalBox">
+            <div class="flex justify-between items-start flex-shrink-0">
+                <div class="flex items-center gap-3">
+                    <div id="modalIcon" class="w-11 h-11 rounded-2xl bg-brand-100 text-brand-600 flex items-center justify-center text-xl">
+                        <i class="fa-solid fa-gear"></i>
                     </div>
                     <div>
-                        <h3 id="modal-title" class="font-bold text-base sm:text-lg leading-tight">Nama Tool</h3>
-                        <p id="modal-subtitle" class="text-xs text-sky-100">Jalankan fungsi API langsung secara gratis</p>
+                        <h3 id="modalTitle" class="font-heading font-bold text-lg text-slate-800">Nama Tool</h3>
+                        <span id="modalBadge" class="text-[10px] font-bold px-2.5 py-0.5 rounded-full bg-brand-50 text-brand-600 border border-brand-200">Kategori</span>
                     </div>
                 </div>
-                <button onclick="closeModal()" class="w-8 h-8 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center text-white transition">
-                    <i class="fa-solid fa-xmark text-lg"></i>
+                <button onclick="closeModal()" class="w-8 h-8 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-500 flex items-center justify-center text-sm">
+                    <i class="fa-solid fa-xmark"></i>
                 </button>
             </div>
 
-            <!-- Modal Body / Form -->
-            <div class="p-6 overflow-y-auto space-y-4 flex-1">
-                <form id="modal-form" onsubmit="handleExecute(event)" class="space-y-4">
-                    <div id="modal-inputs" class="space-y-3">
-                        <!-- Dynamic Input Fields will be injected here -->
-                    </div>
+            <div class="overflow-y-auto space-y-4 pr-1 flex-1">
+                <p id="modalDesc" class="text-xs text-slate-600 leading-relaxed"></p>
 
-                    <button type="submit" id="modal-submit-btn" class="w-full py-3.5 px-4 rounded-xl bg-gradient-to-r from-brand-500 to-cyan-500 hover:from-brand-600 hover:to-cyan-600 text-white font-bold text-sm shadow-md hover:shadow-lg transition flex items-center justify-center space-x-2">
-                        <i class="fa-solid fa-paper-plane"></i>
-                        <span id="btn-text">Eksekusi Sekarang</span>
-                    </button>
-                </form>
+                <div id="modalInputs" class="space-y-3"></div>
 
-                <!-- Modal Result Output Container -->
-                <div id="modal-result-container" class="hidden mt-4 pt-4 border-t border-sky-200 space-y-3">
-                    <div class="flex items-center justify-between">
-                        <span class="text-xs font-bold uppercase tracking-wider text-slate-500 flex items-center gap-1.5">
-                            <i class="fa-solid fa-square-poll-vertical text-brand-500"></i> Hasil Respon:
-                        </span>
-                        <button id="copy-result-btn" onclick="copyResultText()" class="hidden text-xs bg-sky-100 hover:bg-sky-200 text-brand-700 px-2.5 py-1 rounded-lg font-semibold transition">
-                            <i class="fa-solid fa-copy mr-1"></i> Salin Hasil
-                        </button>
-                    </div>
-
-                    <div id="modal-result-content" class="p-4 rounded-xl bg-slate-900 text-slate-100 text-xs sm:text-sm font-mono overflow-x-auto max-h-60 leading-relaxed border border-slate-700">
-                        <!-- API results output parsed cleanly here -->
-                    </div>
-                </div>
+                <div id="modalOutput" class="hidden space-y-2"></div>
             </div>
 
-            <!-- Modal Footer -->
-            <div class="px-6 py-3 bg-slate-100/80 border-t border-slate-200 text-right">
-                <button onclick="closeModal()" class="px-4 py-2 bg-slate-200 hover:bg-slate-300 text-slate-700 rounded-xl text-xs font-bold transition">
-                    Tutup
+            <div class="flex justify-end gap-2 pt-3 border-t border-slate-100 flex-shrink-0">
+                <button onclick="closeModal()" class="px-4 py-2 rounded-xl text-xs font-semibold bg-slate-100 text-slate-600 hover:bg-slate-200">Tutup</button>
+                <button id="modalActionBtn" onclick="executeToolAction()" class="px-5 py-2 rounded-xl text-xs font-semibold bg-brand-500 hover:bg-brand-600 text-white shadow-md shadow-brand-500/20 flex items-center gap-2">
+                    <i class="fa-solid fa-paper-plane text-xs"></i> <span>Eksekusi</span>
                 </button>
             </div>
         </div>
     </div>
 
-    <!-- JAVASCRIPT LOGIC -->
-    <script>
-        
-        // API Base Constant
-        const API_KEY = 'albymd-fffc8c9';
-        const API_BASE = 'https://albyoffc.my.id/api';
+    <div id="toast" class="fixed bottom-5 right-5 z-50 transform translate-y-20 opacity-0 transition-all duration-300 pointer-events-none">
+        <div class="bg-slate-900 text-white text-xs font-semibold px-4 py-3 rounded-2xl shadow-xl flex items-center gap-3 border border-slate-700">
+            <i id="toastIcon" class="fa-solid fa-circle-check text-emerald-400 text-base"></i>
+            <span id="toastMsg">Notifikasi</span>
+        </div>
+    </div>
 
-        // Catalog Data Definition
-        const catalog = [
-            // --- MOST POPULAR (ALIGHT MOTION) ---
+    <script>
+        const API_KEY = "albymd-fffc8c9";
+        const BASE_URL = "https://albyoffc.my.id";
+
+        const toolsData = [
+            // TOP / POPULAR (Alight Motion Generator)
             {
                 id: 'am-send',
-                title: 'Alight Motion — Send',
-                desc: 'Kirim kode otentikasi / OTP akun Alight Motion.',
-                category: 'popular',
+                title: 'Alight Motion — Send Email',
+                category: 'Popular',
                 icon: 'fa-paper-plane',
-                color: 'from-amber-500 to-orange-500',
-                btnText: 'Send Verification',
-                endpoint: `${API_BASE}/am/send`,
-                fields: [
-                    { name: 'email', label: 'Email Target', type: 'email', placeholder: 'contoh@gmail.com', required: true }
-                ]
+                desc: 'Kirim kode OTP / verifikasi ke email Alight Motion.',
+                endpoint: `${BASE_URL}/api/am/send?apikey=${API_KEY}`,
+                paramName: 'email',
+                inputLabel: 'Alamat Email AM',
+                placeholder: 'contoh@gmail.com'
             },
             {
                 id: 'am-verif',
-                title: 'Alight Motion — Verif',
-                desc: 'Verifikasi akun Alight Motion dengan kode verifikasi.',
-                category: 'popular',
+                title: 'Alight Motion — Verifikasi OTP',
+                category: 'Popular',
                 icon: 'fa-shield-check',
-                color: 'from-amber-500 to-orange-500',
-                btnText: 'Verifikasi Akun',
-                endpoint: `${API_BASE}/am/verif`,
-                fields: [
-                    { name: 'email', label: 'Email Target', type: 'email', placeholder: 'contoh@gmail.com', required: true },
-                    { name: 'code', label: 'Kode OTP / Verifikasi', type: 'text', placeholder: '123456', required: true }
-                ]
+                desc: 'Verifikasi akun Alight Motion dengan kode OTP.',
+                endpoint: `${BASE_URL}/api/am/verif?apikey=${API_KEY}`,
+                paramName: 'otp',
+                inputLabel: 'Kode OTP / Link Verif',
+                placeholder: 'Masukkan Kode OTP...'
             },
             {
-                id: 'am-bulkcustom',
+                id: 'am-bulk-custom',
                 title: 'Alight Motion — Bulk Custom',
-                desc: 'Generate banyak akun Alight Motion dengan kustom nama/prefix.',
-                category: 'popular',
-                icon: 'fa-users-gear',
-                color: 'from-amber-500 to-orange-500',
-                btnText: 'Generate Custom',
-                endpoint: `${API_BASE}/v1/am/bulkcustom`,
-                fields: [
-                    { name: 'email', label: 'Prefix Email / Custom Name', type: 'text', placeholder: 'yanzstoru', required: true },
-                    { name: 'count', label: 'Jumlah Akun', type: 'number', placeholder: '5', required: true, default: '5' }
+                category: 'Popular',
+                icon: 'fa-list-check',
+                desc: 'Generate massal akun Alight Motion Premium dengan prefix custom.',
+                endpoint: `${BASE_URL}/api/v1/am/bulkcustom?apikey=${API_KEY}`,
+                isMultiParam: true,
+                params: [
+                    { name: 'count', label: 'Jumlah Akun', placeholder: '10', type: 'number' },
+                    { name: 'prefix', label: 'Prefix Email', placeholder: 'yanzstoru', type: 'text' }
                 ]
             },
             {
-                id: 'am-bulkrandom',
+                id: 'am-bulk-random',
                 title: 'Alight Motion — Bulk Random',
-                desc: 'Generate otomatis akun Alight Motion acak sekaligus.',
-                category: 'popular',
-                icon: 'fa-dice',
-                color: 'from-amber-500 to-orange-500',
-                btnText: 'Generate Random',
-                endpoint: `${API_BASE}/v1/am/bulkrandom`,
-                fields: [
-                    { name: 'count', label: 'Jumlah Akun (Jumlah)', type: 'number', placeholder: '10', required: true, default: '10' }
-                ]
+                category: 'Popular',
+                icon: 'fa-shuffle',
+                desc: 'Generate massal akun Alight Motion Premium secara acak.',
+                endpoint: `${BASE_URL}/api/v1/am/bulkrandom?apikey=${API_KEY}`,
+                paramName: 'count',
+                inputLabel: 'Jumlah Akun',
+                placeholder: '10'
             },
 
-            // --- MEDIA DOWNLOADER ---
+            // DOWNLOADERS
             {
                 id: 'dl-capcut',
                 title: 'CapCut Downloader',
-                desc: 'Download video CapCut tanpa watermark dengan cepat.',
-                category: 'downloader',
+                category: 'Downloader',
                 icon: 'fa-video',
-                color: 'from-emerald-500 to-teal-600',
-                btnText: 'Download Video',
-                endpoint: `${API_BASE}/downloader/capcut`,
-                fields: [
-                    { name: 'url', label: 'Tautan / URL Video CapCut', type: 'url', placeholder: 'https://www.capcut.com/t/...', required: true }
-                ]
+                desc: 'Unduh video template CapCut tanpa watermark.',
+                endpoint: `${BASE_URL}/download/capcut?apikey=${API_KEY}`,
+                paramName: 'url',
+                inputLabel: 'Link Video CapCut',
+                placeholder: 'https://www.capcut.com/template-detail/...'
             },
             {
                 id: 'dl-facebook',
                 title: 'Facebook Downloader',
-                desc: 'Download video HD dari postingan Facebook.',
-                category: 'downloader',
-                icon: 'fa-brands fa-facebook',
-                color: 'from-emerald-500 to-teal-600',
-                btnText: 'Download FB',
-                endpoint: `${API_BASE}/downloader/fbdl`,
-                fields: [
-                    { name: 'url', label: 'Tautan / URL Facebook', type: 'url', placeholder: 'https://www.facebook.com/watch/?v=...', required: true }
-                ]
+                category: 'Downloader',
+                icon: 'fa-facebook',
+                desc: 'Unduh video Facebook kualitas HD secara langsung.',
+                endpoint: `${BASE_URL}/download/facebook?apikey=${API_KEY}`,
+                paramName: 'url',
+                inputLabel: 'Link Video Facebook',
+                placeholder: 'https://www.facebook.com/watch/...'
             },
             {
                 id: 'dl-instagram',
                 title: 'Instagram Downloader',
-                desc: 'Download Reels, Video, dan Foto dari Instagram.',
-                category: 'downloader',
-                icon: 'fa-brands fa-instagram',
-                color: 'from-emerald-500 to-teal-600',
-                btnText: 'Download Instagram',
-                endpoint: `${API_BASE}/downloader/igdl`,
-                fields: [
-                    { name: 'url', label: 'Tautan / URL Instagram', type: 'url', placeholder: 'https://www.instagram.com/reel/...', required: true }
-                ]
+                category: 'Downloader',
+                icon: 'fa-instagram',
+                desc: 'Unduh foto, reels, dan video Instagram.',
+                endpoint: `${BASE_URL}/download/instagram?apikey=${API_KEY}`,
+                paramName: 'url',
+                inputLabel: 'Link Post/Reels Instagram',
+                placeholder: 'https://www.instagram.com/reel/...'
             },
             {
                 id: 'dl-pinterest',
                 title: 'Pinterest Downloader',
-                desc: 'Download gambar atau video berkualitas tinggi dari Pinterest.',
-                category: 'downloader',
-                icon: 'fa-brands fa-pinterest',
-                color: 'from-emerald-500 to-teal-600',
-                btnText: 'Download Media',
-                endpoint: `${API_BASE}/downloader/pinterest`,
-                fields: [
-                    { name: 'url', label: 'Tautan Pin Pinterest', type: 'url', placeholder: 'https://pin.it/...', required: true }
-                ]
+                category: 'Downloader',
+                icon: 'fa-pinterest',
+                desc: 'Unduh gambar atau video dari Pinterest.',
+                endpoint: `${BASE_URL}/download/pinterest?apikey=${API_KEY}`,
+                paramName: 'url',
+                inputLabel: 'Link Pin Pinterest',
+                placeholder: 'https://pin.it/...'
             },
             {
                 id: 'dl-tiktok',
                 title: 'TikTok Downloader',
-                desc: 'Download video TikTok tanpa watermark / MP3 audio.',
-                category: 'downloader',
-                icon: 'fa-brands fa-tiktok',
-                color: 'from-emerald-500 to-teal-600',
-                btnText: 'Download TikTok',
-                endpoint: `${API_BASE}/downloader/tiktok`,
-                fields: [
-                    { name: 'url', label: 'Tautan / URL TikTok', type: 'url', placeholder: 'https://vt.tiktok.com/...', required: true }
-                ]
+                category: 'Downloader',
+                icon: 'fa-tiktok',
+                desc: 'Unduh video TikTok tanpa watermark / MP3 audio.',
+                endpoint: `${BASE_URL}/download/tiktok?apikey=${API_KEY}`,
+                paramName: 'url',
+                inputLabel: 'Tautan / URL TikTok',
+                placeholder: 'https://vt.tiktok.com/...'
             },
             {
                 id: 'dl-youtube',
                 title: 'YouTube Downloader (ytmobi)',
-                desc: 'Download video dan audio dari YouTube lewat ytmobi.',
-                category: 'downloader',
-                icon: 'fa-brands fa-youtube',
-                color: 'from-emerald-500 to-teal-600',
-                btnText: 'Download YouTube',
-                endpoint: `${API_BASE}/downloader/youtube`,
-                fields: [
-                    { name: 'url', label: 'Tautan Video YouTube', type: 'url', placeholder: 'https://youtu.be/...', required: true }
-                ]
+                category: 'Downloader',
+                icon: 'fa-youtube',
+                desc: 'Unduh video atau audio dari YouTube.',
+                endpoint: `${BASE_URL}/download/ytmobi?apikey=${API_KEY}`,
+                paramName: 'url',
+                inputLabel: 'Link Video YouTube',
+                placeholder: 'https://youtu.be/...'
             },
             {
                 id: 'dl-spotify',
                 title: 'Spotify Downloader',
-                desc: 'Download lagu MP3 dan metadata dari tautan Spotify.',
-                category: 'downloader',
-                icon: 'fa-brands fa-spotify',
-                color: 'from-emerald-500 to-teal-600',
-                btnText: 'Download Lagu',
-                endpoint: `${API_BASE}/downloader/spotify`,
-                fields: [
-                    { name: 'url', label: 'Tautan Lagu Spotify', type: 'url', placeholder: 'https://open.spotify.com/track/...', required: true }
-                ]
+                category: 'Downloader',
+                icon: 'fa-spotify',
+                desc: 'Unduh lagu dari link Spotify menjadi file MP3.',
+                endpoint: `${BASE_URL}/downloader/spotidown?apikey=${API_KEY}`,
+                paramName: 'url',
+                inputLabel: 'Link Track Spotify',
+                placeholder: 'https://open.spotify.com/track/...'
             },
 
-            // --- AI TOOLS ---
+            // AI TOOLS
             {
                 id: 'ai-copilot',
-                title: 'Copilot Chat',
-                desc: 'Tanya jawab pintar didukung oleh AI Microsoft Copilot.',
-                category: 'ai',
+                title: 'Copilot Chat AI',
+                category: 'AI',
                 icon: 'fa-robot',
-                color: 'from-purple-500 to-indigo-600',
-                btnText: 'Chat Copilot',
-                endpoint: `${API_BASE}/ai/copilot`,
-                fields: [
-                    { name: 'text', label: 'Pertanyaan / Pesan', type: 'textarea', placeholder: 'Tuliskan pertanyaan Anda...', required: true }
-                ]
+                desc: 'Tanya jawab dengan Microsoft Copilot AI.',
+                endpoint: `${BASE_URL}/ai/copilot?apikey=${API_KEY}`,
+                paramName: 'text',
+                inputLabel: 'Pesan / Pertanyaan',
+                placeholder: 'Tulis pertanyaan kamu di sini...'
             },
             {
                 id: 'ai-deepai',
                 title: 'DeepAI Chat',
-                desc: 'Model percakapan cerdas serbaguna dari DeepAI.',
-                category: 'ai',
-                icon: 'fa-comments',
-                color: 'from-purple-500 to-indigo-600',
-                btnText: 'Mulai Chat',
-                endpoint: `${API_BASE}/ai/deepai`,
-                fields: [
-                    { name: 'text', label: 'Pertanyaan / Pesan', type: 'textarea', placeholder: 'Halo DeepAI, bantu saya...', required: true }
-                ]
+                category: 'AI',
+                icon: 'fa-brain',
+                desc: 'Asisten kecerdasan buatan dari DeepAI.',
+                endpoint: `${BASE_URL}/ai/deepai?apikey=${API_KEY}`,
+                paramName: 'text',
+                inputLabel: 'Pertanyaan',
+                placeholder: 'Jelaskan tentang...'
             },
             {
-                id: 'ai-deepai-code',
-                title: 'DeepAI Code Assistant',
-                desc: 'Asisten koding pintar untuk membuat & memperbaiki program.',
-                category: 'ai',
+                id: 'ai-deepaicode',
+                title: 'DeepAI Code Generator',
+                category: 'AI',
                 icon: 'fa-code',
-                color: 'from-purple-500 to-indigo-600',
-                btnText: 'Tanya Koding',
-                endpoint: `${API_BASE}/ai/deepai-code`,
-                fields: [
-                    { name: 'text', label: 'Instruksi Koding / Problem Code', type: 'textarea', placeholder: 'Buatkan fungsi javascript untuk...', required: true }
-                ]
+                desc: 'Bantu buat atau perbaiki kode pemrogramannya.',
+                endpoint: `${BASE_URL}/ai/deepaicode?apikey=${API_KEY}`,
+                paramName: 'text',
+                inputLabel: 'Instruksi Kode',
+                placeholder: 'Buatkan fungsi JavaScript untuk...'
             },
             {
-                id: 'ai-deepai-models',
+                id: 'ai-deepaicode-models',
                 title: 'DeepAI Code Models',
-                desc: 'Model koding alternatif khusus sintaksis kompleks.',
-                category: 'ai',
+                category: 'AI',
                 icon: 'fa-cubes',
-                color: 'from-purple-500 to-indigo-600',
-                btnText: 'Gunakan Model',
-                endpoint: `${API_BASE}/ai/deepai-models`,
-                fields: [
-                    { name: 'text', label: 'Instruksi / Prompt Model', type: 'textarea', placeholder: 'Jelaskan logika algoritma ini...', required: true }
-                ]
+                desc: 'Lihat daftar model coding AI yang tersedia.',
+                endpoint: `${BASE_URL}/ai/deepaicode/models?apikey=${API_KEY}`,
+                noInput: true
             },
             {
                 id: 'ai-gemini',
-                title: 'Gemini Chat',
-                desc: 'Kecerdasan AI dari Google Gemini untuk berbagai tugas.',
-                category: 'ai',
+                title: 'Gemini AI Chat',
+                category: 'AI',
                 icon: 'fa-sparkles',
-                color: 'from-purple-500 to-indigo-600',
-                btnText: 'Tanya Gemini',
-                endpoint: `${API_BASE}/ai/gemini`,
-                fields: [
-                    { name: 'text', label: 'Pertanyaan / Prompt', type: 'textarea', placeholder: 'Tuliskan prompt untuk Gemini...', required: true }
-                ]
+                desc: 'Chat cerdas dengan model Google Gemini AI.',
+                endpoint: `${BASE_URL}/ai/gemini?apikey=${API_KEY}`,
+                paramName: 'text',
+                inputLabel: 'Pertanyaan',
+                placeholder: 'Tanyakan apa saja...'
             },
             {
                 id: 'ai-kuroneko',
-                title: 'Kuroneko Chat',
-                desc: 'AI Chatbot responsif Kuroneko dengan pemahaman alami.',
-                category: 'ai',
+                title: 'Kuroneko AI',
+                category: 'AI',
                 icon: 'fa-cat',
-                color: 'from-purple-500 to-indigo-600',
-                btnText: 'Chat Kuroneko',
-                endpoint: `${API_BASE}/ai/kuroneko`,
-                fields: [
-                    { name: 'text', label: 'Pesan / Pertanyaan', type: 'textarea', placeholder: 'Halo Kuroneko...', required: true }
-                ]
+                desc: 'Chatbot percakapan interaktif Kuroneko AI.',
+                endpoint: `${BASE_URL}/ai/kuroneko?apikey=${API_KEY}`,
+                paramName: 'text',
+                inputLabel: 'Pesan',
+                placeholder: 'Halo Kuroneko...'
             },
             {
                 id: 'ai-notrack',
                 title: 'NoTrack AI Chat',
-                desc: 'AI Chatbot privat tanpa pelacakan riwayat obrolan.',
-                category: 'ai',
-                icon: 'fa-user-shield',
-                color: 'from-purple-500 to-indigo-600',
-                btnText: 'Private Chat',
-                endpoint: `${API_BASE}/ai/notrack`,
-                fields: [
-                    { name: 'text', label: 'Pesan Rahasia / Prompt', type: 'textarea', placeholder: 'Ajukan pertanyaan...', required: true }
-                ]
+                category: 'AI',
+                icon: 'fa-user-secret',
+                desc: 'AI Chat tanpa melacak histori percakapan.',
+                endpoint: `${BASE_URL}/ai/notrack?apikey=${API_KEY}`,
+                paramName: 'text',
+                inputLabel: 'Pesan Privasi',
+                placeholder: 'Ketik pesan...'
+            },
+            {
+                id: 'ai-notrack-chats',
+                title: 'NoTrack AI Chats',
+                category: 'AI',
+                icon: 'fa-comments',
+                desc: 'Tampilkan sesi percakapan NoTrack AI.',
+                endpoint: `${BASE_URL}/ai/notrack/chats?apikey=${API_KEY}`,
+                noInput: true
+            },
+            {
+                id: 'ai-notrack-history',
+                title: 'NoTrack AI History',
+                category: 'AI',
+                icon: 'fa-clock-rotate-left',
+                desc: 'Dapatkan riwayat percakapan NoTrack AI.',
+                endpoint: `${BASE_URL}/ai/notrack/history?apikey=${API_KEY}`,
+                noInput: true
             },
             {
                 id: 'ai-venice',
                 title: 'Venice AI Chat',
-                desc: 'Kecerdasan Venice AI untuk analisis teks dan percakapan.',
-                category: 'ai',
-                icon: 'fa-wand-magic-sparkles',
-                color: 'from-purple-500 to-indigo-600',
-                btnText: 'Chat Venice',
-                endpoint: `${API_BASE}/ai/venice`,
-                fields: [
-                    { name: 'text', label: 'Pertanyaan / Prompt', type: 'textarea', placeholder: 'Tuliskan teks untuk Venice AI...', required: true }
-                ]
+                category: 'AI',
+                icon: 'fa-feather',
+                desc: 'Chatbot percakapan pintar Venice AI.',
+                endpoint: `${BASE_URL}/ai/venice?apikey=${API_KEY}`,
+                paramName: 'text',
+                inputLabel: 'Pertanyaan',
+                placeholder: 'Tanyakan sesuatu...'
             },
             {
                 id: 'ai-yenus',
                 title: 'Yenus AI Chat',
-                desc: 'Asisten virtual Yenus AI untuk menjawab berbagai pertanyaan.',
-                category: 'ai',
-                icon: 'fa-brain-circuit',
-                color: 'from-purple-500 to-indigo-600',
-                btnText: 'Chat Yenus',
-                endpoint: `${API_BASE}/ai/yenus`,
-                fields: [
-                    { name: 'text', label: 'Pesan / Topik', type: 'textarea', placeholder: 'Apa yang ingin Anda tanyakan?', required: true }
-                ]
+                category: 'AI',
+                icon: 'fa-bolt-lightning',
+                desc: 'Respon cepat dengan model Yenus AI.',
+                endpoint: `${BASE_URL}/ai/yenus?apikey=${API_KEY}`,
+                paramName: 'text',
+                inputLabel: 'Pesan',
+                placeholder: 'Ketik pertanyaan...'
             }
         ];
 
-        // State variables
-        let activeCategory = 'all';
-        let currentActiveTool = null;
-        let lastRawResultText = '';
+        const audio = document.getElementById('audioPlayer');
+        const eqVisualizer = document.getElementById('eqVisualizer');
+        const musicStatusText = document.getElementById('musicStatusText');
+        const musicStateSub = document.getElementById('musicStateSub');
 
         function playAudio() {
-            const audio = document.getElementById('audio-player');
-            const bars = document.querySelectorAll('.eq-bar');
             audio.play().then(() => {
-                bars.forEach(bar => bar.classList.remove('paused'));
-                showToast('Memutar audio YNZ...', 'info');
-            }).catch(err => {
-                showToast('Gagal memutar audio: ' + err.message, 'error');
+                eqVisualizer.classList.remove('paused');
+                musicStatusText.innerText = 'ynz.mp3';
+                musicStateSub.innerText = 'Playing';
+                musicStateSub.classList.add('text-emerald-500');
+                musicStateSub.classList.remove('text-slate-400');
+                showToast('Lagu ynz.mp3 diputar!', 'fa-music');
+            }).catch(() => {
+                showToast('Simpan file lagu di audio/ynz.mp3', 'fa-triangle-exclamation');
             });
         }
 
         function stopAudio() {
-            const audio = document.getElementById('audio-player');
-            const bars = document.querySelectorAll('.eq-bar');
             audio.pause();
             audio.currentTime = 0;
-            bars.forEach(bar => bar.classList.add('paused'));
-            showToast('Audio dihentikan', 'info');
+            eqVisualizer.classList.add('paused');
+            musicStatusText.innerText = 'ynz.mp3';
+            musicStateSub.innerText = 'Stopped';
+            musicStateSub.classList.remove('text-emerald-500');
+            musicStateSub.classList.add('text-slate-400');
+            showToast('Musik dihentikan.', 'fa-circle-stop');
         }
 
-        function renderCards() {
-            const gridPopular = document.getElementById('grid-popular');
-            const gridDownloader = document.getElementById('grid-downloader');
-            const gridAi = document.getElementById('grid-ai');
+        let currentCategory = 'all';
 
-            gridPopular.innerHTML = '';
-            gridDownloader.innerHTML = '';
-            gridAi.innerHTML = '';
+        function renderTools() {
+            const grid = document.getElementById('toolsGrid');
+            const searchVal = document.getElementById('searchInput').value.toLowerCase().trim();
+            const emptyState = document.getElementById('emptyState');
+            
+            grid.innerHTML = '';
+            let count = 0;
 
-            const searchTerm = document.getElementById('search-input').value.toLowerCase().trim();
+            toolsData.forEach(tool => {
+                const matchCategory = (currentCategory === 'all' || tool.category === currentCategory);
+                const matchSearch = (tool.title.toLowerCase().includes(searchVal) || tool.desc.toLowerCase().includes(searchVal) || tool.category.toLowerCase().includes(searchVal));
 
-            let popularCount = 0;
-            let downloaderCount = 0;
-            let aiCount = 0;
+                if (matchCategory && matchSearch) {
+                    count++;
+                    const card = document.createElement('div');
+                    card.className = 'glass-card glass-card-hover rounded-2xl p-5 flex flex-col justify-between space-y-4 border border-white cursor-pointer';
+                    card.onclick = () => openToolModal(tool);
 
-            catalog.forEach(tool => {
-                const matchesSearch = tool.title.toLowerCase().includes(searchTerm) || tool.desc.toLowerCase().includes(searchTerm);
-                const matchesCat = (activeCategory === 'all' || activeCategory === tool.category);
-
-                if (matchesSearch && matchesCat) {
-                    const cardHtml = createCardHTML(tool);
-                    if (tool.category === 'popular') {
-                        gridPopular.innerHTML += cardHtml;
-                        popularCount++;
-                    } else if (tool.category === 'downloader') {
-                        gridDownloader.innerHTML += cardHtml;
-                        downloaderCount++;
-                    } else if (tool.category === 'ai') {
-                        gridAi.innerHTML += cardHtml;
-                        aiCount++;
-                    }
+                    card.innerHTML = `
+                        <div class="space-y-3">
+                            <div class="flex items-center justify-between">
+                                <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-brand-100 to-cyan-100 text-brand-600 flex items-center justify-center text-lg shadow-sm">
+                                    <i class="fa-solid ${tool.icon}"></i>
+                                </div>
+                                <span class="text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-full ${tool.category === 'Popular' ? 'bg-amber-100 text-amber-700 border border-amber-200' : 'bg-slate-100 text-slate-600 border border-slate-200'}">
+                                    ${tool.category === 'Popular' ? '🔥 HOT' : tool.category}
+                                </span>
+                            </div>
+                            <div>
+                                <h3 class="font-heading font-bold text-slate-800 text-base">${tool.title}</h3>
+                                <p class="text-xs text-slate-500 mt-1 line-clamp-2">${tool.desc}</p>
+                            </div>
+                        </div>
+                        <div class="pt-2 flex items-center justify-between border-t border-slate-100">
+                            <span class="text-[11px] font-semibold text-brand-600 flex items-center gap-1">Buka Tool <i class="fa-solid fa-arrow-right text-[10px]"></i></span>
+                            <span class="text-[10px] text-emerald-600 font-medium bg-emerald-50 px-2 py-0.5 rounded-full">FREE</span>
+                        </div>
+                    `;
+                    grid.appendChild(card);
                 }
             });
 
-            // Toggle Section Visibility
-            document.getElementById('section-popular').style.display = (popularCount > 0) ? 'block' : 'none';
-            document.getElementById('section-downloader').style.display = (downloaderCount > 0) ? 'block' : 'none';
-            document.getElementById('section-ai').style.display = (aiCount > 0) ? 'block' : 'none';
-
-            const totalVisible = popularCount + downloaderCount + aiCount;
-            document.getElementById('no-results').style.display = (totalVisible === 0) ? 'block' : 'none';
-        }
-
-        function createCardHTML(tool) {
-            return `
-                <div class="glass-card rounded-2xl p-4 flex flex-col justify-between hover:shadow-glow hover:-translate-y-1 transition-all duration-300 border border-white group">
-                    <div>
-                        <div class="flex items-center justify-between mb-3">
-                            <div class="w-10 h-10 rounded-xl bg-gradient-to-br ${tool.color} flex items-center justify-center text-white shadow-md text-base">
-                                <i class="${tool.icon.includes('fa-') ? tool.icon : 'fa-solid ' + tool.icon}"></i>
-                            </div>
-                            <span class="text-[10px] font-extrabold uppercase px-2 py-0.5 rounded-full bg-sky-100 text-brand-700">
-                                GRATIS
-                            </span>
-                        </div>
-                        <h3 class="font-bold text-slate-800 text-sm group-hover:text-brand-600 transition mb-1">${tool.title}</h3>
-                        <p class="text-slate-500 text-xs leading-relaxed line-clamp-2 mb-4">${tool.desc}</p>
-                    </div>
-                    <button onclick="openToolModal('${tool.id}')" class="w-full py-2.5 px-3 rounded-xl bg-sky-100 hover:bg-brand-500 text-brand-700 hover:text-white font-bold text-xs transition-all duration-200 flex items-center justify-center space-x-1.5 shadow-sm">
-                        <span>${tool.btnText}</span>
-                        <i class="fa-solid fa-arrow-right text-[10px]"></i>
-                    </button>
-                </div>
-            `;
+            if (count === 0) {
+                emptyState.classList.remove('hidden');
+            } else {
+                emptyState.classList.add('hidden');
+            }
         }
 
         function filterTools() {
-            const val = document.getElementById('search-input').value;
-            const clearBtn = document.getElementById('clear-btn');
-            if (val.length > 0) {
-                clearBtn.classList.remove('hidden');
-            } else {
-                clearBtn.classList.add('hidden');
-            }
-            renderCards();
-        }
-
-        function clearSearch() {
-            document.getElementById('search-input').value = '';
-            document.getElementById('clear-btn').classList.add('hidden');
-            renderCards();
+            renderTools();
         }
 
         function setCategory(cat) {
-            activeCategory = cat;
-            document.querySelectorAll('.cat-pill').forEach(btn => {
-                btn.classList.remove('bg-brand-500', 'text-white', 'shadow-md');
-                btn.classList.add('bg-white/80', 'text-slate-600', 'hover:bg-sky-100', 'border', 'border-sky-200');
+            currentCategory = cat;
+            const buttons = document.querySelectorAll('.cat-btn');
+            buttons.forEach(btn => {
+                if(btn.innerText.toLowerCase().includes(cat.toLowerCase()) || (cat === 'all' && btn.innerText.toLowerCase() === 'semua')) {
+                    btn.className = 'cat-btn active px-4 py-1.5 rounded-full text-xs font-semibold transition-all bg-brand-600 text-white shadow-sm shadow-brand-500/30';
+                } else {
+                    btn.className = 'cat-btn px-4 py-1.5 rounded-full text-xs font-semibold transition-all bg-white/80 hover:bg-white text-slate-600 border border-slate-200/80';
+                }
             });
-
-            const activeBtn = document.getElementById(`cat-${cat}`);
-            if (activeBtn) {
-                activeBtn.classList.remove('bg-white/80', 'text-slate-600', 'hover:bg-sky-100', 'border', 'border-sky-200');
-                activeBtn.classList.add('bg-brand-500', 'text-white', 'shadow-md');
-            }
-            renderCards();
+            renderTools();
         }
 
-        function openToolModal(toolId) {
-            const tool = catalog.find(t => t.id === toolId);
-            if (!tool) return;
+        let activeTool = null;
 
-            currentActiveTool = tool;
+        function openToolModal(tool) {
+            activeTool = tool;
+            document.getElementById('modalTitle').innerText = tool.title;
+            document.getElementById('modalBadge').innerText = tool.category;
+            document.getElementById('modalDesc').innerText = tool.desc;
 
-            document.getElementById('modal-title').innerText = tool.title;
-            document.getElementById('modal-subtitle').innerText = tool.desc;
-            document.getElementById('modal-icon').className = tool.icon.includes('fa-') ? tool.icon : 'fa-solid ' + tool.icon;
-            document.getElementById('modal-result-container').classList.add('hidden');
-            document.getElementById('modal-result-content').innerHTML = '';
-            document.getElementById('copy-result-btn').classList.add('hidden');
+            const inputsBox = document.getElementById('modalInputs');
+            const outputBox = document.getElementById('modalOutput');
+            inputsBox.innerHTML = '';
+            outputBox.classList.add('hidden');
+            outputBox.innerHTML = '';
 
-            // Build Dynamic Form Inputs
-            const inputsContainer = document.getElementById('modal-inputs');
-            inputsContainer.innerHTML = '';
+            if (tool.noInput) {
+                inputsBox.innerHTML = `<p class="text-xs text-slate-500 italic">Tool ini dapat langsung dieksekusi tanpa input tambahan.</p>`;
+            } else if (tool.isMultiParam) {
+                tool.params.forEach(p => {
+                    inputsBox.innerHTML += `
+                        <div>
+                            <label class="block text-xs font-semibold text-slate-700 mb-1">${p.label}:</label>
+                            <input type="${p.type}" id="param_${p.name}" placeholder="${p.placeholder}" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 text-xs focus:ring-2 focus:ring-brand-400 focus:outline-none bg-white">
+                        </div>
+                    `;
+                });
+            } else {
+                inputsBox.innerHTML = `
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-700 mb-1">${tool.inputLabel || 'Input Param'}:</label>
+                        <input type="text" id="singleInput" placeholder="${tool.placeholder || ''}" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 text-xs focus:ring-2 focus:ring-brand-400 focus:outline-none bg-white">
+                    </div>
+                `;
+            }
 
-            tool.fields.forEach(field => {
-                const wrapper = document.createElement('div');
-                wrapper.className = 'space-y-1.5';
-
-                const label = document.createElement('label');
-                label.className = 'block text-xs font-bold text-slate-700';
-                label.innerText = field.label;
-
-                let inputEl;
-                if (field.type === 'textarea') {
-                    inputEl = document.createElement('textarea');
-                    inputEl.rows = 4;
-                    inputEl.className = 'w-full px-3.5 py-2.5 rounded-xl bg-white border border-sky-200 focus:border-brand-500 focus:ring-2 focus:ring-brand-200 text-xs sm:text-sm text-slate-800 outline-none transition';
-                } else {
-                    inputEl = document.createElement('input');
-                    inputEl.type = field.type;
-                    inputEl.className = 'w-full px-3.5 py-2.5 rounded-xl bg-white border border-sky-200 focus:border-brand-500 focus:ring-2 focus:ring-brand-200 text-xs sm:text-sm text-slate-800 outline-none transition';
-                }
-
-                inputEl.name = field.name;
-                inputEl.placeholder = field.placeholder || '';
-                if (field.required) inputEl.required = true;
-                if (field.default) inputEl.value = field.default;
-
-                wrapper.appendChild(label);
-                wrapper.appendChild(inputEl);
-                inputsContainer.appendChild(wrapper);
-            });
-
-            // Display Modal
-            const backdrop = document.getElementById('modal-backdrop');
-            const card = document.getElementById('modal-card');
-            backdrop.classList.remove('hidden');
+            const modal = document.getElementById('toolModal');
+            const modalBox = document.getElementById('modalBox');
+            modal.classList.remove('hidden');
             setTimeout(() => {
-                card.classList.remove('scale-95', 'opacity-0');
-                card.classList.add('scale-100', 'opacity-100');
+                modal.classList.remove('opacity-0');
+                modalBox.classList.remove('scale-95');
             }, 10);
         }
 
         function closeModal() {
-            const backdrop = document.getElementById('modal-backdrop');
-            const card = document.getElementById('modal-card');
-            card.classList.remove('scale-100', 'opacity-100');
-            card.classList.add('scale-95', 'opacity-0');
+            const modal = document.getElementById('toolModal');
+            const modalBox = document.getElementById('modalBox');
+            modal.classList.add('opacity-0');
+            modalBox.classList.add('scale-95');
             setTimeout(() => {
-                backdrop.classList.add('hidden');
-            }, 200);
+                modal.classList.add('hidden');
+            }, 300);
         }
 
-        async function handleExecute(event) {
-            event.preventDefault();
-            if (!currentActiveTool) return;
+        async function executeToolAction() {
+            if (!activeTool) return;
 
-            const form = document.getElementById('modal-form');
-            const formData = new FormData(form);
-            const params = new URLSearchParams();
+            let finalUrl = activeTool.endpoint;
 
-            // Append API Key
-            params.append('apikey', API_KEY);
-
-            // Append user inputs
-            for (let [key, value] of formData.entries()) {
-                params.append(key, value);
+            if (!activeTool.noInput) {
+                if (activeTool.isMultiParam) {
+                    let missing = false;
+                    activeTool.params.forEach(p => {
+                        const val = document.getElementById(`param_${p.name}`).value.trim();
+                        if (!val) missing = true;
+                        finalUrl += `&${p.name}=${encodeURIComponent(val)}`;
+                    });
+                    if (missing) {
+                        showToast('Harap isi semua kolom parameter!', 'fa-circle-exclamation');
+                        return;
+                    }
+                } else {
+                    const inputVal = document.getElementById('singleInput').value.trim();
+                    if (!inputVal) {
+                        showToast('Harap isi input terlebih dahulu!', 'fa-circle-exclamation');
+                        return;
+                    }
+                    finalUrl += `&${activeTool.paramName || 'url'}=${encodeURIComponent(inputVal)}`;
+                }
             }
 
-            const submitBtn = document.getElementById('modal-submit-btn');
-            const btnText = document.getElementById('btn-text');
-            const resultContainer = document.getElementById('modal-result-container');
-            const resultContent = document.getElementById('modal-result-content');
-            const copyBtn = document.getElementById('copy-result-btn');
-
-            // Loading state
-            submitBtn.disabled = true;
-            btnText.innerHTML = `<i class="fa-solid fa-spinner animate-spin"></i> Processing...`;
-            resultContainer.classList.remove('hidden');
-            resultContent.innerHTML = `<div class="text-sky-400 font-semibold flex items-center gap-2">
-                <i class="fa-solid fa-circle-notch animate-spin"></i> Menghubungkan ke API Yanz Storu...
-            </div>`;
-
-            const targetUrl = `${currentActiveTool.endpoint}?${params.toString()}`;
+            const outputBox = document.getElementById('modalOutput');
+            outputBox.classList.remove('hidden');
+            outputBox.innerHTML = `
+                <div class="p-4 bg-slate-50 border border-slate-200 rounded-2xl flex items-center justify-center gap-3 text-brand-600 text-xs font-medium">
+                    <i class="fa-solid fa-spinner animate-spin text-base"></i> Memproses permintaan...
+                </div>
+            `;
 
             try {
-                const response = await fetch(targetUrl);
-                let data;
-                const contentType = response.headers.get('content-type');
+                const res = await fetch(finalUrl);
+                const contentType = res.headers.get("content-type");
 
-                if (contentType && contentType.includes('application/json')) {
-                    data = await response.json();
-                } else {
-                    const text = await response.text();
-                    try {
-                        data = JSON.parse(text);
-                    } catch (e) {
-                        data = { result: text };
-                    }
+                if (!res.ok || (contentType && contentType.includes("text/html"))) {
+                    outputBox.innerHTML = `
+                        <div class="p-3.5 bg-rose-50 border border-rose-200 text-rose-600 rounded-2xl text-xs space-y-1">
+                            <div class="font-bold flex items-center gap-1.5"><i class="fa-solid fa-triangle-exclamation"></i> Gagal Memproses</div>
+                            <p class="text-[11px] leading-relaxed">Server API Alby sedang tidak dapat dijangkau atau URL yang kamu masukkan tidak ditemukan (Error 404). Silakan periksa link kamu dan coba lagi.</p>
+                        </div>
+                    `;
+                    return;
                 }
 
-                renderFormattedResponse(data);
-                showToast('Eksekusi berhasil!', 'success');
+                const data = await res.json();
+                renderResultUI(activeTool, data, outputBox);
 
-            } catch (error) {
-                console.warn('API error or CORS blocked, showing realistic fallback output:', error);
-                // Fallback simulation for live demo preview stability
-                renderFallbackResponse(formData);
-                showToast('Selesai (Respon Fallback / Online)', 'info');
-            } finally {
-                submitBtn.disabled = false;
-                btnText.innerText = 'Eksekusi Sekarang';
+            } catch (err) {
+                outputBox.innerHTML = `
+                    <div class="p-3.5 bg-rose-50 border border-rose-200 text-rose-600 rounded-2xl text-xs space-y-1">
+                        <div class="font-bold flex items-center gap-1.5"><i class="fa-solid fa-circle-xmark"></i> Terjadi Masalah Jaringan</div>
+                        <p class="text-[11px]">Gagal menghubungkan ke server API. Periksa koneksi internet kamu.</p>
+                    </div>
+                `;
             }
         }
 
-        function renderFormattedResponse(data) {
-            const resultContent = document.getElementById('modal-result-content');
-            const copyBtn = document.getElementById('copy-result-btn');
-            copyBtn.classList.remove('hidden');
+        function renderResultUI(tool, data, container) {
+            let html = `<div class="p-4 bg-slate-50 border border-slate-200 rounded-2xl text-xs space-y-3">`;
+            
+            let foundMedia = false;
+            let videoUrl = findKey(data, ['video', 'nowatermark', 'no_watermark', 'download_url', 'play']);
+            let audioUrl = findKey(data, ['audio', 'music', 'mp3']);
 
-            lastRawResultText = typeof data === 'object' ? JSON.stringify(data, null, 2) : String(data);
-
-            if (data.status === true || data.success || data.result || data.url || data.download) {
-                let html = '';
-
-                // Handle Downloader links
-                const downloadUrl = data.url || data.download || (data.result && data.result.url) || (data.result && data.result.download);
-                if (downloadUrl && typeof downloadUrl === 'string') {
+            if (tool.category === 'Downloader') {
+                if (videoUrl && typeof videoUrl === 'string' && videoUrl.startsWith('http')) {
+                    foundMedia = true;
                     html += `
-                        <div class="mb-3 p-3 bg-slate-800 rounded-lg border border-brand-500/30">
-                            <p class="text-xs text-emerald-400 font-bold mb-2"><i class="fa-solid fa-circle-check"></i> Media Berhasil Ditemukan!</p>
-                            <a href="${downloadUrl}" target="_blank" rel="noopener" class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-brand-500 hover:bg-brand-600 text-white font-bold text-xs transition">
-                                <i class="fa-solid fa-download"></i> Download Media Langsung
+                        <div class="space-y-2">
+                            <span class="font-bold text-slate-700 block"><i class="fa-solid fa-circle-play text-brand-500"></i> Video Hasil:</span>
+                            <video controls src="${videoUrl}" class="w-full rounded-xl max-h-60 bg-black"></video>
+                            <a href="${videoUrl}" target="_blank" download class="inline-flex items-center justify-center gap-2 w-full py-2.5 bg-emerald-500 hover:bg-emerald-600 text-white rounded-xl font-bold shadow-sm transition-all">
+                                <i class="fa-solid fa-download"></i> Download Video HD
                             </a>
                         </div>
                     `;
                 }
 
-                // Handle AI Response Text
-                const textMsg = data.result || data.message || data.response || data.text || data.reply;
-                if (textMsg && typeof textMsg === 'string') {
+                if (audioUrl && typeof audioUrl === 'string' && audioUrl.startsWith('http')) {
+                    foundMedia = true;
                     html += `
-                        <div class="p-3 bg-slate-800 rounded-lg text-slate-100 leading-relaxed font-sans text-xs sm:text-sm whitespace-pre-wrap">
-                            ${escapeHTML(textMsg)}
+                        <div class="space-y-2 pt-2 border-t border-slate-200">
+                            <span class="font-bold text-slate-700 block"><i class="fa-solid fa-music text-cyan-500"></i> Audio / MP3:</span>
+                            <audio controls src="${audioUrl}" class="w-full"></audio>
+                            <a href="${audioUrl}" target="_blank" download class="inline-flex items-center justify-center gap-2 w-full py-2 bg-brand-500 hover:bg-brand-600 text-white rounded-xl font-semibold transition-all text-xs">
+                                <i class="fa-solid fa-download"></i> Download MP3
+                            </a>
                         </div>
                     `;
-                } else if (typeof data === 'object') {
-                    html += `<pre class="text-xs text-sky-300 font-mono overflow-x-auto">${escapeHTML(JSON.stringify(data, null, 2))}</pre>`;
+                }
+            }
+
+            if (!foundMedia) {
+                let mainText = findKey(data, ['result', 'response', 'message', 'data', 'chats']) || JSON.stringify(data, null, 2);
+
+                if (typeof mainText === 'object') {
+                    mainText = JSON.stringify(mainText, null, 2);
                 }
 
-                resultContent.innerHTML = html;
-            } else {
-                resultContent.innerHTML = `<pre class="text-xs text-sky-300 font-mono overflow-x-auto">${escapeHTML(JSON.stringify(data, null, 2))}</pre>`;
+                html += `
+                    <div class="flex justify-between items-center border-b border-slate-200 pb-2">
+                        <span class="font-bold text-slate-700"><i class="fa-solid fa-square-poll-horizontal text-brand-500"></i> Respon Hasil:</span>
+                        <button onclick="copyResultText()" class="text-[11px] text-brand-600 font-semibold hover:underline flex items-center gap-1">
+                            <i class="fa-solid fa-copy"></i> Salin
+                        </button>
+                    </div>
+                    <pre id="rawResultText" class="p-3 bg-slate-900 text-slate-100 rounded-xl overflow-x-auto text-[11px] font-mono leading-relaxed whitespace-pre-wrap max-h-60">${escapeHtml(mainText)}</pre>
+                `;
             }
+
+            html += `</div>`;
+            container.innerHTML = html;
+            showToast('Berhasil memproses!', 'fa-circle-check');
         }
 
-        function renderFallbackResponse(formData) {
-            const resultContent = document.getElementById('modal-result-content');
-            const copyBtn = document.getElementById('copy-result-btn');
-            copyBtn.classList.remove('hidden');
-
-            let simulatedData = {};
-            const toolId = currentActiveTool.id;
-
-            if (toolId.startsWith('am-')) {
-                const count = parseInt(formData.get('count') || '5');
-                const prefix = formData.get('email') || 'user_yanz';
-                let accounts = [];
-                for (let i = 1; i <= Math.min(count, 10); i++) {
-                    accounts.push({
-                        id: i,
-                        email: `${prefix}_${Math.floor(1000 + Math.random() * 9000)}@alight.id`,
-                        status: 'Success Verified',
-                        type: 'Pro Subscriber'
-                    });
+        function findKey(obj, keys) {
+            if (!obj || typeof obj !== 'object') return null;
+            for (let k of Object.keys(obj)) {
+                if (keys.includes(k.toLowerCase())) return obj[k];
+                if (typeof obj[k] === 'object') {
+                    let res = findKey(obj[k], keys);
+                    if (res) return res;
                 }
-                simulatedData = {
-                    status: true,
-                    creator: "YANZ STORU",
-                    message: "Alight Motion Account Generated Successfully",
-                    data: accounts
-                };
-            } else if (toolId.startsWith('dl-')) {
-                const url = formData.get('url') || 'https://example.com/media';
-                simulatedData = {
-                    status: true,
-                    creator: "YANZ STORU",
-                    title: "Download Result for Media URL",
-                    source: url,
-                    quality: "HD 1080p",
-                    download: "https://www.w3schools.com/html/mov_bbb.mp4"
-                };
-            } else if (toolId.startsWith('ai-')) {
-                const query = formData.get('text') || 'Halo';
-                simulatedData = {
-                    status: true,
-                    creator: "YANZ STORU",
-                    result: `[${currentActiveTool.title} Response]\n\nHalo! Terima kasih telah menggunakan tool AI dari YANZ STORU. Pertanyaan Anda: "${query}" telah diproses dengan sukses. Ada yang bisa saya bantu lagi?`
-                };
             }
+            return null;
+        }
 
-            lastRawResultText = JSON.stringify(simulatedData, null, 2);
-
-            let html = '';
-            if (simulatedData.download) {
-                html += `
-                    <div class="mb-3 p-3 bg-slate-800 rounded-lg border border-brand-500/30">
-                        <p class="text-xs text-emerald-400 font-bold mb-2"><i class="fa-solid fa-circle-check"></i> Media Siap Diunduh!</p>
-                        <a href="${simulatedData.download}" target="_blank" rel="noopener" class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-brand-500 hover:bg-brand-600 text-white font-bold text-xs transition">
-                            <i class="fa-solid fa-download"></i> Unduh File Media
-                        </a>
-                    </div>
-                `;
-            }
-
-            if (simulatedData.result) {
-                html += `
-                    <div class="p-3 bg-slate-800 rounded-lg text-slate-100 leading-relaxed font-sans text-xs sm:text-sm whitespace-pre-wrap">
-                        ${escapeHTML(simulatedData.result)}
-                    </div>
-                `;
-            } else {
-                html += `<pre class="text-xs text-sky-300 font-mono overflow-x-auto">${escapeHTML(lastRawResultText)}</pre>`;
-            }
-
-            resultContent.innerHTML = html;
+        function escapeHtml(str) {
+            return String(str).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
         }
 
         function copyResultText() {
-            if (!lastRawResultText) return;
-
-            // Using standard execCommand as recommended for iframe context
-            const textarea = document.createElement('textarea');
-            textarea.value = lastRawResultText;
-            textarea.style.position = 'fixed';
-            textarea.style.opacity = '0';
-            document.body.appendChild(textarea);
-            textarea.select();
-
-            try {
-                document.execCommand('copy');
-                showToast('Hasil berhasil disalin ke clipboard!', 'success');
-            } catch (err) {
-                showToast('Gagal menyalin text', 'error');
-            } finally {
-                document.body.removeChild(textarea);
+            const txt = document.getElementById('rawResultText')?.innerText;
+            if (txt) {
+                navigator.clipboard.writeText(txt);
+                showToast('Hasil berhasil disalin!', 'fa-copy');
             }
         }
 
-        function showToast(message, type = 'info') {
-            const container = document.getElementById('toast-container');
-            const toast = document.createElement('div');
+        function showToast(msg, icon = 'fa-circle-check') {
+            const toast = document.getElementById('toast');
+            document.getElementById('toastMsg').innerText = msg;
+            document.getElementById('toastIcon').className = `fa-solid ${icon} text-emerald-400 text-base`;
 
-            let bg = 'bg-slate-900 border-sky-500 text-white';
-            let icon = 'fa-circle-info text-sky-400';
-
-            if (type === 'success') {
-                bg = 'bg-slate-900 border-emerald-500 text-white';
-                icon = 'fa-circle-check text-emerald-400';
-            } else if (type === 'error') {
-                bg = 'bg-slate-900 border-rose-500 text-white';
-                icon = 'fa-triangle-exclamation text-rose-400';
-            }
-
-            toast.className = `${bg} border shadow-xl rounded-xl px-4 py-3 text-xs font-semibold flex items-center space-x-2 pointer-events-auto transform transition-all duration-300 translate-x-10 opacity-0`;
-            toast.innerHTML = `<i class="fa-solid ${icon}"></i> <span>${escapeHTML(message)}</span>`;
-
-            container.appendChild(toast);
-
+            toast.classList.remove('translate-y-20', 'opacity-0');
             setTimeout(() => {
-                toast.classList.remove('translate-x-10', 'opacity-0');
-            }, 10);
-
-            setTimeout(() => {
-                toast.classList.add('translate-x-10', 'opacity-0');
-                setTimeout(() => {
-                    if (toast.parentNode) toast.parentNode.removeChild(toast);
-                }, 300);
+                toast.classList.add('translate-y-20', 'opacity-0');
             }, 3000);
         }
 
-        function escapeHTML(str) {
-            return String(str)
-                .replace(/&/g, '&amp;')
-                .replace(/</g, '&lt;')
-                .replace(/>/g, '&gt;')
-                .replace(/"/g, '&quot;')
-                .replace(/'/g, '&#039;');
-        }
-
-        // Initialize App on DOM Content Loaded
         window.onload = function() {
-            renderCards();
+            renderTools();
         };
     </script>
 </body>
 </html>
-```
