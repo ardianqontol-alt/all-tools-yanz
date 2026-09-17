@@ -146,7 +146,7 @@
         <!-- Hero Title -->
         <div class="text-center space-y-2">
             <span class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-semibold bg-cyan-100 text-brand-700 border border-cyan-200 shadow-xs">
-                <i class="fa-solid fa-bolt text-brand-500"></i> Free Tools, Downloader, AI & Utilitas
+                <i class="fa-solid fa-bolt text-brand-500"></i> Free Tools, Downloader, AI & Maker
             </span>
             <h2 class="font-heading text-3xl sm:text-5xl font-extrabold text-slate-900 tracking-tight">
                 Layanan All-in-One Gratis <br class="hidden sm:inline">
@@ -185,19 +185,20 @@
                         type="text" 
                         id="searchInput" 
                         oninput="filterTools()"
-                        placeholder="Cari tools (Alight Motion, Brat, QR, Encrypt, TikTok, Gemini...)" 
+                        placeholder="Cari tools (MPLS, Brat, QR, Counter, Diskon, TikTok, Gemini...)" 
                         class="w-full py-3 px-4 text-slate-800 placeholder-slate-400 bg-transparent text-sm sm:text-base font-medium focus:outline-none"
                     >
                 </div>
             </div>
 
-            <!-- Separated Category Navigation Buttons -->
+            <!-- Category Navigation Buttons -->
             <div class="flex items-center justify-center flex-wrap gap-2 pt-2" id="categoryFilters">
                 <button onclick="setCategory('all')" class="cat-btn active px-4 py-2 rounded-xl text-xs font-bold transition-all bg-brand-600 text-white shadow-md shadow-brand-500/30">Semua Tools</button>
-                <button onclick="setCategory('Alight Motion')" class="cat-btn px-4 py-2 rounded-xl text-xs font-bold transition-all bg-white/90 hover:bg-white text-slate-700 border border-slate-200 shadow-sm"><i class="fa-solid fa-clapperboard text-emerald-500"></i> Alight Motion</button>
+                <button onclick="setCategory('Maker')" class="cat-btn px-4 py-2 rounded-xl text-xs font-bold transition-all bg-white/90 hover:bg-white text-slate-700 border border-slate-200 shadow-sm"><i class="fa-solid fa-paintbrush text-pink-500"></i> Maker</button>
+                <button onclick="setCategory('Utilitas')" class="cat-btn px-4 py-2 rounded-xl text-xs font-bold transition-all bg-white/90 hover:bg-white text-slate-700 border border-slate-200 shadow-sm"><i class="fa-solid fa-shield-halved text-amber-500"></i> Utilitas & Security</button>
                 <button onclick="setCategory('Downloader')" class="cat-btn px-4 py-2 rounded-xl text-xs font-bold transition-all bg-white/90 hover:bg-white text-slate-700 border border-slate-200 shadow-sm"><i class="fa-solid fa-download text-brand-500"></i> Downloader</button>
                 <button onclick="setCategory('AI Assistant')" class="cat-btn px-4 py-2 rounded-xl text-xs font-bold transition-all bg-white/90 hover:bg-white text-slate-700 border border-slate-200 shadow-sm"><i class="fa-solid fa-robot text-purple-500"></i> AI Assistant</button>
-                <button onclick="setCategory('Utilitas')" class="cat-btn px-4 py-2 rounded-xl text-xs font-bold transition-all bg-white/90 hover:bg-white text-slate-700 border border-slate-200 shadow-sm"><i class="fa-solid fa-shield-halved text-amber-500"></i> Utilitas & Security</button>
+                <button onclick="setCategory('Alight Motion')" class="cat-btn px-4 py-2 rounded-xl text-xs font-bold transition-all bg-white/90 hover:bg-white text-slate-700 border border-slate-200 shadow-sm"><i class="fa-solid fa-clapperboard text-emerald-500"></i> Alight Motion</button>
             </div>
 
             <!-- Grid Container for Tools -->
@@ -257,65 +258,99 @@
         const BASE_URL = "https://albyoffc.my.id";
 
         const toolsData = [
-            // 1. ALIGHT MOTION SECTION
+            // 1. MAKER SECTION
             {
-                id: 'am-bulk-custom',
-                title: 'AM Bulk Custom Generator',
-                category: 'Alight Motion',
-                icon: 'fa-clapperboard',
-                desc: 'Generate massal akun Alight Motion Premium dengan prefix custom.',
-                endpoint: `${BASE_URL}/api/v1/am/bulkcustom?apikey=${API_KEY}`,
-                isMultiParam: true,
-                params: [
-                    { name: 'count', label: 'Jumlah Akun', placeholder: '10', type: 'number' },
-                    { name: 'prefix', label: 'Prefix Email', placeholder: 'yanzstoru', type: 'text' }
-                ]
+                id: 'maker-brat',
+                title: 'Brat Generator',
+                category: 'Maker',
+                icon: 'fa-font',
+                desc: 'Buat gambar teks gaya Brat viral hijau via API Maker.',
+                endpoint: `${BASE_URL}/maker/brat?apikey=${API_KEY}`,
+                paramName: 'text',
+                inputLabel: 'Teks untuk Gambar Brat',
+                placeholder: 'yanz storu'
             },
             {
-                id: 'am-bulk-random',
-                title: 'AM Bulk Random Generator',
-                category: 'Alight Motion',
-                icon: 'fa-shuffle',
-                desc: 'Generate massal akun Alight Motion Premium secara acak.',
-                endpoint: `${BASE_URL}/api/v1/am/bulkrandom?apikey=${API_KEY}`,
-                paramName: 'count',
-                inputLabel: 'Jumlah Akun',
-                placeholder: '10'
-            },
-            {
-                id: 'am-send',
-                title: 'Alight Motion — Send OTP',
-                category: 'Alight Motion',
-                icon: 'fa-paper-plane',
-                desc: 'Kirim kode OTP / verifikasi ke email Alight Motion.',
-                endpoint: `${BASE_URL}/api/am/send?apikey=${API_KEY}`,
-                paramName: 'email',
-                inputLabel: 'Alamat Email AM',
-                placeholder: 'contoh@gmail.com'
-            },
-            {
-                id: 'am-verif',
-                title: 'Alight Motion — Verifikasi OTP',
-                category: 'Alight Motion',
-                icon: 'fa-shield-check',
-                desc: 'Verifikasi akun Alight Motion dengan kode OTP.',
-                endpoint: `${BASE_URL}/api/am/verif?apikey=${API_KEY}`,
-                paramName: 'otp',
-                inputLabel: 'Kode OTP / Link Verifikasi',
-                placeholder: 'Masukkan Kode OTP...'
+                id: 'maker-mpls',
+                title: 'MPLS Generator',
+                category: 'Maker',
+                icon: 'fa-id-card',
+                desc: 'Buat gambar / atribut MPLS secara otomatis via API Image.',
+                endpoint: `${BASE_URL}/image/mpls?apikey=${API_KEY}`,
+                paramName: 'text',
+                inputLabel: 'Teks / Nama untuk MPLS',
+                placeholder: 'yanz storu'
             },
 
             // 2. UTILITAS & SECURITY SECTION
             {
-                id: 'util-brat',
-                title: 'Brat Text Image Generator',
+                id: 'util-case',
+                title: 'Text Case Converter',
                 category: 'Utilitas',
-                icon: 'fa-font',
-                desc: 'Buat gambar teks gaya Brat viral hijau/putih secara instan.',
+                icon: 'fa-text-height',
+                desc: 'Ubah format teks menjadi Huruf Besar, Huruf Kecil, atau Title Case secara cepat.',
                 isCustomClientTool: true,
-                type: 'brat',
-                inputLabel: 'Teks untuk Gambar Brat',
+                type: 'case',
+                inputLabel: 'Masukkan Teks',
                 placeholder: 'yanz storu all tools free'
+            },
+            {
+                id: 'util-count',
+                title: 'Word & Character Counter',
+                category: 'Utilitas',
+                icon: 'fa-calculator',
+                desc: 'Hitung jumlah kata, karakter, paragraf, dan perkiraan waktu baca.',
+                isCustomClientTool: true,
+                type: 'counter',
+                inputLabel: 'Tuliskan Kalimat / Paragraf',
+                placeholder: 'Ketikkan kalimat di sini...'
+            },
+            {
+                id: 'util-json',
+                title: 'JSON Formatter & Beautifier',
+                category: 'Utilitas',
+                icon: 'fa-code-compare',
+                desc: 'Merapikan dan memvalidasi struktur data kode JSON yang berantakan.',
+                isCustomClientTool: true,
+                type: 'json',
+                inputLabel: 'String Kode JSON',
+                placeholder: '{"nama":"Yanz","status":"Aktif"}'
+            },
+            {
+                id: 'util-ip',
+                title: 'IP & Network Checker',
+                category: 'Utilitas',
+                icon: 'fa-network-wired',
+                desc: 'Cek IP Address publik, informasi lokasi, dan detail browser Anda.',
+                isCustomClientTool: true,
+                type: 'ipcheck',
+                inputLabel: 'Tekan tombol untuk cek IP',
+                placeholder: 'Klik Proses Sekarang...'
+            },
+            {
+                id: 'util-calc',
+                title: 'Kalkulator Diskon & Harga',
+                category: 'Utilitas',
+                icon: 'fa-tags',
+                desc: 'Hitung potongan diskon harga barang dan total belanja dalam Rupiah.',
+                isMultiParam: true,
+                isCustomClientTool: true,
+                type: 'calculator',
+                params: [
+                    { name: 'price', label: 'Harga Awal (Rp)', placeholder: '150000', type: 'number' },
+                    { name: 'discount', label: 'Diskon (%)', placeholder: '20', type: 'number' }
+                ]
+            },
+            {
+                id: 'util-url',
+                title: 'URL Encoder & Decoder',
+                category: 'Utilitas',
+                icon: 'fa-link',
+                desc: 'Ubah format tautan URL menjadi aman dikirim atau sebaliknya.',
+                isCustomClientTool: true,
+                type: 'url',
+                inputLabel: 'Link atau Teks URL',
+                placeholder: 'https://yanzstoru.com?ref=user'
             },
             {
                 id: 'util-qr',
@@ -351,7 +386,31 @@
                 placeholder: '16'
             },
 
-            // 3. DOWNLOADER SECTION
+            // 3. ALIGHT MOTION SECTION
+            {
+                id: 'am-send',
+                title: 'Alight Motion — Send OTP',
+                category: 'Alight Motion',
+                icon: 'fa-paper-plane',
+                desc: 'Kirim kode OTP / verifikasi ke email Alight Motion.',
+                endpoint: `${BASE_URL}/api/am/send?apikey=${API_KEY}`,
+                paramName: 'email',
+                inputLabel: 'Alamat Email AM',
+                placeholder: 'contoh@gmail.com'
+            },
+            {
+                id: 'am-verif',
+                title: 'Alight Motion — Verifikasi OTP',
+                category: 'Alight Motion',
+                icon: 'fa-shield-check',
+                desc: 'Verifikasi akun Alight Motion dengan kode OTP.',
+                endpoint: `${BASE_URL}/api/am/verif?apikey=${API_KEY}`,
+                paramName: 'otp',
+                inputLabel: 'Kode OTP / Link Verifikasi',
+                placeholder: 'Masukkan Kode OTP...'
+            },
+
+            // 4. DOWNLOADER SECTION
             {
                 id: 'dl-tiktok',
                 title: 'TikTok Downloader',
@@ -430,7 +489,7 @@
                 placeholder: 'https://open.spotify.com/track/...'
             },
 
-            // 4. AI ASSISTANT SECTION
+            // 5. AI ASSISTANT SECTION
             {
                 id: 'ai-gemini',
                 title: 'Gemini AI Chat',
@@ -560,6 +619,7 @@
                     card.onclick = () => openToolModal(tool);
 
                     let badgeColor = 'bg-slate-100 text-slate-600 border-slate-200';
+                    if (tool.category === 'Maker') badgeColor = 'bg-pink-100 text-pink-700 border-pink-200';
                     if (tool.category === 'Alight Motion') badgeColor = 'bg-emerald-100 text-emerald-700 border-emerald-200';
                     if (tool.category === 'AI Assistant') badgeColor = 'bg-purple-100 text-purple-700 border-purple-200';
                     if (tool.category === 'Utilitas') badgeColor = 'bg-amber-100 text-amber-700 border-amber-200';
@@ -581,7 +641,7 @@
                         </div>
                         <div class="pt-2 flex items-center justify-between border-t border-slate-100">
                             <span class="text-[11px] font-semibold text-brand-600 flex items-center gap-1">Buka Tool <i class="fa-solid fa-arrow-right text-[10px]"></i></span>
-                            <span class="text-[10px] text-emerald-600 font-medium bg-emerald-50 px-2 py-0.5 rounded-full">FREE</span>
+                            <span class="text-[10px] text-emerald-600 font-medium bg-emerald-50 px-2 py-0.5 rounded-full">100% WORKING</span>
                         </div>
                     `;
                     grid.appendChild(card);
@@ -624,14 +684,7 @@
             outputBox.classList.add('hidden');
             outputBox.innerHTML = '';
 
-            if (tool.isCustomClientTool) {
-                inputsBox.innerHTML = `
-                    <div>
-                        <label class="block text-xs font-semibold text-slate-700 mb-1">${tool.inputLabel}:</label>
-                        <input type="text" id="singleInput" placeholder="${tool.placeholder || ''}" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 text-xs focus:ring-2 focus:ring-brand-400 focus:outline-none bg-white">
-                    </div>
-                `;
-            } else if (tool.isMultiParam) {
+            if (tool.isMultiParam) {
                 tool.params.forEach(p => {
                     inputsBox.innerHTML += `
                         <div>
@@ -673,7 +726,7 @@
             outputBox.classList.remove('hidden');
 
             if (activeTool.isCustomClientTool) {
-                const inputVal = document.getElementById('singleInput').value.trim();
+                const inputVal = document.getElementById('singleInput') ? document.getElementById('singleInput').value.trim() : '';
                 executeLocalTool(activeTool.type, inputVal, outputBox);
                 return;
             }
@@ -714,7 +767,7 @@
                     outputBox.innerHTML = `
                         <div class="p-3.5 bg-rose-50 border border-rose-200 text-rose-600 rounded-2xl text-xs space-y-1">
                             <div class="font-bold flex items-center gap-1.5"><i class="fa-solid fa-triangle-exclamation"></i> Respon Server Tidak Valid</div>
-                            <p class="text-[11px] leading-relaxed">Server API Alby sedang mengalami gangguan temporary. Silakan coba kembali beberapa saat lagi.</p>
+                            <p class="text-[11px] leading-relaxed">Server API sedang mengalami pemeliharaan temporary. Silakan coba kembali nanti.</p>
                         </div>
                     `;
                     return;
@@ -733,51 +786,146 @@
             }
         }
 
-        function executeLocalTool(type, inputVal, outputBox) {
-            if (type === 'brat') {
-                const text = inputVal || 'yanz storu';
-                const canvas = document.createElement('canvas');
-                canvas.width = 500;
-                canvas.height = 500;
-                const ctx = canvas.getContext('2d');
-                
-                ctx.fillStyle = '#8ace00';
-                ctx.fillRect(0, 0, 500, 500);
-
-                ctx.fillStyle = '#000000';
-                ctx.font = 'bold 42px Arial, sans-serif';
-                ctx.textBaseline = 'top';
-                
-                const words = text.split(' ');
-                let line = '';
-                let y = 40;
-
-                for (let n = 0; n < words.length; n++) {
-                    let testLine = line + words[n] + ' ';
-                    let metrics = ctx.measureText(testLine);
-                    let testWidth = metrics.width;
-                    if (testWidth > 420 && n > 0) {
-                        ctx.fillText(line, 40, y);
-                        line = words[n] + ' ';
-                        y += 50;
-                    } else {
-                        line = testLine;
-                    }
-                }
-                ctx.fillText(line, 40, y);
-
-                const imgUrl = canvas.toDataURL('image/png');
+        async function executeLocalTool(type, inputVal, outputBox) {
+            if (type === 'case') {
+                if (!inputVal) return showToast('Masukkan teks terlebih dahulu!', 'fa-circle-exclamation');
+                const upper = inputVal.toUpperCase();
+                const lower = inputVal.toLowerCase();
+                const title = inputVal.replace(/\w\S*/g, (txt) => txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase());
 
                 outputBox.innerHTML = `
-                    <div class="p-3 bg-slate-50 border border-slate-200 rounded-2xl text-center space-y-3">
-                        <span class="font-bold text-xs text-slate-700 block">Gambar Brat Berhasil Dibuat:</span>
-                        <img src="${imgUrl}" class="w-64 h-64 mx-auto rounded-xl shadow-md border border-slate-200 object-cover">
-                        <a href="${imgUrl}" download="brat-yanzstoru.png" class="inline-flex items-center justify-center gap-2 px-4 py-2 bg-emerald-500 text-white rounded-xl text-xs font-bold shadow-sm">
-                            <i class="fa-solid fa-download"></i> Download Gambar Brat
-                        </a>
+                    <div class="p-3.5 bg-slate-50 border border-slate-200 rounded-2xl space-y-3 text-xs">
+                        <div>
+                            <span class="font-bold text-slate-700 block mb-1">Huruf Besar (UPPERCASE):</span>
+                            <div class="p-2.5 bg-slate-900 text-emerald-400 font-mono rounded-xl flex justify-between items-center">${upper} <button onclick="navigator.clipboard.writeText('${upper}'); showToast('Disalin!', 'fa-copy');" class="text-[10px] bg-slate-800 text-white px-2 py-1 rounded">Copy</button></div>
+                        </div>
+                        <div>
+                            <span class="font-bold text-slate-700 block mb-1">Huruf Kecil (lowercase):</span>
+                            <div class="p-2.5 bg-slate-900 text-cyan-400 font-mono rounded-xl flex justify-between items-center">${lower} <button onclick="navigator.clipboard.writeText('${lower}'); showToast('Disalin!', 'fa-copy');" class="text-[10px] bg-slate-800 text-white px-2 py-1 rounded">Copy</button></div>
+                        </div>
+                        <div>
+                            <span class="font-bold text-slate-700 block mb-1">Format Judul (Title Case):</span>
+                            <div class="p-2.5 bg-slate-900 text-amber-400 font-mono rounded-xl flex justify-between items-center">${title} <button onclick="navigator.clipboard.writeText('${title}'); showToast('Disalin!', 'fa-copy');" class="text-[10px] bg-slate-800 text-white px-2 py-1 rounded">Copy</button></div>
+                        </div>
                     </div>
                 `;
-                showToast('Gambar Brat selesai!', 'fa-check');
+                showToast('Format teks berhasil diubah!', 'fa-check');
+
+            } else if (type === 'counter') {
+                if (!inputVal) return showToast('Masukkan kalimat terlebih dahulu!', 'fa-circle-exclamation');
+                const words = inputVal.trim() ? inputVal.trim().split(/\s+/).length : 0;
+                const chars = inputVal.length;
+                const charsNoSpace = inputVal.replace(/\s+/g, '').length;
+                const readTime = Math.ceil(words / 200);
+
+                outputBox.innerHTML = `
+                    <div class="p-4 bg-slate-50 border border-slate-200 rounded-2xl grid grid-cols-2 gap-3 text-center">
+                        <div class="p-3 bg-white rounded-xl border border-slate-200"><span class="block text-xl font-bold text-brand-600">${words}</span><span class="text-[11px] text-slate-500 font-medium">Jumlah Kata</span></div>
+                        <div class="p-3 bg-white rounded-xl border border-slate-200"><span class="block text-xl font-bold text-emerald-600">${chars}</span><span class="text-[11px] text-slate-500 font-medium">Karakter (Dgn Spasi)</span></div>
+                        <div class="p-3 bg-white rounded-xl border border-slate-200"><span class="block text-xl font-bold text-purple-600">${charsNoSpace}</span><span class="text-[11px] text-slate-500 font-medium">Karakter (Tanpa Spasi)</span></div>
+                        <div class="p-3 bg-white rounded-xl border border-slate-200"><span class="block text-xl font-bold text-amber-600">~${readTime} mnt</span><span class="text-[11px] text-slate-500 font-medium">Est. Waktu Baca</span></div>
+                    </div>
+                `;
+                showToast('Perhitungan selesai!', 'fa-calculator');
+
+            } else if (type === 'json') {
+                if (!inputVal) return showToast('Harap masukkan kode JSON!', 'fa-circle-exclamation');
+                try {
+                    const parsed = JSON.parse(inputVal);
+                    const pretty = JSON.stringify(parsed, null, 4);
+                    outputBox.innerHTML = `
+                        <div class="p-3.5 bg-slate-900 text-emerald-400 rounded-2xl text-xs font-mono space-y-2">
+                            <div class="flex justify-between items-center border-b border-slate-800 pb-2">
+                                <span class="text-white font-bold"><i class="fa-solid fa-circle-check text-emerald-400"></i> JSON Valid</span>
+                                <button onclick="navigator.clipboard.writeText(\`${pretty.replace(/\\/g, '\\\\').replace(/`/g, '\\`')}\`); showToast('JSON Disalin!', 'fa-copy');" class="text-[11px] bg-slate-800 text-white px-2.5 py-1 rounded-lg">Copy Format</button>
+                            </div>
+                            <pre class="overflow-x-auto max-h-60 leading-relaxed">${escapeHtml(pretty)}</pre>
+                        </div>
+                    `;
+                    showToast('Format JSON berhasil diperbaiki!', 'fa-check');
+                } catch (e) {
+                    outputBox.innerHTML = `
+                        <div class="p-3.5 bg-rose-50 border border-rose-200 text-rose-600 rounded-2xl text-xs space-y-1">
+                            <div class="font-bold"><i class="fa-solid fa-circle-xmark"></i> JSON Tidak Valid</div>
+                            <p class="text-[11px]">Pastikan format string JSON Anda sudah benar.</p>
+                        </div>
+                    `;
+                }
+
+            } else if (type === 'ipcheck') {
+                outputBox.innerHTML = `<div class="p-3 text-center text-xs text-slate-500"><i class="fa-solid fa-spinner animate-spin"></i> Memeriksa IP & Jaringan...</div>`;
+                try {
+                    const res = await fetch('https://api.ipify.org?format=json');
+                    const data = await res.json();
+                    const ua = navigator.userAgent;
+
+                    outputBox.innerHTML = `
+                        <div class="p-3.5 bg-slate-50 border border-slate-200 rounded-2xl space-y-3 text-xs">
+                            <div>
+                                <span class="font-bold text-slate-700 block mb-1">IP Address Publik Anda:</span>
+                                <div class="p-3 bg-slate-900 text-cyan-400 font-mono text-sm rounded-xl font-bold flex justify-between items-center">
+                                    <span>${data.ip}</span>
+                                    <button onclick="navigator.clipboard.writeText('${data.ip}'); showToast('IP Disalin!', 'fa-copy');" class="text-xs bg-slate-800 text-white px-2.5 py-1 rounded-lg">Copy</button>
+                                </div>
+                            </div>
+                            <div>
+                                <span class="font-bold text-slate-700 block mb-1">Info User Agent Browser:</span>
+                                <div class="p-2.5 bg-white border border-slate-200 text-slate-600 rounded-xl text-[11px] leading-relaxed break-all">${ua}</div>
+                            </div>
+                        </div>
+                    `;
+                    showToast('Info IP ditemukan!', 'fa-network-wired');
+                } catch (e) {
+                    showToast('Gagal memuat info IP.', 'fa-triangle-exclamation');
+                }
+
+            } else if (type === 'calculator') {
+                const p = parseFloat(document.getElementById('param_price')?.value);
+                const d = parseFloat(document.getElementById('param_discount')?.value);
+
+                if (isNaN(p) || isNaN(d)) return showToast('Harap masukan nominal harga & persen diskon!', 'fa-circle-exclamation');
+
+                const cut = (p * d) / 100;
+                const finalP = p - cut;
+
+                const fmt = (num) => new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR' }).format(num);
+
+                outputBox.innerHTML = `
+                    <div class="p-4 bg-slate-50 border border-slate-200 rounded-2xl space-y-2 text-xs">
+                        <div class="flex justify-between py-1 border-b border-slate-200">
+                            <span class="text-slate-600">Harga Normal:</span>
+                            <span class="font-bold text-slate-800">${fmt(p)}</span>
+                        </div>
+                        <div class="flex justify-between py-1 border-b border-slate-200">
+                            <span class="text-rose-600">Hemat Diskon (${d}%):</span>
+                            <span class="font-bold text-rose-600">- ${fmt(cut)}</span>
+                        </div>
+                        <div class="flex justify-between py-2 bg-emerald-100/60 px-3 rounded-xl border border-emerald-200">
+                            <span class="font-bold text-emerald-800">Total Pembayaran:</span>
+                            <span class="font-extrabold text-emerald-700 text-sm">${fmt(finalP)}</span>
+                        </div>
+                    </div>
+                `;
+                showToast('Kalkulasi diskon selesai!', 'fa-tags');
+
+            } else if (type === 'url') {
+                if (!inputVal) return showToast('Masukkan URL atau teks!', 'fa-circle-exclamation');
+                const enc = encodeURIComponent(inputVal);
+                const dec = decodeURIComponent(inputVal);
+
+                outputBox.innerHTML = `
+                    <div class="p-3.5 bg-slate-50 border border-slate-200 rounded-2xl space-y-3 text-xs">
+                        <div>
+                            <span class="font-bold text-slate-700 block mb-1">Hasil Encode URL:</span>
+                            <div class="p-2.5 bg-slate-900 text-cyan-400 font-mono rounded-xl break-all">${enc}</div>
+                        </div>
+                        <div>
+                            <span class="font-bold text-slate-700 block mb-1">Hasil Decode URL:</span>
+                            <div class="p-2.5 bg-slate-900 text-emerald-400 font-mono rounded-xl break-all">${dec}</div>
+                        </div>
+                    </div>
+                `;
+                showToast('URL berhasil dikonversi!', 'fa-link');
 
             } else if (type === 'qr') {
                 const val = inputVal || 'https://yanzstoru.com';
@@ -794,10 +942,7 @@
                 showToast('QR Code selesai!', 'fa-qrcode');
 
             } else if (type === 'enc') {
-                if (!inputVal) {
-                    showToast('Harap isi teks yang ingin dienkripsi!', 'fa-exclamation-circle');
-                    return;
-                }
+                if (!inputVal) return showToast('Harap isi teks yang ingin dienkripsi!', 'fa-exclamation-circle');
                 const base64Enc = btoa(inputVal);
                 const hexEnc = Array.from(inputVal).map(c => c.charCodeAt(0).toString(16)).join('');
 
@@ -837,22 +982,11 @@
         function renderResultUI(tool, data, container) {
             let html = `<div class="p-4 bg-slate-50 border border-slate-200 rounded-2xl text-xs space-y-3">`;
             
-            if (tool.category === 'Alight Motion' && Array.isArray(data)) {
-                html += `<span class="font-bold text-slate-700 block"><i class="fa-solid fa-list-check text-emerald-500"></i> Daftar Akun AM Berhasil Dibuat:</span>`;
-                html += `<div class="space-y-2 max-h-56 overflow-y-auto pr-1">`;
-                data.forEach((acc, i) => {
-                    const accStr = typeof acc === 'object' ? JSON.stringify(acc) : acc;
-                    html += `
-                        <div class="p-2.5 bg-white border border-slate-200 rounded-xl flex justify-between items-center font-mono text-[11px]">
-                            <span class="truncate pr-2">${accStr}</span>
-                            <button onclick="navigator.clipboard.writeText('${accStr}'); showToast('Akun disalin!', 'fa-copy');" class="text-brand-600 font-bold hover:underline flex-shrink-0">Copy</button>
-                        </div>
-                    `;
-                });
-                html += `</div>`;
-            } else if (tool.category === 'AI Assistant') {
+            let imgUrl = findKey(data, ['url', 'image', 'img', 'result']);
+            let videoUrl = findKey(data, ['video', 'nowatermark', 'no_watermark', 'download_url', 'play']);
+
+            if (tool.category === 'AI Assistant') {
                 let aiReply = findKey(data, ['result', 'response', 'reply', 'message', 'text', 'data']) || (typeof data === 'string' ? data : JSON.stringify(data, null, 2));
-                
                 if (typeof aiReply === 'object') aiReply = JSON.stringify(aiReply, null, 2);
 
                 html += `
@@ -866,33 +1000,39 @@
                         <div id="rawResultText" class="p-3.5 bg-white border border-purple-100 rounded-2xl text-slate-800 text-xs leading-relaxed max-h-60 overflow-y-auto shadow-xs whitespace-pre-wrap">${escapeHtml(aiReply)}</div>
                     </div>
                 `;
+            } else if (imgUrl && typeof imgUrl === 'string' && (imgUrl.startsWith('http') || imgUrl.startsWith('data:image'))) {
+                html += `
+                    <div class="p-3 bg-slate-50 border border-slate-200 rounded-2xl text-center space-y-3">
+                        <span class="font-bold text-xs text-slate-700 block"><i class="fa-solid fa-image text-pink-500"></i> Gambar Berhasil Dibuat:</span>
+                        <img src="${imgUrl}" class="w-64 h-64 mx-auto rounded-xl shadow-md border border-slate-200 object-cover">
+                        <a href="${imgUrl}" target="_blank" download class="inline-flex items-center justify-center gap-2 px-4 py-2 bg-emerald-500 text-white rounded-xl text-xs font-bold shadow-sm">
+                            <i class="fa-solid fa-download"></i> Unduh Gambar
+                        </a>
+                    </div>
+                `;
+            } else if (videoUrl && typeof videoUrl === 'string' && videoUrl.startsWith('http')) {
+                html += `
+                    <div class="space-y-2">
+                        <span class="font-bold text-slate-700 block"><i class="fa-solid fa-circle-play text-brand-500"></i> Video Hasil:</span>
+                        <video controls src="${videoUrl}" class="w-full rounded-xl max-h-60 bg-black"></video>
+                        <a href="${videoUrl}" target="_blank" download class="inline-flex items-center justify-center gap-2 w-full py-2.5 bg-emerald-500 text-white rounded-xl font-bold shadow-sm">
+                            <i class="fa-solid fa-download"></i> Download Video HD
+                        </a>
+                    </div>
+                `;
             } else {
-                let videoUrl = findKey(data, ['video', 'nowatermark', 'no_watermark', 'download_url', 'play']);
+                let mainText = findKey(data, ['result', 'response', 'message', 'data']) || JSON.stringify(data, null, 2);
+                if (typeof mainText === 'object') mainText = JSON.stringify(mainText, null, 2);
 
-                if (videoUrl && typeof videoUrl === 'string' && videoUrl.startsWith('http')) {
-                    html += `
-                        <div class="space-y-2">
-                            <span class="font-bold text-slate-700 block"><i class="fa-solid fa-circle-play text-brand-500"></i> Video Hasil:</span>
-                            <video controls src="${videoUrl}" class="w-full rounded-xl max-h-60 bg-black"></video>
-                            <a href="${videoUrl}" target="_blank" download class="inline-flex items-center justify-center gap-2 w-full py-2.5 bg-emerald-500 text-white rounded-xl font-bold shadow-sm">
-                                <i class="fa-solid fa-download"></i> Download Video HD
-                            </a>
-                        </div>
-                    `;
-                } else {
-                    let mainText = findKey(data, ['result', 'response', 'message', 'data']) || JSON.stringify(data, null, 2);
-                    if (typeof mainText === 'object') mainText = JSON.stringify(mainText, null, 2);
-
-                    html += `
-                        <div class="flex justify-between items-center border-b border-slate-200 pb-2">
-                            <span class="font-bold text-slate-700"><i class="fa-solid fa-square-poll-horizontal text-brand-500"></i> Respon Hasil:</span>
-                            <button onclick="copyResultText()" class="text-brand-600 font-semibold hover:underline flex items-center gap-1">
-                                <i class="fa-solid fa-copy"></i> Salin
-                            </button>
-                        </div>
-                        <pre id="rawResultText" class="p-3 bg-slate-900 text-slate-100 rounded-xl overflow-x-auto text-[11px] font-mono leading-relaxed whitespace-pre-wrap max-h-60">${escapeHtml(mainText)}</pre>
-                    `;
-                }
+                html += `
+                    <div class="flex justify-between items-center border-b border-slate-200 pb-2">
+                        <span class="font-bold text-slate-700"><i class="fa-solid fa-square-poll-horizontal text-brand-500"></i> Respon Hasil:</span>
+                        <button onclick="copyResultText()" class="text-brand-600 font-semibold hover:underline flex items-center gap-1">
+                            <i class="fa-solid fa-copy"></i> Salin
+                        </button>
+                    </div>
+                    <pre id="rawResultText" class="p-3 bg-slate-900 text-slate-100 rounded-xl overflow-x-auto text-[11px] font-mono leading-relaxed whitespace-pre-wrap max-h-60">${escapeHtml(mainText)}</pre>
+                `;
             }
 
             html += `</div>`;
