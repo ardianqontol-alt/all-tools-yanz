@@ -185,7 +185,7 @@
                         type="text" 
                         id="searchInput" 
                         oninput="filterTools()"
-                        placeholder="Cari tools (MPLS, Brat, QR, Counter, Diskon, TikTok, Gemini...)" 
+                        placeholder="Cari tools (Remove BG, Font Stylist, Brat, MPLS, BMI, Slug, QR...)" 
                         class="w-full py-3 px-4 text-slate-800 placeholder-slate-400 bg-transparent text-sm sm:text-base font-medium focus:outline-none"
                     >
                 </div>
@@ -256,39 +256,269 @@
     <script>
         const API_KEY = "albymd-fffc8c9";
         const BASE_URL = "https://albyoffc.my.id";
+        const REMOVE_BG_API_KEY = "toUmAmVMcZefLXtFvtAqtkEW";
 
         const toolsData = [
-            // 1. MAKER SECTION
+            // MAKER SECTION
+            {
+                id: 'maker-fontgen',
+                title: 'Font Generator (Stylist Text)',
+                category: 'Maker',
+                icon: 'fa-font-awesome',
+                desc: 'Ubah kata biasa menjadi 10+ pilihan font tebal, miring, aesthetic, & unik.',
+                isCustomClientTool: true,
+                type: 'fontgen',
+                inputLabel: 'Masukkan Kata / Kalimat',
+                placeholder: 'halo'
+            },
+            {
+                id: 'maker-removebg',
+                title: 'Remove Background (Remove.bg)',
+                category: 'Maker',
+                icon: 'fa-scissors',
+                desc: 'Hapus latar belakang gambar secara otomatis & instan tanpa watermark.',
+                isCustomClientTool: true,
+                type: 'removebg',
+                inputLabel: 'Upload File Gambar / Link Image URL',
+                placeholder: 'https://example.com/gambar.jpg'
+            },
             {
                 id: 'maker-brat',
                 title: 'Brat Generator',
                 category: 'Maker',
                 icon: 'fa-font',
-                desc: 'Buat gambar teks gaya Brat viral hijau via API Maker.',
-                endpoint: `${BASE_URL}/maker/brat?apikey=${API_KEY}`,
-                paramName: 'text',
+                desc: 'Buat gambar teks gaya Brat dengan latar putih & teks hitam (Instan tanpa docs).',
+                isCustomClientTool: true,
+                type: 'brat',
                 inputLabel: 'Teks untuk Gambar Brat',
-                placeholder: 'yanz storu'
+                placeholder: 'halo\nsemuanya\napa kabar\nyanz storu\ndisini'
             },
             {
                 id: 'maker-mpls',
                 title: 'MPLS Generator',
                 category: 'Maker',
                 icon: 'fa-id-card',
-                desc: 'Buat gambar / atribut MPLS secara otomatis via API Image.',
-                endpoint: `${BASE_URL}/image/mpls?apikey=${API_KEY}`,
-                paramName: 'text',
-                inputLabel: 'Teks / Nama untuk MPLS',
-                placeholder: 'yanz storu'
+                desc: 'Buat Kartu ID Peserta MPLS otomatis secara langsung (Instan tanpa docs).',
+                isCustomClientTool: true,
+                type: 'mpls',
+                inputLabel: 'Nama Peserta MPLS',
+                placeholder: 'Yanz Storu'
             },
 
-            // 2. UTILITAS & SECURITY SECTION
+            // 20 UTILITAS & FITUR BARU
+            {
+                id: 'util-slug',
+                title: 'SEO Slug Generator',
+                category: 'Utilitas',
+                icon: 'fa-heading',
+                desc: 'Ubah judul artikel menjadi format URL slug ramah SEO secara otomatis.',
+                isCustomClientTool: true,
+                type: 'slug',
+                inputLabel: 'Judul / Teks Kalimat',
+                placeholder: 'Cara Membuat Website Gratis Yanz Storu!'
+            },
+            {
+                id: 'util-binary',
+                title: 'Binary Text Converter',
+                category: 'Utilitas',
+                icon: 'fa-binary',
+                desc: 'Konversi teks menjadi kode biner (0 dan 1) atau sebaliknya.',
+                isCustomClientTool: true,
+                type: 'binary',
+                inputLabel: 'Masukkan Teks atau Kode Biner',
+                placeholder: 'Halo Yanz'
+            },
+            {
+                id: 'util-base64',
+                title: 'Base64 Encoder & Decoder',
+                category: 'Utilitas',
+                icon: 'fa-file-code',
+                desc: 'Enkripsi & Dekripsi teks secara cepat dengan standar Base64.',
+                isCustomClientTool: true,
+                type: 'base64',
+                inputLabel: 'Teks Input',
+                placeholder: 'Ketik pesan di sini...'
+            },
+            {
+                id: 'util-htmlentity',
+                title: 'HTML Entity Encoder',
+                category: 'Utilitas',
+                icon: 'fa-code',
+                desc: 'Ubah karakter khusus HTML menjadi kode HTML Entity aman.',
+                isCustomClientTool: true,
+                type: 'htmlentity',
+                inputLabel: 'Kode / Teks HTML',
+                placeholder: '<h1>Selamat Datang & Terima Kasih</h1>'
+            },
+            {
+                id: 'util-md2html',
+                title: 'Markdown to HTML Converter',
+                category: 'Utilitas',
+                icon: 'fa-hashtag',
+                desc: 'Konversi format Markdown sederhana (*, #, [link]) menjadi kode HTML.',
+                isCustomClientTool: true,
+                type: 'md2html',
+                inputLabel: 'Teks Markdown',
+                placeholder: '# Judul Utama\n**Teks Tebal** dan *Teks Miring*'
+            },
+            {
+                id: 'util-minifier',
+                title: 'CSS / JS Code Minifier',
+                category: 'Utilitas',
+                icon: 'fa-compress',
+                desc: 'Kecilkan ukuran skrip CSS atau JavaScript dengan menghapus spasi berlebih.',
+                isCustomClientTool: true,
+                type: 'minifier',
+                inputLabel: 'Kode CSS atau JS',
+                placeholder: 'body { background: white; color: black; }'
+            },
+            {
+                id: 'util-color',
+                title: 'HEX to RGB Color Converter',
+                category: 'Utilitas',
+                icon: 'fa-palette',
+                desc: 'Konversi kode warna HEX ke RGB/HSL lengkap dengan preview swatch warna.',
+                isCustomClientTool: true,
+                type: 'color',
+                inputLabel: 'Kode Warna HEX',
+                placeholder: '#0ea5e9'
+            },
+            {
+                id: 'util-bmi',
+                title: 'Kalkulator BMI Ideal',
+                category: 'Utilitas',
+                icon: 'fa-weight-scale',
+                desc: 'Hitung Indeks Massa Tubuh (BMI) dan ketahui status berat badan Anda.',
+                isMultiParam: true,
+                isCustomClientTool: true,
+                type: 'bmi',
+                params: [
+                    { name: 'weight', label: 'Berat Badan (kg)', placeholder: '65', type: 'number' },
+                    { name: 'height', label: 'Tinggi Badan (cm)', placeholder: '170', type: 'number' }
+                ]
+            },
+            {
+                id: 'util-age',
+                title: 'Kalkulator Umur Lengkap',
+                category: 'Utilitas',
+                icon: 'fa-cake-candles',
+                desc: 'Hitung total umur hingga jumlah hari & bulan hidup Anda dari tanggal lahir.',
+                isCustomClientTool: true,
+                type: 'age',
+                inputLabel: 'Pilih Tanggal Lahir Anda',
+                inputType: 'date'
+            },
+            {
+                id: 'util-zodiac',
+                title: 'Zodiac & Horoskop Finder',
+                category: 'Utilitas',
+                icon: 'fa-star',
+                desc: 'Cari tahu zodiak & simbol horoskop berdasarkan tanggal lahir.',
+                isCustomClientTool: true,
+                type: 'zodiac',
+                inputLabel: 'Pilih Tanggal Lahir',
+                inputType: 'date'
+            },
+            {
+                id: 'util-unit',
+                title: 'Pengonversi Satuan Suhu & Berat',
+                category: 'Utilitas',
+                icon: 'fa-repeat',
+                desc: 'Konversi satuan Celcius ke Fahrenheit, Kelvin, serta Kg ke Gram & Pound.',
+                isMultiParam: true,
+                isCustomClientTool: true,
+                type: 'unit',
+                params: [
+                    { name: 'val', label: 'Nilai Angka Input', placeholder: '100', type: 'number' },
+                    { name: 'mode', label: 'Mode (temp / weight / length)', placeholder: 'temp', type: 'text' }
+                ]
+            },
+            {
+                id: 'util-lorem',
+                title: 'Lorem Ipsum Generator',
+                category: 'Utilitas',
+                icon: 'fa-paragraph',
+                desc: 'Hasilkan paragraf teks dummy Lorem Ipsum untuk desain web.',
+                isCustomClientTool: true,
+                type: 'lorem',
+                inputLabel: 'Jumlah Paragraf yang Dinginkan',
+                placeholder: '3'
+            },
+            {
+                id: 'util-reverse',
+                title: 'Text Reverse & Flip Generator',
+                category: 'Utilitas',
+                icon: 'fa-right-left',
+                desc: 'Putar balik kata / kalimat dan buat teks terbalik secara otomatis.',
+                isCustomClientTool: true,
+                type: 'reverse',
+                inputLabel: 'Masukkan Kata / Kalimat',
+                placeholder: 'Yanz Storu'
+            },
+            {
+                id: 'util-aspect',
+                title: 'Kalkulator Aspect Ratio',
+                category: 'Utilitas',
+                icon: 'fa-expand',
+                desc: 'Hitung dimensi skala gambar/video (16:9, 4:3, 1:1).',
+                isMultiParam: true,
+                isCustomClientTool: true,
+                type: 'aspect',
+                params: [
+                    { name: 'width', label: 'Lebar Awal (Width)', placeholder: '1920', type: 'number' },
+                    { name: 'height', label: 'Tinggi Awal (Height)', placeholder: '1080', type: 'number' }
+                ]
+            },
+            {
+                id: 'util-random',
+                title: 'Random Picker & Decision Maker',
+                category: 'Utilitas',
+                icon: 'fa-shuffle',
+                desc: 'Pilih secara acak satu opsi dari daftar pilihan yang Anda pisahkan dengan koma.',
+                isCustomClientTool: true,
+                type: 'random',
+                inputLabel: 'Daftar Opsi (Pisahkan Koma)',
+                placeholder: 'Makan Bakso, Nasi Goreng, Mie Ayam'
+            },
+            {
+                id: 'util-csvjson',
+                title: 'CSV to JSON Converter',
+                category: 'Utilitas',
+                icon: 'fa-file-csv',
+                desc: 'Ubah teks format CSV tabel menjadi array data JSON terstruktur.',
+                isCustomClientTool: true,
+                type: 'csvjson',
+                inputLabel: 'String CSV (Header di baris 1)',
+                placeholder: 'nama,umur\nYanz,20\nStoru,22'
+            },
+            {
+                id: 'util-hash',
+                title: 'SHA-256 Hash Generator',
+                category: 'Utilitas',
+                icon: 'fa-fingerprint',
+                desc: 'Hasilkan checksum enkripsi SHA-256 instan dari teks apapun.',
+                isCustomClientTool: true,
+                type: 'hash',
+                inputLabel: 'Masukkan Teks Rahasia',
+                placeholder: 'password123'
+            },
+            {
+                id: 'util-timer',
+                title: 'Visual Timer & Countdown',
+                category: 'Utilitas',
+                icon: 'fa-stopwatch',
+                desc: 'Hitung mundur durasi detik interaktif langsung di layar Anda.',
+                isCustomClientTool: true,
+                type: 'timer',
+                inputLabel: 'Masukkan Jumlah Detik Timer',
+                placeholder: '60'
+            },
             {
                 id: 'util-case',
                 title: 'Text Case Converter',
                 category: 'Utilitas',
                 icon: 'fa-text-height',
-                desc: 'Ubah format teks menjadi Huruf Besar, Huruf Kecil, atau Title Case secara cepat.',
+                desc: 'Ubah format teks menjadi Huruf Besar, Huruf Kecil, atau Title Case.',
                 isCustomClientTool: true,
                 type: 'case',
                 inputLabel: 'Masukkan Teks',
@@ -305,6 +535,8 @@
                 inputLabel: 'Tuliskan Kalimat / Paragraf',
                 placeholder: 'Ketikkan kalimat di sini...'
             },
+
+            // UTILITAS LAMA
             {
                 id: 'util-json',
                 title: 'JSON Formatter & Beautifier',
@@ -386,7 +618,7 @@
                 placeholder: '16'
             },
 
-            // 3. ALIGHT MOTION SECTION
+            // ALIGHT MOTION SECTION
             {
                 id: 'am-send',
                 title: 'Alight Motion — Send OTP',
@@ -410,7 +642,7 @@
                 placeholder: 'Masukkan Kode OTP...'
             },
 
-            // 4. DOWNLOADER SECTION
+            // DOWNLOADER SECTION
             {
                 id: 'dl-tiktok',
                 title: 'TikTok Downloader',
@@ -489,7 +721,7 @@
                 placeholder: 'https://open.spotify.com/track/...'
             },
 
-            // 5. AI ASSISTANT SECTION
+            // AI ASSISTANT SECTION
             {
                 id: 'ai-gemini',
                 title: 'Gemini AI Chat',
@@ -684,7 +916,19 @@
             outputBox.classList.add('hidden');
             outputBox.innerHTML = '';
 
-            if (tool.isMultiParam) {
+            if (tool.type === 'removebg') {
+                inputsBox.innerHTML = `
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-700 mb-1">Opsi 1: Upload File Gambar</label>
+                        <input type="file" id="removeBgFile" accept="image/*" class="w-full text-xs text-slate-500 file:mr-3 file:py-2 file:px-4 file:rounded-xl file:border-0 file:text-xs file:font-semibold file:bg-brand-50 file:text-brand-700 hover:file:bg-brand-100 bg-white rounded-xl border border-slate-200 p-1">
+                    </div>
+                    <div class="text-center text-[11px] text-slate-400 font-bold uppercase">Atau</div>
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-700 mb-1">Opsi 2: Link URL Gambar</label>
+                        <input type="text" id="singleInput" placeholder="${tool.placeholder || ''}" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 text-xs focus:ring-2 focus:ring-brand-400 focus:outline-none bg-white">
+                    </div>
+                `;
+            } else if (tool.isMultiParam) {
                 tool.params.forEach(p => {
                     inputsBox.innerHTML += `
                         <div>
@@ -693,11 +937,19 @@
                         </div>
                     `;
                 });
+            } else if (tool.type === 'brat') {
+                inputsBox.innerHTML = `
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-700 mb-1">${tool.inputLabel}:</label>
+                        <textarea id="singleInput" rows="4" placeholder="${tool.placeholder || ''}" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 text-xs focus:ring-2 focus:ring-brand-400 focus:outline-none bg-white font-mono"></textarea>
+                    </div>
+                `;
             } else {
+                const inputType = tool.inputType || 'text';
                 inputsBox.innerHTML = `
                     <div>
                         <label class="block text-xs font-semibold text-slate-700 mb-1">${tool.inputLabel || 'Input Param'}:</label>
-                        <input type="text" id="singleInput" placeholder="${tool.placeholder || ''}" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 text-xs focus:ring-2 focus:ring-brand-400 focus:outline-none bg-white">
+                        <input type="${inputType}" id="singleInput" placeholder="${tool.placeholder || ''}" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 text-xs focus:ring-2 focus:ring-brand-400 focus:outline-none bg-white">
                     </div>
                 `;
             }
@@ -726,7 +978,7 @@
             outputBox.classList.remove('hidden');
 
             if (activeTool.isCustomClientTool) {
-                const inputVal = document.getElementById('singleInput') ? document.getElementById('singleInput').value.trim() : '';
+                const inputVal = document.getElementById('singleInput') ? document.getElementById('singleInput').value : '';
                 executeLocalTool(activeTool.type, inputVal, outputBox);
                 return;
             }
@@ -787,7 +1039,484 @@
         }
 
         async function executeLocalTool(type, inputVal, outputBox) {
-            if (type === 'case') {
+            // 1. FONT GENERATOR
+            if (type === 'fontgen') {
+                const text = inputVal.trim() || 'halo';
+                
+                const fonts = [
+                    { name: 'Sans Bold (Tebal)', fn: t => transformUnicode(t, 0x1D586, 0x1D56C, 0x1D7CE) },
+                    { name: 'Sans Italic (Miring)', fn: t => transformUnicode(t, 0x1D622, 0x1D608) },
+                    { name: 'Bold Italic (Tebal Miring)', fn: t => transformUnicode(t, 0x1D656, 0x1D63C) },
+                    { name: 'Monospace (Ketikan)', fn: t => transformUnicode(t, 0x1D68A, 0x1D670, 0x1D7F6) },
+                    { name: 'Double Struck (Garis Dua)', fn: t => transformUnicode(t, 0x1D552, 0x1D538) },
+                    { name: 'Gothic / Fraktur', fn: t => transformUnicode(t, 0x1D51E, 0x1D504) },
+                    { name: 'Script / Cursive (Aesthetic)', fn: t => transformUnicode(t, 0x1D4EA, 0x1D4D0) },
+                    { name: 'Circled (Lingkaran)', fn: t => transformCircled(t) },
+                    { name: 'Squared (Kotak)', fn: t => transformSquared(t) },
+                    { name: 'Fullwidth (Lebar)', fn: t => transformFullwidth(t) }
+                ];
+
+                let html = `<div class="space-y-2.5 max-h-64 overflow-y-auto pr-1">`;
+                fonts.forEach((f, idx) => {
+                    const res = f.fn(text);
+                    html += `
+                        <div class="p-2.5 bg-slate-50 border border-slate-200 rounded-xl flex justify-between items-center gap-2">
+                            <div class="overflow-hidden">
+                                <span class="text-[10px] font-bold text-slate-400 uppercase block">${f.name}</span>
+                                <span class="text-sm font-medium text-slate-800 break-all font-mono">${res}</span>
+                            </div>
+                            <button onclick="navigator.clipboard.writeText('${res}'); showToast('Font disalin!', 'fa-copy');" class="px-2.5 py-1 bg-brand-500 hover:bg-brand-600 text-white text-[10px] font-bold rounded-lg flex-shrink-0">
+                                Copy
+                            </button>
+                        </div>
+                    `;
+                });
+                html += `</div>`;
+
+                outputBox.innerHTML = html;
+                showToast('Font berhasil dihasilkan!', 'fa-font-awesome');
+
+            // 2. REMOVE BACKGROUND (remove.bg API)
+            } else if (type === 'removebg') {
+                const fileInput = document.getElementById('removeBgFile');
+                const formData = new FormData();
+                formData.append('size', 'auto');
+
+                if (fileInput && fileInput.files[0]) {
+                    formData.append('image_file', fileInput.files[0]);
+                } else if (inputVal.trim()) {
+                    formData.append('image_url', inputVal.trim());
+                } else {
+                    return showToast('Pilih file gambar atau masukkan URL gambar!', 'fa-circle-exclamation');
+                }
+
+                outputBox.innerHTML = `
+                    <div class="p-4 bg-slate-50 border border-slate-200 rounded-2xl text-center text-xs text-brand-600 font-medium">
+                        <i class="fa-solid fa-spinner animate-spin text-base"></i> Menghapus background gambar...
+                    </div>
+                `;
+
+                try {
+                    const res = await fetch('https://api.remove.bg/v1.0/removebg', {
+                        method: 'POST',
+                        headers: { 'X-Api-Key': REMOVE_BG_API_KEY },
+                        body: formData
+                    });
+
+                    if (!res.ok) throw new Error('Gagal menghapus background. Periksa file/link gambar Anda.');
+
+                    const blob = await res.blob();
+                    const imgUrl = URL.createObjectURL(blob);
+
+                    outputBox.innerHTML = `
+                        <div class="p-3 bg-slate-50 border border-slate-200 rounded-2xl text-center space-y-3">
+                            <span class="font-bold text-xs text-slate-700 block"><i class="fa-solid fa-scissors text-emerald-500"></i> Hasil Background Transparan:</span>
+                            <div class="p-2 bg-slate-200/60 rounded-xl inline-block border border-slate-300">
+                                <img src="${imgUrl}" class="max-h-56 mx-auto rounded-lg object-contain">
+                            </div>
+                            <div>
+                                <a href="${imgUrl}" download="removebg-yanzstoru.png" class="inline-flex items-center justify-center gap-2 px-4 py-2 bg-emerald-500 text-white rounded-xl text-xs font-bold shadow-sm hover:bg-emerald-600 transition-all">
+                                    <i class="fa-solid fa-download"></i> Unduh Transparan PNG
+                                </a>
+                            </div>
+                        </div>
+                    `;
+                    showToast('Background berhasil dihapus!', 'fa-circle-check');
+                } catch (err) {
+                    outputBox.innerHTML = `
+                        <div class="p-3.5 bg-rose-50 border border-rose-200 text-rose-600 rounded-2xl text-xs space-y-1">
+                            <div class="font-bold"><i class="fa-solid fa-circle-xmark"></i> Gagal Memproses</div>
+                            <p class="text-[11px]">${err.message}</p>
+                        </div>
+                    `;
+                }
+
+            // 3. BRAT GENERATOR
+            } else if (type === 'brat') {
+                if (!inputVal.trim()) return showToast('Masukkan teks terlebih dahulu!', 'fa-circle-exclamation');
+                
+                const canvas = document.createElement('canvas');
+                canvas.width = 500;
+                canvas.height = 500;
+                const ctx = canvas.getContext('2d');
+
+                ctx.fillStyle = '#ffffff';
+                ctx.fillRect(0, 0, 500, 500);
+                ctx.fillStyle = '#000000';
+                
+                const lines = inputVal.split('\n');
+                let fontSize = 52;
+                ctx.font = `bold ${fontSize}px Arial, Helvetica, sans-serif`;
+                
+                let maxW = 0;
+                lines.forEach(l => {
+                    const w = ctx.measureText(l).width;
+                    if (w > maxW) maxW = w;
+                });
+                
+                if (maxW > 430) {
+                    fontSize = Math.floor(fontSize * (430 / maxW));
+                    if (fontSize < 18) fontSize = 18;
+                }
+                
+                ctx.font = `bold ${fontSize}px Arial, Helvetica, sans-serif`;
+                ctx.textBaseline = 'top';
+                
+                const lineHeight = fontSize * 1.15;
+                const paddingLeft = 35;
+                const paddingTop = 35;
+
+                lines.forEach((line, index) => {
+                    ctx.fillText(line, paddingLeft, paddingTop + (index * lineHeight));
+                });
+
+                const imgData = canvas.toDataURL('image/png');
+
+                outputBox.innerHTML = `
+                    <div class="p-3 bg-slate-50 border border-slate-200 rounded-2xl text-center space-y-3">
+                        <span class="font-bold text-xs text-slate-700 block"><i class="fa-solid fa-image text-pink-500"></i> Hasil Gambar Brat:</span>
+                        <img src="${imgData}" class="w-64 h-64 mx-auto rounded-xl shadow-md border border-slate-200 object-cover">
+                        <a href="${imgData}" download="brat-yanzstoru.png" class="inline-flex items-center justify-center gap-2 px-4 py-2 bg-emerald-500 text-white rounded-xl text-xs font-bold shadow-sm hover:bg-emerald-600 transition-all">
+                            <i class="fa-solid fa-download"></i> Unduh Gambar
+                        </a>
+                    </div>
+                `;
+                showToast('Gambar Brat berhasil dibuat!', 'fa-circle-check');
+
+            // 4. MPLS GENERATOR
+            } else if (type === 'mpls') {
+                if (!inputVal.trim()) return showToast('Harap isi nama peserta MPLS!', 'fa-circle-exclamation');
+
+                const canvas = document.createElement('canvas');
+                canvas.width = 600;
+                canvas.height = 800;
+                const ctx = canvas.getContext('2d');
+
+                ctx.fillStyle = '#ffffff';
+                ctx.fillRect(0, 0, 600, 800);
+
+                const grad = ctx.createLinearGradient(0, 0, 600, 0);
+                grad.addColorStop(0, '#0284c7');
+                grad.addColorStop(1, '#06b6d4');
+                ctx.fillStyle = grad;
+                ctx.fillRect(0, 0, 600, 160);
+
+                ctx.fillStyle = '#f1f5f9';
+                ctx.beginPath();
+                ctx.arc(300, 30, 14, 0, Math.PI * 2);
+                ctx.fill();
+
+                ctx.fillStyle = '#ffffff';
+                ctx.font = 'bold 28px Poppins, Arial, sans-serif';
+                ctx.textAlign = 'center';
+                ctx.fillText('KARTU PESERTA MPLS', 300, 85);
+                
+                ctx.font = '500 15px Inter, Arial, sans-serif';
+                ctx.fillText('MASA PENGENALAN LINGKUNGAN SEKOLAH', 300, 115);
+
+                ctx.fillStyle = '#f8fafc';
+                ctx.strokeStyle = '#0284c7';
+                ctx.lineWidth = 4;
+                ctx.fillRect(200, 190, 200, 250);
+                ctx.strokeRect(200, 190, 200, 250);
+
+                ctx.fillStyle = '#cbd5e1';
+                ctx.beginPath();
+                ctx.arc(300, 280, 45, 0, Math.PI * 2);
+                ctx.fill();
+
+                ctx.beginPath();
+                ctx.arc(300, 410, 75, Math.PI, 0, false);
+                ctx.fill();
+
+                ctx.textAlign = 'center';
+                ctx.fillStyle = '#64748b';
+                ctx.font = 'bold 13px Inter, sans-serif';
+                ctx.fillText('NAMA PESERTA', 300, 480);
+
+                ctx.fillStyle = '#0f172a';
+                ctx.font = 'bold 26px Poppins, sans-serif';
+                ctx.fillText(inputVal.trim().toUpperCase(), 300, 515);
+
+                ctx.strokeStyle = '#e2e8f0';
+                ctx.lineWidth = 1;
+                ctx.beginPath();
+                ctx.moveTo(100, 545);
+                ctx.lineTo(500, 545);
+                ctx.stroke();
+
+                ctx.fillStyle = '#64748b';
+                ctx.font = 'bold 13px Inter, sans-serif';
+                ctx.fillText('GUGUS / KELOMPOK', 300, 575);
+
+                ctx.fillStyle = '#0284c7';
+                ctx.font = 'bold 20px Inter, sans-serif';
+                ctx.fillText('GUGUS 01 — KREATIF', 300, 605);
+
+                ctx.fillStyle = '#10b981';
+                ctx.beginPath();
+                ctx.roundRect(220, 635, 160, 36, 18);
+                ctx.fill();
+
+                ctx.fillStyle = '#ffffff';
+                ctx.font = 'bold 14px Inter, sans-serif';
+                ctx.fillText('PESERTA RESMI', 300, 658);
+
+                ctx.fillStyle = '#0f172a';
+                for (let i = 120; i < 480; i += Math.floor(Math.random() * 8) + 4) {
+                    ctx.fillRect(i, 720, Math.floor(Math.random() * 4) + 2, 40);
+                }
+
+                const mplsImgData = canvas.toDataURL('image/png');
+
+                outputBox.innerHTML = `
+                    <div class="p-3 bg-slate-50 border border-slate-200 rounded-2xl text-center space-y-3">
+                        <span class="font-bold text-xs text-slate-700 block"><i class="fa-solid fa-id-card text-brand-500"></i> Kartu MPLS Berhasil Dibuat:</span>
+                        <img src="${mplsImgData}" class="w-56 h-auto mx-auto rounded-xl shadow-lg border border-slate-200">
+                        <a href="${mplsImgData}" download="mpls-card-${inputVal}.png" class="inline-flex items-center justify-center gap-2 px-4 py-2 bg-emerald-500 text-white rounded-xl text-xs font-bold shadow-sm hover:bg-emerald-600 transition-all">
+                            <i class="fa-solid fa-download"></i> Unduh Kartu MPLS
+                        </a>
+                    </div>
+                `;
+                showToast('Kartu MPLS selesai dibuat!', 'fa-circle-check');
+
+            // 5. SLUG GENERATOR
+            } else if (type === 'slug') {
+                if (!inputVal) return showToast('Masukkan teks judul!', 'fa-circle-exclamation');
+                const slug = inputVal.toLowerCase().trim().replace(/[^\w\s-]/g, '').replace(/[\s_-]+/g, '-').replace(/^-+|-+$/g, '');
+                renderCopyResult(outputBox, 'Hasil SEO Slug:', slug);
+
+            // 6. BINARY CONVERTER
+            } else if (type === 'binary') {
+                if (!inputVal) return showToast('Masukkan teks atau biner!', 'fa-circle-exclamation');
+                let res = '';
+                if (/^[01\s]+$/.test(inputVal.trim()) && inputVal.trim().length > 4) {
+                    res = inputVal.trim().split(' ').map(b => String.fromCharCode(parseInt(b, 2))).join('');
+                } else {
+                    res = inputVal.split('').map(c => c.charCodeAt(0).toString(2).padStart(8, '0')).join(' ');
+                }
+                renderCopyResult(outputBox, 'Hasil Konversi Biner / Teks:', res);
+
+            // 7. BASE64
+            } else if (type === 'base64') {
+                if (!inputVal) return showToast('Masukkan teks input!', 'fa-circle-exclamation');
+                try {
+                    const enc = btoa(inputVal);
+                    renderCopyResult(outputBox, 'Hasil Base64 Encoded:', enc);
+                } catch(e) {
+                    showToast('Format teks tidak valid!', 'fa-circle-xmark');
+                }
+
+            // 8. HTML ENTITY
+            } else if (type === 'htmlentity') {
+                if (!inputVal) return showToast('Masukkan kode HTML!', 'fa-circle-exclamation');
+                const encoded = inputVal.replace(/[\u00A0-\u9999<>\&]/g, i => '&#'+i.charCodeAt(0)+';');
+                renderCopyResult(outputBox, 'Hasil Encoded HTML Entity:', encoded);
+
+            // 9. MARKDOWN TO HTML
+            } else if (type === 'md2html') {
+                if (!inputVal) return showToast('Masukkan format Markdown!', 'fa-circle-exclamation');
+                let htmlStr = inputVal
+                    .replace(/^### (.*$)/gim, '<h3>$1</h3>')
+                    .replace(/^## (.*$)/gim, '<h2>$1</h2>')
+                    .replace(/^# (.*$)/gim, '<h1>$1</h1>')
+                    .replace(/\*\*(.*)\*\*/gim, '<strong>$1</strong>')
+                    .replace(/\*(.*)\*/gim, '<em>$1</em>')
+                    .replace(/\[(.*?)\]\((.*?)\)/gim, "<a href='$2'>$1</a>");
+                renderCopyResult(outputBox, 'Hasil Kode HTML:', htmlStr);
+
+            // 10. MINIFIER
+            } else if (type === 'minifier') {
+                if (!inputVal) return showToast('Masukkan kode CSS / JS!', 'fa-circle-exclamation');
+                const mini = inputVal.replace(/\s+/g, ' ').replace(/\s*([\{\}\:\;\,])\s*/g, '$1').trim();
+                renderCopyResult(outputBox, 'Hasil Kode Minified:', mini);
+
+            // 11. COLOR CONVERTER
+            } else if (type === 'color') {
+                let hex = inputVal.trim() || '#0ea5e9';
+                if(!hex.startsWith('#')) hex = '#' + hex;
+                const r = parseInt(hex.slice(1, 3), 16) || 0;
+                const g = parseInt(hex.slice(3, 5), 16) || 0;
+                const b = parseInt(hex.slice(5, 7), 16) || 0;
+                const rgb = `rgb(${r}, ${g}, ${b})`;
+
+                outputBox.innerHTML = `
+                    <div class="p-3 bg-slate-50 border border-slate-200 rounded-2xl space-y-3">
+                        <div class="flex items-center gap-3">
+                            <div class="w-12 h-12 rounded-xl shadow-md border border-slate-300" style="background-color: ${hex}"></div>
+                            <div>
+                                <span class="text-xs font-bold text-slate-800 block">${hex.toUpperCase()}</span>
+                                <span class="text-xs font-mono text-slate-500">${rgb}</span>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                showToast('Warna berhasil dikonversi!', 'fa-palette');
+
+            // 12. BMI CALCULATOR
+            } else if (type === 'bmi') {
+                const w = parseFloat(document.getElementById('param_weight')?.value);
+                const h = parseFloat(document.getElementById('param_height')?.value) / 100;
+
+                if (!w || !h) return showToast('Masukkan berat & tinggi badan!', 'fa-circle-exclamation');
+                const bmi = (w / (h * h)).toFixed(1);
+                let cat = 'Normal';
+                let col = 'text-emerald-600';
+
+                if (bmi < 18.5) { cat = 'Kurus (Kekurangan berat)'; col = 'text-amber-500'; }
+                else if (bmi >= 25 && bmi < 29.9) { cat = 'Gemuk (Kelebihan berat)'; col = 'text-amber-600'; }
+                else if (bmi >= 30) { cat = 'Obesitas'; col = 'text-rose-600'; }
+
+                outputBox.innerHTML = `
+                    <div class="p-4 bg-slate-50 border border-slate-200 rounded-2xl text-center space-y-1">
+                        <span class="text-xs text-slate-500 font-medium block">Skor Indeks Massa Tubuh (BMI)</span>
+                        <span class="text-3xl font-extrabold ${col} block">${bmi}</span>
+                        <span class="text-xs font-bold text-slate-700 block">${cat}</span>
+                    </div>
+                `;
+                showToast('Skor BMI ditemukan!', 'fa-weight-scale');
+
+            // 13. AGE CALCULATOR
+            } else if (type === 'age') {
+                if (!inputVal) return showToast('Pilih tanggal lahir!', 'fa-circle-exclamation');
+                const birth = new Date(inputVal);
+                const now = new Date();
+                let diffYears = now.getFullYear() - birth.getFullYear();
+                let diffMonths = now.getMonth() - birth.getMonth();
+                if (diffMonths < 0 || (diffMonths === 0 && now.getDate() < birth.getDate())) {
+                    diffYears--;
+                }
+                const totalDays = Math.floor((now - birth) / (1000 * 60 * 60 * 24));
+
+                outputBox.innerHTML = `
+                    <div class="p-4 bg-slate-50 border border-slate-200 rounded-2xl grid grid-cols-2 gap-3 text-center">
+                        <div class="p-2.5 bg-white rounded-xl border border-slate-200"><span class="block text-xl font-bold text-brand-600">${diffYears} Thn</span><span class="text-[10px] text-slate-500 font-medium">Usia Saat Ini</span></div>
+                        <div class="p-2.5 bg-white rounded-xl border border-slate-200"><span class="block text-xl font-bold text-emerald-600">${totalDays} Hari</span><span class="text-[10px] text-slate-500 font-medium">Total Hari Hidup</span></div>
+                    </div>
+                `;
+                showToast('Perhitungan umur selesai!', 'fa-cake-candles');
+
+            // 14. ZODIAC FINDER
+            } else if (type === 'zodiac') {
+                if (!inputVal) return showToast('Pilih tanggal lahir!', 'fa-circle-exclamation');
+                const d = new Date(inputVal);
+                const day = d.getDate();
+                const m = d.getMonth() + 1;
+                let z = 'Capricorn';
+
+                if ((m == 1 && day >= 20) || (m == 2 && day <= 18)) z = 'Aquarius';
+                else if ((m == 2 && day >= 19) || (m == 3 && day <= 20)) z = 'Pisces';
+                else if ((m == 3 && day >= 21) || (m == 4 && day <= 19)) z = 'Aries';
+                else if ((m == 4 && day >= 20) || (m == 5 && day <= 20)) z = 'Taurus';
+                else if ((m == 5 && day >= 21) || (m == 6 && day <= 20)) z = 'Gemini';
+                else if ((m == 6 && day >= 21) || (m == 7 && day <= 22)) z = 'Cancer';
+                else if ((m == 7 && day >= 23) || (m == 8 && day <= 22)) z = 'Leo';
+                else if ((m == 8 && day >= 23) || (m == 9 && day <= 22)) z = 'Virgo';
+                else if ((m == 9 && day >= 23) || (m == 10 && day <= 22)) z = 'Libra';
+                else if ((m == 10 && day >= 23) || (m == 11 && day <= 21)) z = 'Scorpio';
+                else if ((m == 11 && day >= 22) || (m == 12 && day <= 21)) z = 'Sagittarius';
+
+                outputBox.innerHTML = `
+                    <div class="p-4 bg-slate-50 border border-slate-200 rounded-2xl text-center space-y-1">
+                        <span class="text-xs text-slate-500 font-medium block">Simbol Zodiak Anda</span>
+                        <span class="text-2xl font-extrabold text-brand-600 block"><i class="fa-solid fa-star text-amber-400"></i> ${z}</span>
+                    </div>
+                `;
+                showToast('Zodiak ditemukan!', 'fa-star');
+
+            // 15. UNIT CONVERTER
+            } else if (type === 'unit') {
+                const val = parseFloat(document.getElementById('param_val')?.value) || 0;
+                const mode = (document.getElementById('param_mode')?.value || 'temp').toLowerCase();
+
+                let res = '';
+                if (mode.includes('weight') || mode.includes('berat')) {
+                    res = `${val} kg = ${val * 1000} gram / ${(val * 2.20462).toFixed(2)} lbs`;
+                } else {
+                    res = `${val}°C = ${(val * 9/5 + 32).toFixed(1)}°F / ${(val + 273.15).toFixed(1)}K`;
+                }
+                renderCopyResult(outputBox, 'Hasil Konversi Satuan:', res);
+
+            // 16. LOREM IPSUM
+            } else if (type === 'lorem') {
+                const count = parseInt(inputVal) || 2;
+                const dummy = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.";
+                let paragraphs = [];
+                for(let i=0; i<count; i++) paragraphs.push(dummy);
+                renderCopyResult(outputBox, 'Teks Lorem Ipsum:', paragraphs.join('\n\n'));
+
+            // 17. REVERSE TEXT
+            } else if (type === 'reverse') {
+                if (!inputVal) return showToast('Masukkan kata!', 'fa-circle-exclamation');
+                const rev = inputVal.split('').reverse().join('');
+                renderCopyResult(outputBox, 'Hasil Teks Terbalik:', rev);
+
+            // 18. ASPECT RATIO
+            } else if (type === 'aspect') {
+                const w = parseInt(document.getElementById('param_width')?.value) || 1920;
+                const h = parseInt(document.getElementById('param_height')?.value) || 1080;
+                const gcd = (a, b) => b ? gcd(b, a % b) : a;
+                const divisor = gcd(w, h);
+                renderCopyResult(outputBox, 'Rasio Aspek Layar:', `${w / divisor}:${h / divisor}`);
+
+            // 19. RANDOM PICKER
+            } else if (type === 'random') {
+                if (!inputVal) return showToast('Masukkan daftar opsi dipisah koma!', 'fa-circle-exclamation');
+                const arr = inputVal.split(',').map(s => s.trim()).filter(Boolean);
+                const pick = arr[Math.floor(Math.random() * arr.length)];
+                outputBox.innerHTML = `
+                    <div class="p-4 bg-slate-50 border border-slate-200 rounded-2xl text-center space-y-1">
+                        <span class="text-xs text-slate-500 font-medium block">Pilihan Terpilih Secara Acak:</span>
+                        <span class="text-xl font-extrabold text-emerald-600 block"><i class="fa-solid fa-gift"></i> ${pick}</span>
+                    </div>
+                `;
+                showToast('Opsi acak terpilih!', 'fa-shuffle');
+
+            // 20. CSV TO JSON
+            } else if (type === 'csvjson') {
+                if (!inputVal) return showToast('Masukkan teks CSV!', 'fa-circle-exclamation');
+                const lines = inputVal.trim().split('\n');
+                const headers = lines[0].split(',');
+                const jsonArr = lines.slice(1).map(line => {
+                    const data = line.split(',');
+                    let obj = {};
+                    headers.forEach((h, i) => obj[h.trim()] = data[i] ? data[i].trim() : '');
+                    return obj;
+                });
+                renderCopyResult(outputBox, 'Hasil Array JSON:', JSON.stringify(jsonArr, null, 2));
+
+            // 21. SHA-256 HASH
+            } else if (type === 'hash') {
+                if (!inputVal) return showToast('Masukkan teks input!', 'fa-circle-exclamation');
+                const msgBuffer = new TextEncoder().encode(inputVal);
+                const hashBuffer = await crypto.subtle.digest('SHA-256', msgBuffer);
+                const hashArray = Array.from(new Uint8Array(hashBuffer));
+                const hashHex = hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+                renderCopyResult(outputBox, 'Checksum Hash SHA-256:', hashHex);
+
+            // 22. TIMER COUNTDOWN
+            } else if (type === 'timer') {
+                let sec = parseInt(inputVal) || 10;
+                outputBox.innerHTML = `
+                    <div class="p-4 bg-slate-50 border border-slate-200 rounded-2xl text-center space-y-2">
+                        <span class="text-xs text-slate-500 font-medium block">Hitung Mundur</span>
+                        <span id="countdownBox" class="text-4xl font-extrabold text-brand-600 font-mono block">${sec}s</span>
+                    </div>
+                `;
+                showToast('Timer dimulai!', 'fa-stopwatch');
+                const interval = setInterval(() => {
+                    sec--;
+                    const box = document.getElementById('countdownBox');
+                    if (box) box.innerText = sec + 's';
+                    if (sec <= 0) {
+                        clearInterval(interval);
+                        if (box) box.innerText = 'SELESAI!';
+                        showToast('Waktu Habis!', 'fa-bell');
+                    }
+                }, 1000);
+
+            // CASE CONVERTER LAMA
+            } else if (type === 'case') {
                 if (!inputVal) return showToast('Masukkan teks terlebih dahulu!', 'fa-circle-exclamation');
                 const upper = inputVal.toUpperCase();
                 const lower = inputVal.toLowerCase();
@@ -796,187 +1525,120 @@
                 outputBox.innerHTML = `
                     <div class="p-3.5 bg-slate-50 border border-slate-200 rounded-2xl space-y-3 text-xs">
                         <div>
-                            <span class="font-bold text-slate-700 block mb-1">Huruf Besar (UPPERCASE):</span>
+                            <span class="font-bold text-slate-700 block mb-1">UPPERCASE:</span>
                             <div class="p-2.5 bg-slate-900 text-emerald-400 font-mono rounded-xl flex justify-between items-center">${upper} <button onclick="navigator.clipboard.writeText('${upper}'); showToast('Disalin!', 'fa-copy');" class="text-[10px] bg-slate-800 text-white px-2 py-1 rounded">Copy</button></div>
                         </div>
                         <div>
-                            <span class="font-bold text-slate-700 block mb-1">Huruf Kecil (lowercase):</span>
+                            <span class="font-bold text-slate-700 block mb-1">lowercase:</span>
                             <div class="p-2.5 bg-slate-900 text-cyan-400 font-mono rounded-xl flex justify-between items-center">${lower} <button onclick="navigator.clipboard.writeText('${lower}'); showToast('Disalin!', 'fa-copy');" class="text-[10px] bg-slate-800 text-white px-2 py-1 rounded">Copy</button></div>
-                        </div>
-                        <div>
-                            <span class="font-bold text-slate-700 block mb-1">Format Judul (Title Case):</span>
-                            <div class="p-2.5 bg-slate-900 text-amber-400 font-mono rounded-xl flex justify-between items-center">${title} <button onclick="navigator.clipboard.writeText('${title}'); showToast('Disalin!', 'fa-copy');" class="text-[10px] bg-slate-800 text-white px-2 py-1 rounded">Copy</button></div>
                         </div>
                     </div>
                 `;
                 showToast('Format teks berhasil diubah!', 'fa-check');
 
+            // COUNTER LAMA
             } else if (type === 'counter') {
                 if (!inputVal) return showToast('Masukkan kalimat terlebih dahulu!', 'fa-circle-exclamation');
                 const words = inputVal.trim() ? inputVal.trim().split(/\s+/).length : 0;
                 const chars = inputVal.length;
-                const charsNoSpace = inputVal.replace(/\s+/g, '').length;
-                const readTime = Math.ceil(words / 200);
 
                 outputBox.innerHTML = `
                     <div class="p-4 bg-slate-50 border border-slate-200 rounded-2xl grid grid-cols-2 gap-3 text-center">
                         <div class="p-3 bg-white rounded-xl border border-slate-200"><span class="block text-xl font-bold text-brand-600">${words}</span><span class="text-[11px] text-slate-500 font-medium">Jumlah Kata</span></div>
-                        <div class="p-3 bg-white rounded-xl border border-slate-200"><span class="block text-xl font-bold text-emerald-600">${chars}</span><span class="text-[11px] text-slate-500 font-medium">Karakter (Dgn Spasi)</span></div>
-                        <div class="p-3 bg-white rounded-xl border border-slate-200"><span class="block text-xl font-bold text-purple-600">${charsNoSpace}</span><span class="text-[11px] text-slate-500 font-medium">Karakter (Tanpa Spasi)</span></div>
-                        <div class="p-3 bg-white rounded-xl border border-slate-200"><span class="block text-xl font-bold text-amber-600">~${readTime} mnt</span><span class="text-[11px] text-slate-500 font-medium">Est. Waktu Baca</span></div>
+                        <div class="p-3 bg-white rounded-xl border border-slate-200"><span class="block text-xl font-bold text-emerald-600">${chars}</span><span class="text-[11px] text-slate-500 font-medium">Karakter</span></div>
                     </div>
                 `;
                 showToast('Perhitungan selesai!', 'fa-calculator');
 
+            // OTHER UTILS (JSON, IP, CALC, URL, QR, ENC, PASS)
             } else if (type === 'json') {
-                if (!inputVal) return showToast('Harap masukkan kode JSON!', 'fa-circle-exclamation');
                 try {
                     const parsed = JSON.parse(inputVal);
-                    const pretty = JSON.stringify(parsed, null, 4);
-                    outputBox.innerHTML = `
-                        <div class="p-3.5 bg-slate-900 text-emerald-400 rounded-2xl text-xs font-mono space-y-2">
-                            <div class="flex justify-between items-center border-b border-slate-800 pb-2">
-                                <span class="text-white font-bold"><i class="fa-solid fa-circle-check text-emerald-400"></i> JSON Valid</span>
-                                <button onclick="navigator.clipboard.writeText(\`${pretty.replace(/\\/g, '\\\\').replace(/`/g, '\\`')}\`); showToast('JSON Disalin!', 'fa-copy');" class="text-[11px] bg-slate-800 text-white px-2.5 py-1 rounded-lg">Copy Format</button>
-                            </div>
-                            <pre class="overflow-x-auto max-h-60 leading-relaxed">${escapeHtml(pretty)}</pre>
-                        </div>
-                    `;
-                    showToast('Format JSON berhasil diperbaiki!', 'fa-check');
-                } catch (e) {
-                    outputBox.innerHTML = `
-                        <div class="p-3.5 bg-rose-50 border border-rose-200 text-rose-600 rounded-2xl text-xs space-y-1">
-                            <div class="font-bold"><i class="fa-solid fa-circle-xmark"></i> JSON Tidak Valid</div>
-                            <p class="text-[11px]">Pastikan format string JSON Anda sudah benar.</p>
-                        </div>
-                    `;
-                }
-
+                    renderCopyResult(outputBox, 'JSON Valid Format:', JSON.stringify(parsed, null, 4));
+                } catch (e) { showToast('JSON tidak valid!', 'fa-circle-xmark'); }
             } else if (type === 'ipcheck') {
-                outputBox.innerHTML = `<div class="p-3 text-center text-xs text-slate-500"><i class="fa-solid fa-spinner animate-spin"></i> Memeriksa IP & Jaringan...</div>`;
                 try {
                     const res = await fetch('https://api.ipify.org?format=json');
                     const data = await res.json();
-                    const ua = navigator.userAgent;
-
-                    outputBox.innerHTML = `
-                        <div class="p-3.5 bg-slate-50 border border-slate-200 rounded-2xl space-y-3 text-xs">
-                            <div>
-                                <span class="font-bold text-slate-700 block mb-1">IP Address Publik Anda:</span>
-                                <div class="p-3 bg-slate-900 text-cyan-400 font-mono text-sm rounded-xl font-bold flex justify-between items-center">
-                                    <span>${data.ip}</span>
-                                    <button onclick="navigator.clipboard.writeText('${data.ip}'); showToast('IP Disalin!', 'fa-copy');" class="text-xs bg-slate-800 text-white px-2.5 py-1 rounded-lg">Copy</button>
-                                </div>
-                            </div>
-                            <div>
-                                <span class="font-bold text-slate-700 block mb-1">Info User Agent Browser:</span>
-                                <div class="p-2.5 bg-white border border-slate-200 text-slate-600 rounded-xl text-[11px] leading-relaxed break-all">${ua}</div>
-                            </div>
-                        </div>
-                    `;
-                    showToast('Info IP ditemukan!', 'fa-network-wired');
-                } catch (e) {
-                    showToast('Gagal memuat info IP.', 'fa-triangle-exclamation');
-                }
-
+                    renderCopyResult(outputBox, 'IP Address Anda:', data.ip);
+                } catch(e) { showToast('Gagal cek IP', 'fa-triangle-exclamation'); }
             } else if (type === 'calculator') {
                 const p = parseFloat(document.getElementById('param_price')?.value);
                 const d = parseFloat(document.getElementById('param_discount')?.value);
-
-                if (isNaN(p) || isNaN(d)) return showToast('Harap masukan nominal harga & persen diskon!', 'fa-circle-exclamation');
-
+                if (isNaN(p) || isNaN(d)) return showToast('Harap masukan nominal harga & diskon!', 'fa-circle-exclamation');
                 const cut = (p * d) / 100;
-                const finalP = p - cut;
-
-                const fmt = (num) => new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR' }).format(num);
-
-                outputBox.innerHTML = `
-                    <div class="p-4 bg-slate-50 border border-slate-200 rounded-2xl space-y-2 text-xs">
-                        <div class="flex justify-between py-1 border-b border-slate-200">
-                            <span class="text-slate-600">Harga Normal:</span>
-                            <span class="font-bold text-slate-800">${fmt(p)}</span>
-                        </div>
-                        <div class="flex justify-between py-1 border-b border-slate-200">
-                            <span class="text-rose-600">Hemat Diskon (${d}%):</span>
-                            <span class="font-bold text-rose-600">- ${fmt(cut)}</span>
-                        </div>
-                        <div class="flex justify-between py-2 bg-emerald-100/60 px-3 rounded-xl border border-emerald-200">
-                            <span class="font-bold text-emerald-800">Total Pembayaran:</span>
-                            <span class="font-extrabold text-emerald-700 text-sm">${fmt(finalP)}</span>
-                        </div>
-                    </div>
-                `;
-                showToast('Kalkulasi diskon selesai!', 'fa-tags');
-
+                renderCopyResult(outputBox, 'Total Bayar Setelah Diskon:', `Rp ${(p - cut).toLocaleString('id-ID')}`);
             } else if (type === 'url') {
-                if (!inputVal) return showToast('Masukkan URL atau teks!', 'fa-circle-exclamation');
-                const enc = encodeURIComponent(inputVal);
-                const dec = decodeURIComponent(inputVal);
-
-                outputBox.innerHTML = `
-                    <div class="p-3.5 bg-slate-50 border border-slate-200 rounded-2xl space-y-3 text-xs">
-                        <div>
-                            <span class="font-bold text-slate-700 block mb-1">Hasil Encode URL:</span>
-                            <div class="p-2.5 bg-slate-900 text-cyan-400 font-mono rounded-xl break-all">${enc}</div>
-                        </div>
-                        <div>
-                            <span class="font-bold text-slate-700 block mb-1">Hasil Decode URL:</span>
-                            <div class="p-2.5 bg-slate-900 text-emerald-400 font-mono rounded-xl break-all">${dec}</div>
-                        </div>
-                    </div>
-                `;
-                showToast('URL berhasil dikonversi!', 'fa-link');
-
+                renderCopyResult(outputBox, 'URL Encoded:', encodeURIComponent(inputVal));
             } else if (type === 'qr') {
                 const val = inputVal || 'https://yanzstoru.com';
                 const qrUrl = `https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=${encodeURIComponent(val)}`;
                 outputBox.innerHTML = `
                     <div class="p-3 bg-slate-50 border border-slate-200 rounded-2xl text-center space-y-3">
-                        <span class="font-bold text-xs text-slate-700 block">Kode QR Berhasil Dibuat:</span>
-                        <img src="${qrUrl}" class="w-48 h-48 mx-auto rounded-xl shadow-md border border-slate-200">
-                        <a href="${qrUrl}" target="_blank" download="qr-yanzstoru.png" class="inline-flex items-center justify-center gap-2 px-4 py-2 bg-brand-500 text-white rounded-xl text-xs font-bold">
-                            <i class="fa-solid fa-download"></i> Unduh Kode QR
-                        </a>
+                        <img src="${qrUrl}" class="w-44 h-44 mx-auto rounded-xl shadow-md border border-slate-200">
                     </div>
                 `;
-                showToast('QR Code selesai!', 'fa-qrcode');
-
             } else if (type === 'enc') {
-                if (!inputVal) return showToast('Harap isi teks yang ingin dienkripsi!', 'fa-exclamation-circle');
-                const base64Enc = btoa(inputVal);
-                const hexEnc = Array.from(inputVal).map(c => c.charCodeAt(0).toString(16)).join('');
-
-                outputBox.innerHTML = `
-                    <div class="p-3.5 bg-slate-50 border border-slate-200 rounded-2xl space-y-3 text-xs">
-                        <div>
-                            <span class="font-bold text-slate-700 block mb-1">Hasil Enkripsi Base64:</span>
-                            <div class="p-2.5 bg-slate-900 text-cyan-400 font-mono rounded-xl break-all">${base64Enc}</div>
-                        </div>
-                        <div>
-                            <span class="font-bold text-slate-700 block mb-1">Hasil Enkripsi HEX:</span>
-                            <div class="p-2.5 bg-slate-900 text-emerald-400 font-mono rounded-xl break-all">${hexEnc}</div>
-                        </div>
-                    </div>
-                `;
-                showToast('Enkripsi selesai!', 'fa-lock');
-
+                renderCopyResult(outputBox, 'Hasil Base64:', btoa(inputVal));
             } else if (type === 'pass') {
                 const len = parseInt(inputVal) || 16;
-                const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()_+';
+                const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()';
                 let pass = '';
                 for (let i = 0; i < len; i++) pass += chars.charAt(Math.floor(Math.random() * chars.length));
-
-                outputBox.innerHTML = `
-                    <div class="p-3.5 bg-slate-50 border border-slate-200 rounded-2xl space-y-2 text-xs">
-                        <span class="font-bold text-slate-700 block">Password Acak Dihasilkan:</span>
-                        <div class="p-3 bg-slate-900 text-emerald-400 font-mono text-sm rounded-xl font-bold break-all flex justify-between items-center">
-                            <span>${pass}</span>
-                            <button onclick="navigator.clipboard.writeText('${pass}'); showToast('Password disalin!', 'fa-copy');" class="text-xs bg-slate-800 text-white px-2.5 py-1 rounded-lg hover:bg-slate-700">Copy</button>
-                        </div>
-                    </div>
-                `;
-                showToast('Password selesai!', 'fa-key');
+                renderCopyResult(outputBox, 'Password Acak Aman:', pass);
             }
+        }
+
+        function renderCopyResult(container, label, text) {
+            container.innerHTML = `
+                <div class="p-3 bg-slate-50 border border-slate-200 rounded-2xl space-y-2">
+                    <span class="text-xs font-bold text-slate-700 block">${label}</span>
+                    <div class="p-2.5 bg-slate-900 text-emerald-400 font-mono text-xs rounded-xl flex justify-between items-center break-all">
+                        <span>${escapeHtml(text)}</span>
+                        <button onclick="navigator.clipboard.writeText(\`${text.replace(/\\/g, '\\\\').replace(/`/g, '\\`')}\`); showToast('Disalin!', 'fa-copy');" class="text-[10px] bg-slate-800 text-white px-2 py-1 rounded-lg hover:bg-slate-700">Copy</button>
+                    </div>
+                </div>
+            `;
+        }
+
+        // UNICODE TRANSFORM HELPERS FOR FONT GENERATOR
+        function transformUnicode(text, lowerStart, upperStart, numStart) {
+            return text.split('').map(c => {
+                const code = c.charCodeAt(0);
+                if (code >= 97 && code <= 122) return String.fromCodePoint(lowerStart + (code - 97));
+                if (code >= 65 && code <= 90) return String.fromCodePoint(upperStart + (code - 65));
+                if (numStart && code >= 48 && code <= 57) return String.fromCodePoint(numStart + (code - 48));
+                return c;
+            }).join('');
+        }
+
+        function transformCircled(text) {
+            return text.split('').map(c => {
+                const code = c.charCodeAt(0);
+                if (code >= 97 && code <= 122) return String.fromCodePoint(0x24D0 + (code - 97));
+                if (code >= 65 && code <= 90) return String.fromCodePoint(0x24B6 + (code - 65));
+                if (code >= 49 && code <= 57) return String.fromCodePoint(0x2460 + (code - 49));
+                return c;
+            }).join('');
+        }
+
+        function transformSquared(text) {
+            return text.split('').map(c => {
+                const code = c.charCodeAt(0);
+                if (code >= 97 && code <= 122 || code >= 65 && code <= 90) {
+                    const uppercaseCode = c.toUpperCase().charCodeAt(0);
+                    return String.fromCodePoint(0x1F130 + (uppercaseCode - 65));
+                }
+                return c;
+            }).join('');
+        }
+
+        function transformFullwidth(text) {
+            return text.split('').map(c => {
+                const code = c.charCodeAt(0);
+                if (code >= 33 && code <= 126) return String.fromCodePoint(0xFF00 + (code - 32));
+                return c;
+            }).join('');
         }
 
         function renderResultUI(tool, data, container) {
