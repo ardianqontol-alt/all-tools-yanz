@@ -5,11 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ALL TOOLS FREE BY YANZ STORU</title>
     
+    <!-- Google Fonts & Font Awesome -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
+    <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -40,7 +42,7 @@
     
     <style>
         .glass-card {
-            background: rgba(255, 255, 255, 0.75);
+            background: rgba(255, 255, 255, 0.8);
             backdrop-filter: blur(16px);
             -webkit-backdrop-filter: blur(16px);
             border: 1px solid rgba(255, 255, 255, 0.9);
@@ -53,13 +55,13 @@
 
         .glass-card-hover:hover {
             transform: translateY(-4px);
-            background: rgba(255, 255, 255, 0.92);
+            background: rgba(255, 255, 255, 0.95);
             border-color: rgba(56, 189, 248, 0.6);
             box-shadow: 0 20px 35px -10px rgba(14, 165, 233, 0.22);
         }
 
         .glass-nav {
-            background: rgba(255, 255, 255, 0.82);
+            background: rgba(255, 255, 255, 0.85);
             backdrop-filter: blur(20px);
             -webkit-backdrop-filter: blur(20px);
             border-bottom: 1px solid rgba(255, 255, 255, 0.6);
@@ -87,23 +89,16 @@
             100% { height: 22px; }
         }
 
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
-        ::-webkit-scrollbar-track {
-            background: #e0f2fe;
-        }
-        ::-webkit-scrollbar-thumb {
-            background: #38bdf8;
-            border-radius: 10px;
-        }
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #e0f2fe; }
+        ::-webkit-scrollbar-thumb { background: #38bdf8; border-radius: 10px; }
     </style>
 </head>
 <body class="bg-gradient-to-br from-sky-100 via-cyan-50 to-blue-100 text-slate-800 font-sans min-h-screen relative overflow-x-hidden">
 
+    <!-- Header Navigation -->
     <header class="sticky top-0 z-50 glass-nav">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3.5 flex flex-col md:flex-row justify-between items-center gap-4">
-            
             <div class="flex items-center gap-3">
                 <div class="w-10 h-10 rounded-2xl bg-gradient-to-tr from-brand-500 to-cyan-400 flex items-center justify-center text-white shadow-lg shadow-brand-500/30">
                     <i class="fa-solid fa-wand-magic-sparkles text-lg"></i>
@@ -112,10 +107,11 @@
                     <h1 class="font-heading text-lg sm:text-xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-brand-700 via-brand-500 to-cyan-500 tracking-tight">
                         ALL TOOLS FREE <span class="text-slate-800 text-xs sm:text-sm font-semibold tracking-normal px-2 py-0.5 rounded-full bg-brand-100 border border-brand-200">BY YANZ STORU</span>
                     </h1>
-                    <p class="text-[11px] text-slate-500 font-medium">Free Web Tools & API Utilities Platform</p>
+                    <p class="text-[11px] text-slate-500 font-medium">Platform Web Tools & API Utilitas Gratis</p>
                 </div>
             </div>
 
+            <!-- Audio Controller Top Right -->
             <div class="flex items-center gap-3 bg-white/90 border border-white p-1.5 px-3.5 rounded-full shadow-sm">
                 <div class="flex items-center gap-2 pr-2 border-r border-slate-200">
                     <div id="eqVisualizer" class="flex items-end gap-0.5 h-6 px-1 paused">
@@ -145,18 +141,20 @@
         </div>
     </header>
 
-    <main class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-10">
+    <main class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
 
+        <!-- Hero Title -->
         <div class="text-center space-y-2">
             <span class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-semibold bg-cyan-100 text-brand-700 border border-cyan-200 shadow-xs">
-                <i class="fa-solid fa-bolt text-brand-500"></i> Premium Tools Without Key Limits
+                <i class="fa-solid fa-bolt text-brand-500"></i> Free Tools, Downloader, AI & Utilitas
             </span>
             <h2 class="font-heading text-3xl sm:text-5xl font-extrabold text-slate-900 tracking-tight">
-                Layanan Tools Gratis <br class="hidden sm:inline">
-                <span class="bg-clip-text text-transparent bg-gradient-to-r from-brand-600 via-cyan-500 to-blue-600">Yanz Storu Official</span>
+                Layanan All-in-One Gratis <br class="hidden sm:inline">
+                <span class="bg-clip-text text-transparent bg-gradient-to-r from-brand-600 via-cyan-500 to-blue-600">BY YANZ STORU</span>
             </h2>
         </div>
 
+        <!-- Video 16:9 Banner -->
         <section class="relative w-full max-w-4xl mx-auto">
             <div class="absolute -inset-1 bg-gradient-to-r from-cyan-400 via-brand-400 to-blue-500 rounded-[28px] blur-md opacity-40 hover:opacity-75 transition duration-500"></div>
             
@@ -165,19 +163,19 @@
                     <source src="video/ynz.mp4" type="video/mp4">
                     <div class="w-full h-full bg-gradient-to-br from-slate-900 to-brand-950 flex flex-col items-center justify-center text-white p-6 text-center">
                         <i class="fa-solid fa-film text-4xl text-cyan-400 mb-2"></i>
-                        <p class="font-bold text-lg">Simpan video di folder video/ynz.mp4</p>
+                        <p class="font-bold text-lg">Video Preview (video/ynz.mp4)</p>
                     </div>
                 </video>
 
                 <div class="absolute top-4 left-4 z-10 flex items-center gap-2 bg-slate-900/60 backdrop-blur-md text-white px-3 py-1.5 rounded-full border border-white/20 text-xs">
                     <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
-                    <span class="font-semibold text-[11px] tracking-wide">LIVE PREVIEW</span>
+                    <span class="font-semibold text-[11px] tracking-wide">VIDEO SHOWCASE</span>
                 </div>
             </div>
         </section>
 
+        <!-- Search Bar & Categorized Navigation Tabs -->
         <section class="space-y-6 pt-2">
-            
             <div class="max-w-2xl mx-auto relative">
                 <div class="relative flex items-center bg-white/90 backdrop-blur-md rounded-2xl p-2 shadow-lg border border-white">
                     <div class="pl-4 text-brand-500">
@@ -187,30 +185,33 @@
                         type="text" 
                         id="searchInput" 
                         oninput="filterTools()"
-                        placeholder="Cari tools (Alight Motion, TikTok, Gemini, Spotify...)" 
+                        placeholder="Cari tools (Alight Motion, Brat, QR, Encrypt, TikTok, Gemini...)" 
                         class="w-full py-3 px-4 text-slate-800 placeholder-slate-400 bg-transparent text-sm sm:text-base font-medium focus:outline-none"
                     >
                 </div>
             </div>
 
+            <!-- Separated Category Navigation Buttons -->
             <div class="flex items-center justify-center flex-wrap gap-2 pt-2" id="categoryFilters">
-                <button onclick="setCategory('all')" class="cat-btn active px-4 py-1.5 rounded-full text-xs font-semibold transition-all bg-brand-600 text-white shadow-sm shadow-brand-500/30">Semua</button>
-                <button onclick="setCategory('Popular')" class="cat-btn px-4 py-1.5 rounded-full text-xs font-semibold transition-all bg-white/80 hover:bg-white text-slate-600 border border-slate-200/80">🔥 Alight Motion Generator</button>
-                <button onclick="setCategory('Downloader')" class="cat-btn px-4 py-1.5 rounded-full text-xs font-semibold transition-all bg-white/80 hover:bg-white text-slate-600 border border-slate-200/80">📥 Downloader</button>
-                <button onclick="setCategory('AI')" class="cat-btn px-4 py-1.5 rounded-full text-xs font-semibold transition-all bg-white/80 hover:bg-white text-slate-600 border border-slate-200/80">🤖 AI Assistant</button>
+                <button onclick="setCategory('all')" class="cat-btn active px-4 py-2 rounded-xl text-xs font-bold transition-all bg-brand-600 text-white shadow-md shadow-brand-500/30">Semua Tools</button>
+                <button onclick="setCategory('Alight Motion')" class="cat-btn px-4 py-2 rounded-xl text-xs font-bold transition-all bg-white/90 hover:bg-white text-slate-700 border border-slate-200 shadow-sm"><i class="fa-solid fa-clapperboard text-emerald-500"></i> Alight Motion</button>
+                <button onclick="setCategory('Downloader')" class="cat-btn px-4 py-2 rounded-xl text-xs font-bold transition-all bg-white/90 hover:bg-white text-slate-700 border border-slate-200 shadow-sm"><i class="fa-solid fa-download text-brand-500"></i> Downloader</button>
+                <button onclick="setCategory('AI Assistant')" class="cat-btn px-4 py-2 rounded-xl text-xs font-bold transition-all bg-white/90 hover:bg-white text-slate-700 border border-slate-200 shadow-sm"><i class="fa-solid fa-robot text-purple-500"></i> AI Assistant</button>
+                <button onclick="setCategory('Utilitas')" class="cat-btn px-4 py-2 rounded-xl text-xs font-bold transition-all bg-white/90 hover:bg-white text-slate-700 border border-slate-200 shadow-sm"><i class="fa-solid fa-shield-halved text-amber-500"></i> Utilitas & Security</button>
             </div>
 
+            <!-- Grid Container for Tools -->
             <div id="toolsGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5"></div>
 
             <div id="emptyState" class="hidden text-center py-12 space-y-3 glass-card rounded-3xl">
                 <i class="fa-solid fa-face-frown text-4xl text-slate-400"></i>
-                <h3 class="font-heading font-bold text-slate-700">Tools Tidak Ditemukan</h3>
+                <h3 class="font-heading font-bold text-slate-700">Tool Tidak Ditemukan</h3>
             </div>
-
         </section>
 
     </main>
 
+    <!-- Modal Popup for Tool Execution -->
     <div id="toolModal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/50 backdrop-blur-sm hidden opacity-0 transition-opacity duration-300">
         <div class="bg-white rounded-3xl max-w-lg w-full p-6 shadow-2xl border border-white space-y-5 transform scale-95 transition-transform duration-300 overflow-hidden max-h-[90vh] flex flex-col" id="modalBox">
             <div class="flex justify-between items-start flex-shrink-0">
@@ -230,21 +231,20 @@
 
             <div class="overflow-y-auto space-y-4 pr-1 flex-1">
                 <p id="modalDesc" class="text-xs text-slate-600 leading-relaxed"></p>
-
                 <div id="modalInputs" class="space-y-3"></div>
-
                 <div id="modalOutput" class="hidden space-y-2"></div>
             </div>
 
             <div class="flex justify-end gap-2 pt-3 border-t border-slate-100 flex-shrink-0">
                 <button onclick="closeModal()" class="px-4 py-2 rounded-xl text-xs font-semibold bg-slate-100 text-slate-600 hover:bg-slate-200">Tutup</button>
                 <button id="modalActionBtn" onclick="executeToolAction()" class="px-5 py-2 rounded-xl text-xs font-semibold bg-brand-500 hover:bg-brand-600 text-white shadow-md shadow-brand-500/20 flex items-center gap-2">
-                    <i class="fa-solid fa-paper-plane text-xs"></i> <span>Eksekusi</span>
+                    <i class="fa-solid fa-paper-plane text-xs"></i> <span>Proses Sekarang</span>
                 </button>
             </div>
         </div>
     </div>
 
+    <!-- Toast Notification -->
     <div id="toast" class="fixed bottom-5 right-5 z-50 transform translate-y-20 opacity-0 transition-all duration-300 pointer-events-none">
         <div class="bg-slate-900 text-white text-xs font-semibold px-4 py-3 rounded-2xl shadow-xl flex items-center gap-3 border border-slate-700">
             <i id="toastIcon" class="fa-solid fa-circle-check text-emerald-400 text-base"></i>
@@ -257,34 +257,12 @@
         const BASE_URL = "https://albyoffc.my.id";
 
         const toolsData = [
-            // TOP / POPULAR (Alight Motion Generator)
-            {
-                id: 'am-send',
-                title: 'Alight Motion — Send Email',
-                category: 'Popular',
-                icon: 'fa-paper-plane',
-                desc: 'Kirim kode OTP / verifikasi ke email Alight Motion.',
-                endpoint: `${BASE_URL}/api/am/send?apikey=${API_KEY}`,
-                paramName: 'email',
-                inputLabel: 'Alamat Email AM',
-                placeholder: 'contoh@gmail.com'
-            },
-            {
-                id: 'am-verif',
-                title: 'Alight Motion — Verifikasi OTP',
-                category: 'Popular',
-                icon: 'fa-shield-check',
-                desc: 'Verifikasi akun Alight Motion dengan kode OTP.',
-                endpoint: `${BASE_URL}/api/am/verif?apikey=${API_KEY}`,
-                paramName: 'otp',
-                inputLabel: 'Kode OTP / Link Verif',
-                placeholder: 'Masukkan Kode OTP...'
-            },
+            // 1. ALIGHT MOTION SECTION
             {
                 id: 'am-bulk-custom',
-                title: 'Alight Motion — Bulk Custom',
-                category: 'Popular',
-                icon: 'fa-list-check',
+                title: 'AM Bulk Custom Generator',
+                category: 'Alight Motion',
+                icon: 'fa-clapperboard',
                 desc: 'Generate massal akun Alight Motion Premium dengan prefix custom.',
                 endpoint: `${BASE_URL}/api/v1/am/bulkcustom?apikey=${API_KEY}`,
                 isMultiParam: true,
@@ -295,8 +273,8 @@
             },
             {
                 id: 'am-bulk-random',
-                title: 'Alight Motion — Bulk Random',
-                category: 'Popular',
+                title: 'AM Bulk Random Generator',
+                category: 'Alight Motion',
                 icon: 'fa-shuffle',
                 desc: 'Generate massal akun Alight Motion Premium secara acak.',
                 endpoint: `${BASE_URL}/api/v1/am/bulkrandom?apikey=${API_KEY}`,
@@ -304,8 +282,87 @@
                 inputLabel: 'Jumlah Akun',
                 placeholder: '10'
             },
+            {
+                id: 'am-send',
+                title: 'Alight Motion — Send OTP',
+                category: 'Alight Motion',
+                icon: 'fa-paper-plane',
+                desc: 'Kirim kode OTP / verifikasi ke email Alight Motion.',
+                endpoint: `${BASE_URL}/api/am/send?apikey=${API_KEY}`,
+                paramName: 'email',
+                inputLabel: 'Alamat Email AM',
+                placeholder: 'contoh@gmail.com'
+            },
+            {
+                id: 'am-verif',
+                title: 'Alight Motion — Verifikasi OTP',
+                category: 'Alight Motion',
+                icon: 'fa-shield-check',
+                desc: 'Verifikasi akun Alight Motion dengan kode OTP.',
+                endpoint: `${BASE_URL}/api/am/verif?apikey=${API_KEY}`,
+                paramName: 'otp',
+                inputLabel: 'Kode OTP / Link Verifikasi',
+                placeholder: 'Masukkan Kode OTP...'
+            },
 
-            // DOWNLOADERS
+            // 2. UTILITAS & SECURITY SECTION
+            {
+                id: 'util-brat',
+                title: 'Brat Text Image Generator',
+                category: 'Utilitas',
+                icon: 'fa-font',
+                desc: 'Buat gambar teks gaya Brat viral hijau/putih secara instan.',
+                isCustomClientTool: true,
+                type: 'brat',
+                inputLabel: 'Teks untuk Gambar Brat',
+                placeholder: 'yanz storu all tools free'
+            },
+            {
+                id: 'util-qr',
+                title: 'QR Code Generator HD',
+                category: 'Utilitas',
+                icon: 'fa-qrcode',
+                desc: 'Buat Kode QR resolusi tinggi untuk tautan, teks, atau WiFi.',
+                isCustomClientTool: true,
+                type: 'qr',
+                inputLabel: 'Teks atau URL',
+                placeholder: 'https://yanzstoru.com'
+            },
+            {
+                id: 'util-enc',
+                title: 'Text Encryptor & Decryptor',
+                category: 'Utilitas',
+                icon: 'fa-lock',
+                desc: 'Enkripsi & Dekripsi teks rahasia menggunakan format Base64 & Hex.',
+                isCustomClientTool: true,
+                type: 'enc',
+                inputLabel: 'Teks yang ingin Di-Enkripsi/Dekripsi',
+                placeholder: 'Tulis pesan rahasia...'
+            },
+            {
+                id: 'util-pass',
+                title: 'Strong Password Generator',
+                category: 'Utilitas',
+                icon: 'fa-key',
+                desc: 'Hasilkan kata sandi acak super aman & tidak mudah diretas.',
+                isCustomClientTool: true,
+                type: 'pass',
+                inputLabel: 'Panjang Karakter Password',
+                placeholder: '16'
+            },
+
+            // 3. DOWNLOADER SECTION
+            {
+                id: 'dl-tiktok',
+                title: 'TikTok Downloader',
+                category: 'Downloader',
+                icon: 'fa-tiktok',
+                desc: 'Unduh video TikTok tanpa watermark / MP3 audio.',
+                endpoint: `${BASE_URL}/download/tiktok?apikey=${API_KEY}`,
+                paramName: 'url',
+                inputLabel: 'Tautan / URL TikTok',
+                placeholder: 'https://vt.tiktok.com/...'
+            },
             {
                 id: 'dl-capcut',
                 title: 'CapCut Downloader',
@@ -351,17 +408,6 @@
                 placeholder: 'https://pin.it/...'
             },
             {
-                id: 'dl-tiktok',
-                title: 'TikTok Downloader',
-                category: 'Downloader',
-                icon: 'fa-tiktok',
-                desc: 'Unduh video TikTok tanpa watermark / MP3 audio.',
-                endpoint: `${BASE_URL}/download/tiktok?apikey=${API_KEY}`,
-                paramName: 'url',
-                inputLabel: 'Tautan / URL TikTok',
-                placeholder: 'https://vt.tiktok.com/...'
-            },
-            {
                 id: 'dl-youtube',
                 title: 'YouTube Downloader (ytmobi)',
                 category: 'Downloader',
@@ -384,13 +430,24 @@
                 placeholder: 'https://open.spotify.com/track/...'
             },
 
-            // AI TOOLS
+            // 4. AI ASSISTANT SECTION
+            {
+                id: 'ai-gemini',
+                title: 'Gemini AI Chat',
+                category: 'AI Assistant',
+                icon: 'fa-sparkles',
+                desc: 'Chat cerdas dengan model Google Gemini AI.',
+                endpoint: `${BASE_URL}/ai/gemini?apikey=${API_KEY}`,
+                paramName: 'text',
+                inputLabel: 'Pertanyaan Kamu',
+                placeholder: 'Tanyakan apa saja...'
+            },
             {
                 id: 'ai-copilot',
                 title: 'Copilot Chat AI',
-                category: 'AI',
+                category: 'AI Assistant',
                 icon: 'fa-robot',
-                desc: 'Tanya jawab dengan Microsoft Copilot AI.',
+                desc: 'Tanya jawab cerdas dengan Microsoft Copilot AI.',
                 endpoint: `${BASE_URL}/ai/copilot?apikey=${API_KEY}`,
                 paramName: 'text',
                 inputLabel: 'Pesan / Pertanyaan',
@@ -399,7 +456,7 @@
             {
                 id: 'ai-deepai',
                 title: 'DeepAI Chat',
-                category: 'AI',
+                category: 'AI Assistant',
                 icon: 'fa-brain',
                 desc: 'Asisten kecerdasan buatan dari DeepAI.',
                 endpoint: `${BASE_URL}/ai/deepai?apikey=${API_KEY}`,
@@ -410,38 +467,18 @@
             {
                 id: 'ai-deepaicode',
                 title: 'DeepAI Code Generator',
-                category: 'AI',
+                category: 'AI Assistant',
                 icon: 'fa-code',
-                desc: 'Bantu buat atau perbaiki kode pemrogramannya.',
+                desc: 'Bantu buat atau perbaiki kode pemrograman.',
                 endpoint: `${BASE_URL}/ai/deepaicode?apikey=${API_KEY}`,
                 paramName: 'text',
                 inputLabel: 'Instruksi Kode',
                 placeholder: 'Buatkan fungsi JavaScript untuk...'
             },
             {
-                id: 'ai-deepaicode-models',
-                title: 'DeepAI Code Models',
-                category: 'AI',
-                icon: 'fa-cubes',
-                desc: 'Lihat daftar model coding AI yang tersedia.',
-                endpoint: `${BASE_URL}/ai/deepaicode/models?apikey=${API_KEY}`,
-                noInput: true
-            },
-            {
-                id: 'ai-gemini',
-                title: 'Gemini AI Chat',
-                category: 'AI',
-                icon: 'fa-sparkles',
-                desc: 'Chat cerdas dengan model Google Gemini AI.',
-                endpoint: `${BASE_URL}/ai/gemini?apikey=${API_KEY}`,
-                paramName: 'text',
-                inputLabel: 'Pertanyaan',
-                placeholder: 'Tanyakan apa saja...'
-            },
-            {
                 id: 'ai-kuroneko',
                 title: 'Kuroneko AI',
-                category: 'AI',
+                category: 'AI Assistant',
                 icon: 'fa-cat',
                 desc: 'Chatbot percakapan interaktif Kuroneko AI.',
                 endpoint: `${BASE_URL}/ai/kuroneko?apikey=${API_KEY}`,
@@ -450,38 +487,9 @@
                 placeholder: 'Halo Kuroneko...'
             },
             {
-                id: 'ai-notrack',
-                title: 'NoTrack AI Chat',
-                category: 'AI',
-                icon: 'fa-user-secret',
-                desc: 'AI Chat tanpa melacak histori percakapan.',
-                endpoint: `${BASE_URL}/ai/notrack?apikey=${API_KEY}`,
-                paramName: 'text',
-                inputLabel: 'Pesan Privasi',
-                placeholder: 'Ketik pesan...'
-            },
-            {
-                id: 'ai-notrack-chats',
-                title: 'NoTrack AI Chats',
-                category: 'AI',
-                icon: 'fa-comments',
-                desc: 'Tampilkan sesi percakapan NoTrack AI.',
-                endpoint: `${BASE_URL}/ai/notrack/chats?apikey=${API_KEY}`,
-                noInput: true
-            },
-            {
-                id: 'ai-notrack-history',
-                title: 'NoTrack AI History',
-                category: 'AI',
-                icon: 'fa-clock-rotate-left',
-                desc: 'Dapatkan riwayat percakapan NoTrack AI.',
-                endpoint: `${BASE_URL}/ai/notrack/history?apikey=${API_KEY}`,
-                noInput: true
-            },
-            {
                 id: 'ai-venice',
                 title: 'Venice AI Chat',
-                category: 'AI',
+                category: 'AI Assistant',
                 icon: 'fa-feather',
                 desc: 'Chatbot percakapan pintar Venice AI.',
                 endpoint: `${BASE_URL}/ai/venice?apikey=${API_KEY}`,
@@ -492,7 +500,7 @@
             {
                 id: 'ai-yenus',
                 title: 'Yenus AI Chat',
-                category: 'AI',
+                category: 'AI Assistant',
                 icon: 'fa-bolt-lightning',
                 desc: 'Respon cepat dengan model Yenus AI.',
                 endpoint: `${BASE_URL}/ai/yenus?apikey=${API_KEY}`,
@@ -551,14 +559,19 @@
                     card.className = 'glass-card glass-card-hover rounded-2xl p-5 flex flex-col justify-between space-y-4 border border-white cursor-pointer';
                     card.onclick = () => openToolModal(tool);
 
+                    let badgeColor = 'bg-slate-100 text-slate-600 border-slate-200';
+                    if (tool.category === 'Alight Motion') badgeColor = 'bg-emerald-100 text-emerald-700 border-emerald-200';
+                    if (tool.category === 'AI Assistant') badgeColor = 'bg-purple-100 text-purple-700 border-purple-200';
+                    if (tool.category === 'Utilitas') badgeColor = 'bg-amber-100 text-amber-700 border-amber-200';
+
                     card.innerHTML = `
                         <div class="space-y-3">
                             <div class="flex items-center justify-between">
                                 <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-brand-100 to-cyan-100 text-brand-600 flex items-center justify-center text-lg shadow-sm">
                                     <i class="fa-solid ${tool.icon}"></i>
                                 </div>
-                                <span class="text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-full ${tool.category === 'Popular' ? 'bg-amber-100 text-amber-700 border border-amber-200' : 'bg-slate-100 text-slate-600 border border-slate-200'}">
-                                    ${tool.category === 'Popular' ? '🔥 HOT' : tool.category}
+                                <span class="text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-full border ${badgeColor}">
+                                    ${tool.category}
                                 </span>
                             </div>
                             <div>
@@ -582,18 +595,16 @@
             }
         }
 
-        function filterTools() {
-            renderTools();
-        }
+        function filterTools() { renderTools(); }
 
         function setCategory(cat) {
             currentCategory = cat;
             const buttons = document.querySelectorAll('.cat-btn');
             buttons.forEach(btn => {
-                if(btn.innerText.toLowerCase().includes(cat.toLowerCase()) || (cat === 'all' && btn.innerText.toLowerCase() === 'semua')) {
-                    btn.className = 'cat-btn active px-4 py-1.5 rounded-full text-xs font-semibold transition-all bg-brand-600 text-white shadow-sm shadow-brand-500/30';
+                if(btn.innerText.toLowerCase().includes(cat.toLowerCase()) || (cat === 'all' && btn.innerText.toLowerCase().includes('semua'))) {
+                    btn.className = 'cat-btn active px-4 py-2 rounded-xl text-xs font-bold transition-all bg-brand-600 text-white shadow-md shadow-brand-500/30';
                 } else {
-                    btn.className = 'cat-btn px-4 py-1.5 rounded-full text-xs font-semibold transition-all bg-white/80 hover:bg-white text-slate-600 border border-slate-200/80';
+                    btn.className = 'cat-btn px-4 py-2 rounded-xl text-xs font-bold transition-all bg-white/90 hover:bg-white text-slate-700 border border-slate-200 shadow-sm';
                 }
             });
             renderTools();
@@ -613,8 +624,13 @@
             outputBox.classList.add('hidden');
             outputBox.innerHTML = '';
 
-            if (tool.noInput) {
-                inputsBox.innerHTML = `<p class="text-xs text-slate-500 italic">Tool ini dapat langsung dieksekusi tanpa input tambahan.</p>`;
+            if (tool.isCustomClientTool) {
+                inputsBox.innerHTML = `
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-700 mb-1">${tool.inputLabel}:</label>
+                        <input type="text" id="singleInput" placeholder="${tool.placeholder || ''}" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 text-xs focus:ring-2 focus:ring-brand-400 focus:outline-none bg-white">
+                    </div>
+                `;
             } else if (tool.isMultiParam) {
                 tool.params.forEach(p => {
                     inputsBox.innerHTML += `
@@ -647,43 +663,46 @@
             const modalBox = document.getElementById('modalBox');
             modal.classList.add('opacity-0');
             modalBox.classList.add('scale-95');
-            setTimeout(() => {
-                modal.classList.add('hidden');
-            }, 300);
+            setTimeout(() => { modal.classList.add('hidden'); }, 300);
         }
 
         async function executeToolAction() {
             if (!activeTool) return;
 
-            let finalUrl = activeTool.endpoint;
-
-            if (!activeTool.noInput) {
-                if (activeTool.isMultiParam) {
-                    let missing = false;
-                    activeTool.params.forEach(p => {
-                        const val = document.getElementById(`param_${p.name}`).value.trim();
-                        if (!val) missing = true;
-                        finalUrl += `&${p.name}=${encodeURIComponent(val)}`;
-                    });
-                    if (missing) {
-                        showToast('Harap isi semua kolom parameter!', 'fa-circle-exclamation');
-                        return;
-                    }
-                } else {
-                    const inputVal = document.getElementById('singleInput').value.trim();
-                    if (!inputVal) {
-                        showToast('Harap isi input terlebih dahulu!', 'fa-circle-exclamation');
-                        return;
-                    }
-                    finalUrl += `&${activeTool.paramName || 'url'}=${encodeURIComponent(inputVal)}`;
-                }
-            }
-
             const outputBox = document.getElementById('modalOutput');
             outputBox.classList.remove('hidden');
+
+            if (activeTool.isCustomClientTool) {
+                const inputVal = document.getElementById('singleInput').value.trim();
+                executeLocalTool(activeTool.type, inputVal, outputBox);
+                return;
+            }
+
+            let finalUrl = activeTool.endpoint;
+
+            if (activeTool.isMultiParam) {
+                let missing = false;
+                activeTool.params.forEach(p => {
+                    const val = document.getElementById(`param_${p.name}`).value.trim();
+                    if (!val) missing = true;
+                    finalUrl += `&${p.name}=${encodeURIComponent(val)}`;
+                });
+                if (missing) {
+                    showToast('Harap isi semua kolom parameter!', 'fa-circle-exclamation');
+                    return;
+                }
+            } else {
+                const inputVal = document.getElementById('singleInput').value.trim();
+                if (!inputVal) {
+                    showToast('Harap isi input terlebih dahulu!', 'fa-circle-exclamation');
+                    return;
+                }
+                finalUrl += `&${activeTool.paramName || 'text'}=${encodeURIComponent(inputVal)}`;
+            }
+
             outputBox.innerHTML = `
                 <div class="p-4 bg-slate-50 border border-slate-200 rounded-2xl flex items-center justify-center gap-3 text-brand-600 text-xs font-medium">
-                    <i class="fa-solid fa-spinner animate-spin text-base"></i> Memproses permintaan...
+                    <i class="fa-solid fa-spinner animate-spin text-base"></i> Memproses permintaan ke server...
                 </div>
             `;
 
@@ -694,8 +713,8 @@
                 if (!res.ok || (contentType && contentType.includes("text/html"))) {
                     outputBox.innerHTML = `
                         <div class="p-3.5 bg-rose-50 border border-rose-200 text-rose-600 rounded-2xl text-xs space-y-1">
-                            <div class="font-bold flex items-center gap-1.5"><i class="fa-solid fa-triangle-exclamation"></i> Gagal Memproses</div>
-                            <p class="text-[11px] leading-relaxed">Server API Alby sedang tidak dapat dijangkau atau URL yang kamu masukkan tidak ditemukan (Error 404). Silakan periksa link kamu dan coba lagi.</p>
+                            <div class="font-bold flex items-center gap-1.5"><i class="fa-solid fa-triangle-exclamation"></i> Respon Server Tidak Valid</div>
+                            <p class="text-[11px] leading-relaxed">Server API Alby sedang mengalami gangguan temporary. Silakan coba kembali beberapa saat lagi.</p>
                         </div>
                     `;
                     return;
@@ -707,64 +726,173 @@
             } catch (err) {
                 outputBox.innerHTML = `
                     <div class="p-3.5 bg-rose-50 border border-rose-200 text-rose-600 rounded-2xl text-xs space-y-1">
-                        <div class="font-bold flex items-center gap-1.5"><i class="fa-solid fa-circle-xmark"></i> Terjadi Masalah Jaringan</div>
-                        <p class="text-[11px]">Gagal menghubungkan ke server API. Periksa koneksi internet kamu.</p>
+                        <div class="font-bold flex items-center gap-1.5"><i class="fa-solid fa-circle-xmark"></i> Gagal Memproses</div>
+                        <p class="text-[11px]">Tidak dapat membaca respon dari server. Periksa jaringan Anda.</p>
                     </div>
                 `;
+            }
+        }
+
+        function executeLocalTool(type, inputVal, outputBox) {
+            if (type === 'brat') {
+                const text = inputVal || 'yanz storu';
+                const canvas = document.createElement('canvas');
+                canvas.width = 500;
+                canvas.height = 500;
+                const ctx = canvas.getContext('2d');
+                
+                ctx.fillStyle = '#8ace00';
+                ctx.fillRect(0, 0, 500, 500);
+
+                ctx.fillStyle = '#000000';
+                ctx.font = 'bold 42px Arial, sans-serif';
+                ctx.textBaseline = 'top';
+                
+                const words = text.split(' ');
+                let line = '';
+                let y = 40;
+
+                for (let n = 0; n < words.length; n++) {
+                    let testLine = line + words[n] + ' ';
+                    let metrics = ctx.measureText(testLine);
+                    let testWidth = metrics.width;
+                    if (testWidth > 420 && n > 0) {
+                        ctx.fillText(line, 40, y);
+                        line = words[n] + ' ';
+                        y += 50;
+                    } else {
+                        line = testLine;
+                    }
+                }
+                ctx.fillText(line, 40, y);
+
+                const imgUrl = canvas.toDataURL('image/png');
+
+                outputBox.innerHTML = `
+                    <div class="p-3 bg-slate-50 border border-slate-200 rounded-2xl text-center space-y-3">
+                        <span class="font-bold text-xs text-slate-700 block">Gambar Brat Berhasil Dibuat:</span>
+                        <img src="${imgUrl}" class="w-64 h-64 mx-auto rounded-xl shadow-md border border-slate-200 object-cover">
+                        <a href="${imgUrl}" download="brat-yanzstoru.png" class="inline-flex items-center justify-center gap-2 px-4 py-2 bg-emerald-500 text-white rounded-xl text-xs font-bold shadow-sm">
+                            <i class="fa-solid fa-download"></i> Download Gambar Brat
+                        </a>
+                    </div>
+                `;
+                showToast('Gambar Brat selesai!', 'fa-check');
+
+            } else if (type === 'qr') {
+                const val = inputVal || 'https://yanzstoru.com';
+                const qrUrl = `https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=${encodeURIComponent(val)}`;
+                outputBox.innerHTML = `
+                    <div class="p-3 bg-slate-50 border border-slate-200 rounded-2xl text-center space-y-3">
+                        <span class="font-bold text-xs text-slate-700 block">Kode QR Berhasil Dibuat:</span>
+                        <img src="${qrUrl}" class="w-48 h-48 mx-auto rounded-xl shadow-md border border-slate-200">
+                        <a href="${qrUrl}" target="_blank" download="qr-yanzstoru.png" class="inline-flex items-center justify-center gap-2 px-4 py-2 bg-brand-500 text-white rounded-xl text-xs font-bold">
+                            <i class="fa-solid fa-download"></i> Unduh Kode QR
+                        </a>
+                    </div>
+                `;
+                showToast('QR Code selesai!', 'fa-qrcode');
+
+            } else if (type === 'enc') {
+                if (!inputVal) {
+                    showToast('Harap isi teks yang ingin dienkripsi!', 'fa-exclamation-circle');
+                    return;
+                }
+                const base64Enc = btoa(inputVal);
+                const hexEnc = Array.from(inputVal).map(c => c.charCodeAt(0).toString(16)).join('');
+
+                outputBox.innerHTML = `
+                    <div class="p-3.5 bg-slate-50 border border-slate-200 rounded-2xl space-y-3 text-xs">
+                        <div>
+                            <span class="font-bold text-slate-700 block mb-1">Hasil Enkripsi Base64:</span>
+                            <div class="p-2.5 bg-slate-900 text-cyan-400 font-mono rounded-xl break-all">${base64Enc}</div>
+                        </div>
+                        <div>
+                            <span class="font-bold text-slate-700 block mb-1">Hasil Enkripsi HEX:</span>
+                            <div class="p-2.5 bg-slate-900 text-emerald-400 font-mono rounded-xl break-all">${hexEnc}</div>
+                        </div>
+                    </div>
+                `;
+                showToast('Enkripsi selesai!', 'fa-lock');
+
+            } else if (type === 'pass') {
+                const len = parseInt(inputVal) || 16;
+                const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()_+';
+                let pass = '';
+                for (let i = 0; i < len; i++) pass += chars.charAt(Math.floor(Math.random() * chars.length));
+
+                outputBox.innerHTML = `
+                    <div class="p-3.5 bg-slate-50 border border-slate-200 rounded-2xl space-y-2 text-xs">
+                        <span class="font-bold text-slate-700 block">Password Acak Dihasilkan:</span>
+                        <div class="p-3 bg-slate-900 text-emerald-400 font-mono text-sm rounded-xl font-bold break-all flex justify-between items-center">
+                            <span>${pass}</span>
+                            <button onclick="navigator.clipboard.writeText('${pass}'); showToast('Password disalin!', 'fa-copy');" class="text-xs bg-slate-800 text-white px-2.5 py-1 rounded-lg hover:bg-slate-700">Copy</button>
+                        </div>
+                    </div>
+                `;
+                showToast('Password selesai!', 'fa-key');
             }
         }
 
         function renderResultUI(tool, data, container) {
             let html = `<div class="p-4 bg-slate-50 border border-slate-200 rounded-2xl text-xs space-y-3">`;
             
-            let foundMedia = false;
-            let videoUrl = findKey(data, ['video', 'nowatermark', 'no_watermark', 'download_url', 'play']);
-            let audioUrl = findKey(data, ['audio', 'music', 'mp3']);
+            if (tool.category === 'Alight Motion' && Array.isArray(data)) {
+                html += `<span class="font-bold text-slate-700 block"><i class="fa-solid fa-list-check text-emerald-500"></i> Daftar Akun AM Berhasil Dibuat:</span>`;
+                html += `<div class="space-y-2 max-h-56 overflow-y-auto pr-1">`;
+                data.forEach((acc, i) => {
+                    const accStr = typeof acc === 'object' ? JSON.stringify(acc) : acc;
+                    html += `
+                        <div class="p-2.5 bg-white border border-slate-200 rounded-xl flex justify-between items-center font-mono text-[11px]">
+                            <span class="truncate pr-2">${accStr}</span>
+                            <button onclick="navigator.clipboard.writeText('${accStr}'); showToast('Akun disalin!', 'fa-copy');" class="text-brand-600 font-bold hover:underline flex-shrink-0">Copy</button>
+                        </div>
+                    `;
+                });
+                html += `</div>`;
+            } else if (tool.category === 'AI Assistant') {
+                let aiReply = findKey(data, ['result', 'response', 'reply', 'message', 'text', 'data']) || (typeof data === 'string' ? data : JSON.stringify(data, null, 2));
+                
+                if (typeof aiReply === 'object') aiReply = JSON.stringify(aiReply, null, 2);
 
-            if (tool.category === 'Downloader') {
+                html += `
+                    <div class="space-y-2">
+                        <div class="flex justify-between items-center">
+                            <span class="font-bold text-purple-700 flex items-center gap-1.5"><i class="fa-solid fa-robot"></i> Jawaban AI:</span>
+                            <button onclick="copyResultText()" class="text-brand-600 font-semibold hover:underline flex items-center gap-1">
+                                <i class="fa-solid fa-copy"></i> Salin
+                            </button>
+                        </div>
+                        <div id="rawResultText" class="p-3.5 bg-white border border-purple-100 rounded-2xl text-slate-800 text-xs leading-relaxed max-h-60 overflow-y-auto shadow-xs whitespace-pre-wrap">${escapeHtml(aiReply)}</div>
+                    </div>
+                `;
+            } else {
+                let videoUrl = findKey(data, ['video', 'nowatermark', 'no_watermark', 'download_url', 'play']);
+
                 if (videoUrl && typeof videoUrl === 'string' && videoUrl.startsWith('http')) {
-                    foundMedia = true;
                     html += `
                         <div class="space-y-2">
                             <span class="font-bold text-slate-700 block"><i class="fa-solid fa-circle-play text-brand-500"></i> Video Hasil:</span>
                             <video controls src="${videoUrl}" class="w-full rounded-xl max-h-60 bg-black"></video>
-                            <a href="${videoUrl}" target="_blank" download class="inline-flex items-center justify-center gap-2 w-full py-2.5 bg-emerald-500 hover:bg-emerald-600 text-white rounded-xl font-bold shadow-sm transition-all">
+                            <a href="${videoUrl}" target="_blank" download class="inline-flex items-center justify-center gap-2 w-full py-2.5 bg-emerald-500 text-white rounded-xl font-bold shadow-sm">
                                 <i class="fa-solid fa-download"></i> Download Video HD
                             </a>
                         </div>
                     `;
-                }
+                } else {
+                    let mainText = findKey(data, ['result', 'response', 'message', 'data']) || JSON.stringify(data, null, 2);
+                    if (typeof mainText === 'object') mainText = JSON.stringify(mainText, null, 2);
 
-                if (audioUrl && typeof audioUrl === 'string' && audioUrl.startsWith('http')) {
-                    foundMedia = true;
                     html += `
-                        <div class="space-y-2 pt-2 border-t border-slate-200">
-                            <span class="font-bold text-slate-700 block"><i class="fa-solid fa-music text-cyan-500"></i> Audio / MP3:</span>
-                            <audio controls src="${audioUrl}" class="w-full"></audio>
-                            <a href="${audioUrl}" target="_blank" download class="inline-flex items-center justify-center gap-2 w-full py-2 bg-brand-500 hover:bg-brand-600 text-white rounded-xl font-semibold transition-all text-xs">
-                                <i class="fa-solid fa-download"></i> Download MP3
-                            </a>
+                        <div class="flex justify-between items-center border-b border-slate-200 pb-2">
+                            <span class="font-bold text-slate-700"><i class="fa-solid fa-square-poll-horizontal text-brand-500"></i> Respon Hasil:</span>
+                            <button onclick="copyResultText()" class="text-brand-600 font-semibold hover:underline flex items-center gap-1">
+                                <i class="fa-solid fa-copy"></i> Salin
+                            </button>
                         </div>
+                        <pre id="rawResultText" class="p-3 bg-slate-900 text-slate-100 rounded-xl overflow-x-auto text-[11px] font-mono leading-relaxed whitespace-pre-wrap max-h-60">${escapeHtml(mainText)}</pre>
                     `;
                 }
-            }
-
-            if (!foundMedia) {
-                let mainText = findKey(data, ['result', 'response', 'message', 'data', 'chats']) || JSON.stringify(data, null, 2);
-
-                if (typeof mainText === 'object') {
-                    mainText = JSON.stringify(mainText, null, 2);
-                }
-
-                html += `
-                    <div class="flex justify-between items-center border-b border-slate-200 pb-2">
-                        <span class="font-bold text-slate-700"><i class="fa-solid fa-square-poll-horizontal text-brand-500"></i> Respon Hasil:</span>
-                        <button onclick="copyResultText()" class="text-[11px] text-brand-600 font-semibold hover:underline flex items-center gap-1">
-                            <i class="fa-solid fa-copy"></i> Salin
-                        </button>
-                    </div>
-                    <pre id="rawResultText" class="p-3 bg-slate-900 text-slate-100 rounded-xl overflow-x-auto text-[11px] font-mono leading-relaxed whitespace-pre-wrap max-h-60">${escapeHtml(mainText)}</pre>
-                `;
             }
 
             html += `</div>`;
@@ -802,14 +930,10 @@
             document.getElementById('toastIcon').className = `fa-solid ${icon} text-emerald-400 text-base`;
 
             toast.classList.remove('translate-y-20', 'opacity-0');
-            setTimeout(() => {
-                toast.classList.add('translate-y-20', 'opacity-0');
-            }, 3000);
+            setTimeout(() => { toast.classList.add('translate-y-20', 'opacity-0'); }, 3000);
         }
 
-        window.onload = function() {
-            renderTools();
-        };
+        window.onload = function() { renderTools(); };
     </script>
 </body>
 </html>
