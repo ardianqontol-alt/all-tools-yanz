@@ -123,7 +123,7 @@
                 </div>
                 <ul class="space-y-1.5 pl-5 list-disc text-[11px] text-slate-600">
                     <li><strong>No. 1 Semua Tools:</strong> Ratusan alat bantu instan & praktis.</li>
-                    <li><strong>No. 2 Alight Motion:</strong> Kirim & verifikasi OTP akun AM.</li>
+                    <li><strong>No. 2 AM Prem Generator:</strong> Kirim & verifikasi tautan magic akun AM yang ingin di premiumkan.</li>
                     <li><strong>No. 3 Downloader:</strong> Unduh video TikTok, IG, FB, CapCut, YouTube, Spotify tanpa watermark.</li>
                     <li><strong>No. 4 Maker & AI:</strong> Font Stylist, Remove BG, Brat Generator, MPLS Card, Gemini, Copilot, dll.</li>
                 </ul>
@@ -203,7 +203,7 @@
                 <i class="fa-solid fa-bolt text-brand-500"></i> 100+ Fitur Berjalan & Bekerja 100%
             </span>
             <h2 class="font-heading text-3xl sm:text-5xl font-extrabold text-slate-900 tracking-tight">
-                Layanan All-in-One Gratis <br class="hidden sm:inline">
+                Layanan Tools Gratis <br class="hidden sm:inline">
                 <span class="bg-clip-text text-transparent bg-gradient-to-r from-brand-600 via-cyan-500 to-blue-600">BY YANZ STORU</span>
             </h2>
         </div>
@@ -223,7 +223,7 @@
 
                 <div class="absolute top-4 left-4 z-10 flex items-center gap-2 bg-slate-900/60 backdrop-blur-md text-white px-3 py-1.5 rounded-full border border-white/20 text-xs">
                     <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
-                    <span class="font-semibold text-[11px] tracking-wide">VIDEO SHOWCASE</span>
+                    <span class="font-semibold text-[11px] tracking-wide">YANZ STORU</span>
                 </div>
             </div>
         </section>
@@ -329,10 +329,10 @@
             // --- NO. 2 ALIGHT MOTION TOOLS ---
             {
                 id: 'am-send',
-                title: 'Alight Motion — Send OTP',
+                title: 'Alight Motion — Send Tautan Magic',
                 category: 'Alight Motion',
                 icon: 'fa-paper-plane',
-                desc: 'Kirim kode OTP / verifikasi ke email Alight Motion.',
+                desc: 'Kirim Tautan Magic / verifikasi ke email Alight Motion.',
                 endpoint: `${BASE_URL}/api/am/send?apikey=${API_KEY}`,
                 paramName: 'email',
                 inputLabel: 'Alamat Email AM',
@@ -340,14 +340,14 @@
             },
             {
                 id: 'am-verif',
-                title: 'Alight Motion — Verifikasi OTP',
+                title: 'Alight Motion — Verifikasi Tautan Magic',
                 category: 'Alight Motion',
                 icon: 'fa-shield-check',
-                desc: 'Verifikasi akun Alight Motion dengan kode OTP.',
+                desc: 'Verifikasi akun Alight Motion dengan Tautan Magic.',
                 endpoint: `${BASE_URL}/api/am/verif?apikey=${API_KEY}`,
                 paramName: 'otp',
-                inputLabel: 'Kode OTP / Link Verifikasi',
-                placeholder: 'Masukkan Kode OTP...'
+                inputLabel: 'Tautan Magic / Link Verifikasi',
+                placeholder: 'Masukkan Tautan Magic...'
             },
             {
                 id: 'am-preset',
